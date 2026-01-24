@@ -50,6 +50,14 @@ const AboutSection = () => {
       tech: 'FastAPI · Flask · Gradio · Hugging Face Spaces',
     },
     {
+      title: 'MLOps & Cloud Deployment',
+      points: [
+        'Model containerization, CI/CD pipelines, and automated deployment workflows',
+        'Model optimization, versioning, and production monitoring',
+      ],
+      tech: 'Docker · GitHub Actions · MLflow · ONNX Runtime · Roboflow',
+    },
+    {
       title: 'Data Science & Predictive Analytics',
       points: [
         'Data analysis, feature engineering, and predictive modeling',
@@ -61,6 +69,7 @@ const AboutSection = () => {
       title: 'Mobile Application Development',
       points: [
         'Cross-platform mobile applications with modern, user-centric UI/UX',
+        'State management, local storage, and API integration for mobile apps',
       ],
       tech: 'Flutter · Dart · Firebase',
     },
