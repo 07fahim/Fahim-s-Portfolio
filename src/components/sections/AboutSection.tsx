@@ -2,7 +2,7 @@ import { Settings } from 'lucide-react';
 
 const AboutSection = () => {
   const stats = [
-    { value: '5', label: 'IEEE Publication' },
+    { value: '6', label: 'IEEE Publication' },
     { value: '33+', label: 'GitHub Repos' },
     { value: '3.60', label: 'CGPA' },
 
@@ -85,7 +85,7 @@ const AboutSection = () => {
         <h2>About Me</h2>
 
         <p className="lead">
-          I'm <strong>Gazi Mohammad Fahim Faiyaz</strong>, a Data Scientist and AI/ML Engineer from Chattogram, Bangladesh,
+          I'm <strong>Gazi Mohammad Fahim Faiyaz</strong>, a Data Scientist and AI/ML Engineer based in Dhaka, Bangladesh,
           specializing in Deep Learning, Computer Vision, and Natural Language Processing. I focus on building
           impact-driven AI systems and conducting applied research in predictive modeling and intelligent decision-making.
         </p>

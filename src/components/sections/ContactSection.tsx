@@ -60,7 +60,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       label: 'Location',
-      value: 'Chittagong, Bangladesh',
+      value: 'Bashundhara, Dhaka, Bangladesh',
       href: '#',
       color: '#67e8f9',
     },

@@ -75,7 +75,7 @@ const EducationSection = () => {
       color: '#34d399', // emerald
     },
     {
-      year: '2024',
+      year: '2025',
       title: 'B.Sc. in Computer Science & Engineering',
       subtitle: 'East Delta University',
       description: 'Graduated with specialization in AI/ML and Computer Vision. Research focus: Medical AI and Explainable AI.',
@@ -85,9 +85,9 @@ const EducationSection = () => {
       color: '#f97316', // orange
     },
     {
-      year: 'Dec 2024',
+      year: 'Mar 2025',
       title: 'Computer Vision Engineer',
-      subtitle: 'Quantigo AI',
+      subtitle: 'Quantigo AI, Dhaka',
       description: 'Working on cutting-edge computer vision solutions for real-world applications.',
       badge: 'Present',
       type: 'work',

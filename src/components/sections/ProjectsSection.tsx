@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Github, ExternalLink, Brain, Smartphone, Eye, MessageSquare, BarChart3, Leaf, Car, Home } from 'lucide-react';
+import { Github, ExternalLink, Brain, Smartphone, Eye, MessageSquare, BarChart3, Leaf, Car, Home, Activity, TrendingUp, FileText, Store, Share2, ScanLine } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -150,11 +150,79 @@ const ProjectsSection = () => {
       featured: true,
       category: 'mobile',
     },
+    {
+      id: 13,
+      title: 'Telemetry Anomaly Detector',
+      type: 'Time-Series / Anomaly Detection',
+      description: 'Production-ready anomaly detection for server telemetry (NAB dataset) using a three-layer ensemble — STL Z-score for spikes, Isolation Forest for multivariate outliers, and CUSUM for slow drift — with 2-of-3 voting to cut false positives. Served via FastAPI + Streamlit dashboard.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+      technologies: ['Python', 'scikit-learn', 'statsmodels', 'FastAPI', 'Streamlit', 'Docker'],
+      github: 'https://github.com/07fahim/telemetry-anomaly-detector',
+      featured: true,
+      category: 'ai',
+    },
+    {
+      id: 14,
+      title: 'IoT Sensor Data Trend Prediction',
+      type: 'Time-Series / Forecasting',
+      description: 'End-to-end ML pipeline forecasting carbon-monoxide concentration one hour ahead from noisy air-quality IoT sensor data. Compared LSTM, HistGradientBoosting, and SARIMAX with leakage-free feature engineering; all models beat the persistence baseline by ~29%.',
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80',
+      technologies: ['Python', 'PyTorch', 'LSTM', 'HistGradientBoosting', 'SARIMAX'],
+      github: 'https://github.com/07fahim/IoT-Sensor-Data-Trend-Prediction',
+      featured: true,
+      category: 'ai',
+    },
+    {
+      id: 15,
+      title: 'Local OCR & Dynamic RAG System',
+      type: 'RAG / OCR / Privacy AI',
+      description: 'Privacy-first document pipeline that runs OCR and retrieval-augmented search fully on-machine with zero external calls. Supports Bangla, English, and mixed documents via Surya OCR, BGE-M3 embeddings, ChromaDB, and a local Ollama LLM with hybrid metadata + semantic search.',
+      image: 'https://images.unsplash.com/photo-1568667256549-094345857637?w=600&q=80',
+      technologies: ['Python', 'Surya OCR', 'BGE-M3', 'ChromaDB', 'Ollama', 'FastAPI'],
+      github: 'https://github.com/07fahim/Local-OCR-Dynamic-RAG-System',
+      featured: true,
+      category: 'ai',
+    },
+    {
+      id: 16,
+      title: 'Legal Document AI System',
+      type: 'RAG / LLM / Document AI',
+      description: 'Production RAG pipeline for legal document processing, grounded memo generation, and continuous improvement from operator edits. Combines OCR, ChromaDB retrieval, and LLM generation behind a FastAPI + Streamlit interface; deployed live on Hugging Face Spaces.',
+      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80',
+      technologies: ['Python', 'RAG', 'ChromaDB', 'FastAPI', 'Streamlit', 'SQLite'],
+      github: 'https://github.com/07fahim/legal-doc-ai-system',
+      live: 'https://huggingface.co/spaces/yeager07/legal-doc-ai',
+      featured: true,
+      category: 'ai',
+    },
+    {
+      id: 17,
+      title: 'AI-Driven Social Media Automation',
+      type: 'LLM / Workflow Automation',
+      description: 'Human-in-the-loop social media pipeline combining LLM content generation with brand-consistent image compositing and an approval gate. A topic + publish time triggers Groq Llama 3.3 copywriting, a 1080×1080 branded card, then human review before publishing — orchestrated with n8n.',
+      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80',
+      technologies: ['Python', 'n8n', 'Groq (Llama 3.3)', 'FastAPI', 'Pillow'],
+      github: 'https://github.com/07fahim/AI-driven-social-media-automation',
+      featured: true,
+      category: 'ai',
+    },
+    {
+      id: 18,
+      title: 'ServiceHub — Full-Stack Service Marketplace',
+      type: 'Full-Stack / Web App',
+      description: 'Secure, multi-tenant service marketplace (inspired by Sheba.xyz) where customers book services from verified vendors and admins oversee the platform. Features JWT auth with refresh tokens, role-based access control, SSLCommerz payments, and vendor/admin dashboards.',
+      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80',
+      technologies: ['React', 'TypeScript', 'FastAPI', 'SQLAlchemy', 'Supabase', 'JWT'],
+      github: 'https://github.com/07fahim/ServiceHub-Full-Stack-Service-Marketplace',
+      featured: true,
+      category: 'web',
+    },
   ];
 
   const filters = [
     { id: 'all', label: 'All Projects' },
     { id: 'ai', label: 'AI & ML' },
+    { id: 'web', label: 'Web Apps' },
     { id: 'mobile', label: 'Mobile Apps' },
   ];
 
@@ -164,6 +232,24 @@ const ProjectsSection = () => {
 
   const getProjectIcon = (type: string) => {
     const typeLower = type.toLowerCase();
+    if (typeLower.includes('anomaly')) {
+      return <Activity size={16} />;
+    }
+    if (typeLower.includes('forecast') || typeLower.includes('trend') || typeLower.includes('prediction')) {
+      return <TrendingUp size={16} />;
+    }
+    if (typeLower.includes('ocr')) {
+      return <ScanLine size={16} />;
+    }
+    if (typeLower.includes('rag') || typeLower.includes('document') || typeLower.includes('legal')) {
+      return <FileText size={16} />;
+    }
+    if (typeLower.includes('automation') || typeLower.includes('social')) {
+      return <Share2 size={16} />;
+    }
+    if (typeLower.includes('full-stack') || typeLower.includes('web app') || typeLower.includes('marketplace')) {
+      return <Store size={16} />;
+    }
     if (typeLower.includes('llm') || typeLower.includes('agent') || typeLower.includes('nlp')) {
       return <MessageSquare size={16} />;
     }

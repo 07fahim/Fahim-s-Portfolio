@@ -13,10 +13,10 @@ const ExperienceSection = () => {
   const timelineItems: TimelineItem[] = [
     {
       id: 1,
-      year: 'Dec 2024 - Present',
+      year: 'Mar 2025 - Present',
       title: 'Computer Vision Engineer',
-      organization: 'Quantigo AI',
-      description: 'Developing cutting-edge computer vision solutions using YOLOv10/v11, OpenCV, and deep learning frameworks. Working on object detection, image classification, and segmentation tasks for various industry applications.',
+      organization: 'Quantigo AI, Dhaka',
+      description: 'Engineering production-ready annotated image and video datasets for 5+ active computer vision pipelines, reducing model training cycle time and accelerating client deployment. Validated and deployed object detection models across domains including Street Text Recognition, Microsurgical Scene Analysis, Industrial Defect Annotation, Search & Rescue, and Surveillance Event Tagging.',
       type: 'work',
     },
     {
@@ -61,10 +61,10 @@ const ExperienceSection = () => {
     },
     {
       id: 7,
-      year: '2020 - 2024',
+      year: '2020 - 2025',
       title: 'B.Sc. in Computer Science & Engineering',
-      organization: 'East Delta University, Chittagong',
-      description: 'Graduated with CGPA 3.60/4.00. Started coding journey, specialized in AI/ML, and completed research projects in computer vision and deep learning.',
+      organization: 'East Delta University, Chattogram',
+      description: 'Graduated with CGPA 3.60/4.00, 5× Dean\'s List and 1× Vice Chancellor\'s List. Started coding journey, specialized in AI/ML, and completed research projects in computer vision and deep learning.',
       type: 'education',
     },
   ];
