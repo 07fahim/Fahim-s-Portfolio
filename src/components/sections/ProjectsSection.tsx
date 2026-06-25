@@ -200,7 +200,7 @@ const ProjectsSection = () => {
       title: 'AI-Driven Social Media Automation',
       type: 'LLM / Workflow Automation',
       description: 'Human-in-the-loop social media pipeline combining LLM content generation with brand-consistent image compositing and an approval gate. A topic + publish time triggers Groq Llama 3.3 copywriting, a 1080×1080 branded card, then human review before publishing — orchestrated with n8n.',
-      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&q=80',
       technologies: ['Python', 'n8n', 'Groq (Llama 3.3)', 'FastAPI', 'Pillow'],
       github: 'https://github.com/07fahim/AI-driven-social-media-automation',
       featured: true,
