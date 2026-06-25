@@ -115,10 +115,10 @@ const SkillsSection = () => {
       'Programming & Tools',
       'AI/ML & Computer Vision',
       'NLP & LLMs',
+      'Data Engineering',
       'Databases',
       'MLOps & Cloud',
       'Backend & APIs',
-      'Data Engineering'
     ];
     const byTitle = new Map(categories.map((c) => [c.title, c]));
     return order.map((t) => byTitle.get(t)).filter(Boolean) as SkillCategory[];
