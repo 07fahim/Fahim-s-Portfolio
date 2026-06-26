@@ -22,7 +22,7 @@ const AchievementsSection = () => {
             title: 'Deep Learning for Brain Tumor Detection Leveraging YOLOv10 for Precise Localization',
             venue: 'IEEE RAAICON 2024',
             year: '2024',
-            link: '#',
+            link: 'https://doi.org/10.1109/RAAICON64172.2024.10928354',
         },
         {
             id: 2,
@@ -30,7 +30,7 @@ const AchievementsSection = () => {
             title: 'A Hybrid Deep Learning Approach For Brain Tumor Detection Using XAI with Grad-CAM',
             venue: 'ICCIT 2024',
             year: '2024',
-            link: '#',
+            link: 'https://doi.org/10.1109/ICCIT64611.2024.11021963',
         },
         {
             id: 3,
@@ -38,7 +38,7 @@ const AchievementsSection = () => {
             title: 'Hybrid Xception–LSTM Model for Explainable Mango Ripeness Classification Using Grad-CAM',
             venue: 'IEEE RAAICON 2025',
             year: '2025',
-            link: '#',
+            link: 'https://doi.org/10.1109/RAAICON69033.2025.11502078',
         },
         {
             id: 4,
@@ -46,7 +46,7 @@ const AchievementsSection = () => {
             title: 'Tea Leaf Disease Detection and Classification Using YOLOv11 and Transfer Learning with Grad-CAM',
             venue: 'ICCIT 2025',
             year: '2025',
-            link: '#',
+            link: 'https://doi.org/10.1109/ICCIT68739.2025.11516092',
         },
         {
             id: 5,
@@ -54,7 +54,7 @@ const AchievementsSection = () => {
             title: 'Deep Learning Approaches for Distracted Driving Detection Using YOLOv10-S and EfficientNet-B0',
             venue: 'ICCIT 2025',
             year: '2025',
-            link: '#',
+            link: 'https://doi.org/10.1109/ICCIT68739.2025.11491547',
         },
         {
             id: 6,
@@ -62,7 +62,7 @@ const AchievementsSection = () => {
             title: 'Tea Leaf Disease Detection Using Explainable AI & the Fusion of Ensemble and Deep Learning',
             venue: 'ICCIT 2025',
             year: '2025',
-            link: '#',
+            link: 'https://doi.org/10.1109/ICCIT68739.2025.11491363',
         },
         {
             id: 7,
