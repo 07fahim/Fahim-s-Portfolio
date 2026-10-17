@@ -1,0 +1,19 @@
+footer.ft { position:relative; z-index:2; padding:8vh 4vw 0; border-top:1px solid var(--line); overflow:hidden; }
+.ft .avail { display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+.ft .avail::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--accent); animation:ping 2s infinite; }
+.ft .line { font-size:clamp(1rem, 1.3vw, 1.15rem); line-height:1.55; color:var(--bio); max-width:24em; margin-bottom:18px; text-wrap:pretty; }
+.ft .icons { display:flex; flex-wrap:wrap; gap:10px; }
+.ft .icons a { width:44px; height:44px; display:grid; place-items:center; border-radius:50%; border:1px solid var(--line); color:var(--fg-strong); transition:border-color .25s, color .25s, translate .25s; }
+.ft .icons a:hover, .ft .icons a:focus-visible { border-color:var(--accent); color:var(--accent); translate:0 -3px; outline:none; } .ft .icons a:focus-visible { box-shadow:0 0 0 2px var(--fg-strong); }
+.ft .icons svg { width:18px; height:18px; } .ft .icons .mk-fiverr { width:30px; height:30px; }   /* Fiverr's mark is a wordmark, unreadable at 18 px */ .ft .mk { width:18px; height:18px; background:currentColor; -webkit-mask:var(--m) center / contain no-repeat; mask:var(--m) center / contain no-repeat; }
+.ft .bar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px 24px; padding:20px 0 24px; margin-top:6vh; border-top:1px solid var(--line); font-size:.82rem; color:var(--muted); }
+.ft .bar a { color:var(--fg-strong); opacity:.8; } .ft .bar a:hover, .ft .bar a:focus-visible { opacity:1; }
+.ft a:focus-visible { outline:2px solid var(--fg-strong); outline-offset:3px; border-radius:4px; }
+.ft .f3 { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:28px 4vw; }   /* the slim bar with the name, line and badge (user, 2026-10-17) */
+.ft .f3 .name { display:block; font-weight:800; font-size:clamp(1.5rem, 2.2vw, 2rem); letter-spacing:-.03em; margin-bottom:8px; } .ft .f3 .line { margin-bottom:14px; }
+.ft.v3 { padding-top:6vh; } .ft.v3 .bar { margin-top:4vh; }
+.ft.v3 .f3 { flex-direction:column; text-align:center; gap:24px; } .ft.v3 .f3 .line { margin-inline:auto; max-width:32em; font-size:clamp(1.15rem, 1.7vw, 1.45rem); letter-spacing:-.01em; } .ft .line b { font-weight:600; color:var(--fg-strong); }   /* the sign-off: the promise in the bright colour */ .ft.v3 .icons { justify-content:center; }   /* centred (user, 2026-10-17) */
+.ft.v3 .bar { justify-content:center; gap:10px 28px; margin-top:22px; padding:0 0 5vh; border-top:0; font-size:.78rem; }   /* the small print is the last line of the stack, no divider (user, 2026-10-17) */
+@media (max-width:800px) {
+  footer.ft { padding:7vh 5vw 0; } }
+@media (prefers-reduced-motion:reduce) { .ft .avail::before { animation:none; } .ft .icons a { transition:none; } }

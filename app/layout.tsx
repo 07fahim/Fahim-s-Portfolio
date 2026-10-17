@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google';
 import { MODE_SCRIPT } from '@/lib/mode';
 import './styles/tokens.css';
 import './styles/base.css';
-import './styles/header.css';
 import './styles/background.css';
+import './styles/header.css';
 import './styles/hero.css';
 import './styles/about.css';
 import './styles/services.css';
@@ -13,6 +13,7 @@ import './styles/timeline.css';
 import './styles/achievements.css';
 import './styles/contact.css';
 import './styles/game.css';
+import './styles/footer.css';
 
 // one variable font file per style; weights 400–800 and the 300 italic all come from it
 const inter = Inter({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--font-inter', display: 'swap' });
