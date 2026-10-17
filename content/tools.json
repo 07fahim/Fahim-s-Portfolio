@@ -53,6 +53,10 @@
     "name": "VLMs",
     "src": "i:scan-eye"
   },
+  "cvat": {
+    "name": "CVAT",
+    "src": "t:Cv"
+  },
   "surya ocr": {
     "name": "Surya OCR",
     "src": "t:Su"

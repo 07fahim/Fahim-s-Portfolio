@@ -27,7 +27,7 @@ export default function PinnedCards() {
           </div>
           <div className="smedia">
             {c.media.kind === 'img' ? <img src={c.media.src} alt={c.media.alt} loading="lazy" /> : (
-              <div className="flow"><small>{FLOW.label}</small>{FLOW.steps.map((s, j) => <Fragment key={j}>{j > 0 && <i>→</i>}<span className={s.gate ? 'gate' : undefined}>{s.text}</span></Fragment>)}</div>
+              <div className="flow" role="group" aria-label={FLOW.label}><small>{FLOW.label}</small>{FLOW.steps.map((s, j) => <Fragment key={j}>{j > 0 && <i>→</i>}<span className={s.gate ? 'gate' : undefined}>{s.text}</span></Fragment>)}</div>
             )}
             <div className="sov"><small>Built with</small><div>{c.stack.map((x, j) => <span key={x} style={{ '--k': j } as CSSProperties}>{x}</span>)}</div></div>
           </div>

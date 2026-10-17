@@ -17,6 +17,7 @@ type Item = { title: string; cats: string[] };
 
 export default function ProjectFilters({ categories, counts, items, featuredTitles, children }: { categories: [string, string][]; counts: Record<string, number>; items: Item[]; featuredTitles: string[]; children: ReactNode }) {
   const featured = useMemo(() => new Set(featuredTitles), [featuredTitles]);
+  const names = useMemo(() => new Map(categories), [categories]);
   const [f, setF] = useState('all');
   const [all, setAll] = useState(false);
   const [said, setSaid] = useState('');   // the live status speaks only after a visitor's action
@@ -28,7 +29,7 @@ export default function ProjectFilters({ categories, counts, items, featuredTitl
     setF(k);
     const hits = visible(items, featured, k, allRef.current, CAP);
     applyDom(new Set(hits.map(p => p.title)));
-    setSaid(`${hits.length} projects shown`);
+    setSaid(`${names.get(k)}: ${hits.length} projects shown`);   // the name too, so two filters with the same count still announce a change
   };
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function ProjectFilters({ categories, counts, items, featuredTitl
     setAll(true);
     const hits = visible(items, featured, 'all', true, CAP);
     applyDom(new Set(hits.map(p => p.title)));
-    setSaid(`${hits.length} projects shown`);
+    setSaid(`${names.get('all')}: ${hits.length} projects shown`);
     [...document.querySelectorAll<HTMLElement>('#pgrid > .pcard:not([hidden])')][CAP]?.querySelector('a')?.focus();
   };
 

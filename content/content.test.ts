@@ -3,7 +3,7 @@ import { STACK, TOOLS, SERVICES, PROJECTS, GRID_ORDER, FEATURED, FLOW, CATEGORIE
 
 describe('content extracted from the prototype', () => {
   test('counts match the approved page', () => {
-    expect(STACK.map(r => r.length)).toEqual([10, 13, 13, 10]);
+    expect(STACK.map(r => r.length)).toEqual([10, 13, 13, 11]);   // row 4 gained CVAT (from the CV, user 2026-10-18)
     expect(SERVICES.map(s => s.title)).toEqual(['AI agents & RAG chatbots', 'Automation workflows', 'Document processing & OCR', 'Computer vision & ML']);
     expect(PROJECTS).toHaveLength(20);
     expect(FEATURED.map(f => f.title)).toEqual(['Crosscheck', 'BashaBook', 'Legal Document AI', 'AI social media automation', 'Driver Distraction Detection']);

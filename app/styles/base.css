@@ -28,5 +28,5 @@ canvas { position:absolute; inset:0; width:100%; height:100%; }
    fade-to-invisible if the observer's first report lags a real scroll, e.g. a #hash load); only
    .reveal.in (the reveal) animates, which is the only direction the spec actually asks for. */
 .reveal { opacity:0; transform:translateY(24px); }
-.reveal.in { opacity:1; transform:none; transition:opacity .6s, transform .6s; }
-@media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; } .reveal.in { transition:none; } }
+.reveal.in { opacity:1; transform:none; transition-property:opacity, transform !important; transition-duration:.6s !important; transition-timing-function:ease !important; }   /* !important: must beat each card's own transition (e.g. .ach .cards > li outranks .reveal.in); longhands, not the shorthand, so the inline stagger delay still applies; lib/reveal.ts drops both classes when the fade ends, so the card's hover transitions come back */
+@media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; } .reveal.in { transition:none !important; } }
