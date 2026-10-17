@@ -1,30 +1,28 @@
-[
-  [
-    "all",
-    "All"
-  ],
-  [
-    "rag",
-    "AI agents & RAG"
-  ],
-  [
-    "auto",
-    "Automation"
-  ],
-  [
-    "docs",
-    "Documents & OCR"
-  ],
-  [
-    "cv",
-    "Computer vision"
-  ],
-  [
-    "data",
-    "Data & analytics"
-  ],
-  [
-    "apps",
-    "Web & mobile apps"
+{
+  "items": [
+    {
+      "label": "AI agents & RAG",
+      "key": "rag"
+    },
+    {
+      "label": "Automation",
+      "key": "auto"
+    },
+    {
+      "label": "Documents & OCR",
+      "key": "docs"
+    },
+    {
+      "label": "Computer vision",
+      "key": "cv"
+    },
+    {
+      "label": "Data & analytics",
+      "key": "data"
+    },
+    {
+      "label": "Web & mobile apps",
+      "key": "apps"
+    }
   ]
-]
+}

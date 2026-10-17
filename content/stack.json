@@ -1,57 +1,67 @@
-[
-  [
-    "Python",
-    "PyTorch",
-    "TensorFlow",
-    "Keras",
-    "Scikit-learn",
-    "FastAI",
-    "OpenCV",
-    "Ultralytics YOLO",
-    "Pandas",
-    "Statsmodels"
-  ],
-  [
-    "LangChain",
-    "LangFlow",
-    "RAG",
-    "Transformers",
-    "Embeddings",
-    "ChromaDB",
-    "Pinecone",
-    "Ollama",
-    "Groq",
-    "Gemini",
-    "AI agents",
-    "LLM API integration",
-    "VLMs"
-  ],
-  [
-    "FastAPI",
-    "Flask",
-    "Streamlit",
-    "Gradio",
-    "n8n",
-    "Selenium",
-    "Web Scraping",
-    "Surya OCR",
-    "Tesseract OCR",
-    "PaddleOCR",
-    "HunyuanOCR",
-    "PostgreSQL",
-    "Supabase"
-  ],
-  [
-    "Docker",
-    "GitHub Actions",
-    "MLflow",
-    "CVAT",
-    "ONNX Runtime",
-    "TensorRT",
-    "Hugging Face Spaces",
-    "AWS",
-    "Azure",
-    "Tableau",
-    "Git"
+{
+  "rows": [
+    {
+      "tools": [
+        "python",
+        "pytorch",
+        "tensorflow",
+        "keras",
+        "scikit-learn",
+        "fastai",
+        "opencv",
+        "ultralytics-yolo",
+        "pandas",
+        "statsmodels"
+      ]
+    },
+    {
+      "tools": [
+        "langchain",
+        "langflow",
+        "rag",
+        "transformers",
+        "embeddings",
+        "chromadb",
+        "pinecone",
+        "ollama",
+        "groq",
+        "gemini",
+        "ai-agents",
+        "llm-api-integration",
+        "vlms"
+      ]
+    },
+    {
+      "tools": [
+        "fastapi",
+        "flask",
+        "streamlit",
+        "gradio",
+        "n8n",
+        "selenium",
+        "web-scraping",
+        "surya-ocr",
+        "tesseract-ocr",
+        "paddleocr",
+        "hunyuanocr",
+        "postgresql",
+        "supabase"
+      ]
+    },
+    {
+      "tools": [
+        "docker",
+        "github-actions",
+        "mlflow",
+        "cvat",
+        "onnx-runtime",
+        "tensorrt",
+        "hugging-face-spaces",
+        "aws",
+        "azure",
+        "tableau",
+        "git"
+      ]
+    }
   ]
-]
+}

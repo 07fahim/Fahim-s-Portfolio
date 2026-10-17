@@ -1,5 +1,8 @@
+import { existsSync } from 'node:fs';
 import { describe, expect, test } from 'vitest';
-import { STACK, TOOLS, SERVICES, PROJECTS, GRID_ORDER, FEATURED, FLOW, CATEGORIES, TIMELINE, PAPERS, COURSES } from './index';
+import { SERVICES, PROJECTS, GRID_ORDER, FEATURED, FLOW, CATEGORIES, TIMELINE, PAPERS, COURSES } from './index';
+import { STACK, TOOLS } from './tools';
+import stack from './stack.json';
 
 describe('content extracted from the prototype', () => {
   test('counts match the approved page', () => {
@@ -16,8 +19,9 @@ describe('content extracted from the prototype', () => {
     expect(COURSES).toHaveLength(2);
     expect(FLOW.steps.some(s => s.gate)).toBe(true);
   });
-  test('every stack pill has a logo, icon or letters', () => {
-    for (const name of STACK.flat()) expect(TOOLS[name.toLowerCase()], name).toBeDefined();
+  test('every stack row points to a tool, and every logo file exists', () => {
+    for (const s of stack.rows.flatMap(r => r.tools)) expect(TOOLS.has(s), s).toBe(true);
+    for (const t of TOOLS.values()) if (t.logo) expect(existsSync('public' + t.logo), t.logo).toBe(true);
   });
   test('the social automation card makes no live-publishing claim', () => {
     const s = FEATURED.find(f => f.title === 'AI social media automation')!;

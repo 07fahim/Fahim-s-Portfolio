@@ -1,11 +1,13 @@
-import { config, fields, singleton } from '@keystatic/core';
+import { collection, config, fields, singleton } from '@keystatic/core';
+import { LUCIDE } from './components/icons';
 
 import categories from './content/categories.json';
 
 const json = { data: 'json' } as const;
 const link = (label: string) => fields.url({ label, validation: { isRequired: true } });
 
-const FILTERS = (categories as [string, string][]).filter(([k]) => k !== 'all').map(([value, label]) => ({ label, value }));
+const FILTERS = categories.items.map(({ key, label }) => ({ label, value: key }));
+const ICONS = Object.keys(LUCIDE).map(v => ({ label: v, value: v }));
 const text = (label: string, description?: string) => fields.text({ label, description, validation: { isRequired: true } });
 const long = (label: string, description?: string) => fields.text({ label, description, multiline: true, validation: { isRequired: true } });
 const list = (label: string, item: string) => fields.array(fields.text({ label: item, validation: { isRequired: true } }), { label, itemLabel: p => p.value });
@@ -78,6 +80,35 @@ export default config({
           year: fields.integer({ label: 'Year', validation: { isRequired: true } }),
           desc: long('Description'),
         }), { label: 'Courses', itemLabel: p => p.fields.title.value }),
+      },
+    }),
+    filters: singleton({
+      label: 'Project filters', path: 'content/categories', format: json,
+      schema: {
+        items: fields.array(fields.object({
+          label: text('Name', 'Shown on the filter button, for example Voice AI'),
+          key: fields.text({ label: 'Code', description: 'Lowercase letters, numbers and dashes. Projects and services point to it, so never change it once used.', validation: { isRequired: true, pattern: { regex: /^[a-z0-9-]+$/, message: 'Use lowercase letters, numbers and dashes only' } } }),
+        }), { label: 'Filters in button order (All always comes first)', description: 'A new filter shows up in the project and service lists after the site redeploys, about 2 minutes after saving.', itemLabel: p => p.fields.label.value }),
+      },
+    }),
+    stack: singleton({
+      label: 'Stack rows', path: 'content/stack', format: json,
+      schema: {
+        rows: fields.array(fields.object({
+          tools: fields.array(fields.relationship({ label: 'Tool', collection: 'tools', validation: { isRequired: true } }), { label: 'Tools', itemLabel: p => p.value ?? '' }),
+        }), { label: 'Rows', itemLabel: p => p.fields.tools.elements.map(e => e.value).join(', ') }),
+      },
+    }),
+  },
+  collections: {
+    tools: collection({
+      label: 'Stack tools', path: 'content/tools/*', slugField: 'name', format: json, columns: ['name'],
+      schema: {
+        name: fields.slug({ name: { label: 'Name', validation: { isRequired: true } } }),
+        logo: fields.image({ label: 'Logo (SVG or PNG)', description: 'Used first when set.', directory: 'public/logos', publicPath: '/logos/' }),
+        icon: fields.select({ label: 'Built-in icon', description: 'Used when there is no logo.', options: [{ label: 'None', value: '' }, ...ICONS], defaultValue: '' }),
+        letters: fields.text({ label: 'Letters', description: 'Up to 2, used when there is no logo or icon. Left empty, the first two letters of the name are shown.', validation: { length: { max: 2 } } }),
+        dark: fields.checkbox({ label: 'Near-black logo', description: 'Shown white on hover in dark mode.' }),
       },
     }),
   },
