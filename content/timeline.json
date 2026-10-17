@@ -1,64 +1,70 @@
-[
-  {
-    "now": 1,
-    "date": "Jul 2026 — Now",
-    "role": "Machine Learning Engineer",
-    "org": "Masharah Advisory",
-    "where": "Remote · Saudi Arabia",
-    "text": "I build AI that turns classical Islamic legal texts into structured and searchable knowledge for the Legal Knowledge Platform. I cover the whole ML cycle from data and experiments to evaluation and integration. The focus is accuracy and reliability at scale.",
-    "tags": [
-      "Document AI",
-      "OCR",
-      "Knowledge processing",
-      "Evaluation"
-    ]
-  },
-  {
-    "date": "Mar 2025 — Jul 2026",
-    "role": "Computer Vision Engineer",
-    "org": "Quantigo AI",
-    "where": "Remote · Bangladesh",
-    "text": "I validated and deployed object detection models for client computer vision pipelines. I also built and maintained the annotated image and video datasets behind them. Tracking down annotation errors and edge cases made the models more robust.",
-    "tags": [
-      "Object detection",
-      "Image & video annotation",
-      "Dataset QA",
-      "Model validation"
-    ]
-  },
-  {
-    "date": "2025",
-    "role": "Data Science Career Program",
-    "org": "Dokkho MasterCourse",
-    "where": "Cohort 7",
-    "text": "Selected through a competitive assessment. I completed four end‑to‑end capstone projects.",
-    "tags": [
-      "Data science",
-      "Capstone projects"
-    ]
-  },
-  {
-    "date": "2024 — 2025",
-    "role": "6 IEEE Papers",
-    "org": "ICCIT and IEEE RAAICON",
-    "where": "3 as first author",
-    "text": "Research on brain tumour detection and distracted driving as well as tea leaf disease and mango ripeness.",
-    "tags": [
-      "Medical imaging",
-      "Driver safety",
-      "Agriculture"
-    ],
-    "more": "See every paper"
-  },
-  {
-    "date": "2020 — 2025",
-    "role": "B.Sc. in Computer Science and Engineering",
-    "org": "East Delta University",
-    "where": "Chattogram, Bangladesh",
-    "text": "CGPA 3.60 / 4.00. Five times on the Dean’s List (GPA 3.5+) and once on the Vice Chancellor’s List (GPA 4.00).\nThesis: Brain Tumor Detection Using YOLOv10 and Hybrid CNN Models with Explainable AI.",
-    "tags": [
-      "Thesis",
-      "Computer vision"
-    ]
-  }
-]
+{
+  "entries": [
+    {
+      "now": true,
+      "date": "Jul 2026 — Now",
+      "role": "Machine Learning Engineer",
+      "org": "Masharah Advisory",
+      "where": "Remote · Saudi Arabia",
+      "text": "I build AI that turns classical Islamic legal texts into structured and searchable knowledge for the Legal Knowledge Platform. I cover the whole ML cycle from data and experiments to evaluation and integration. The focus is accuracy and reliability at scale.",
+      "tags": [
+        "Document AI",
+        "OCR",
+        "Knowledge processing",
+        "Evaluation"
+      ]
+    },
+    {
+      "now": false,
+      "date": "Mar 2025 — Jul 2026",
+      "role": "Computer Vision Engineer",
+      "org": "Quantigo AI",
+      "where": "Remote · Bangladesh",
+      "text": "I validated and deployed object detection models for client computer vision pipelines. I also built and maintained the annotated image and video datasets behind them. Tracking down annotation errors and edge cases made the models more robust.",
+      "tags": [
+        "Object detection",
+        "Image & video annotation",
+        "Dataset QA",
+        "Model validation"
+      ]
+    },
+    {
+      "now": false,
+      "date": "2025",
+      "role": "Data Science Career Program",
+      "org": "Dokkho MasterCourse",
+      "where": "Cohort 7",
+      "text": "Selected through a competitive assessment. I completed four end‑to‑end capstone projects.",
+      "tags": [
+        "Data science",
+        "Capstone projects"
+      ]
+    },
+    {
+      "now": false,
+      "date": "2024 — 2025",
+      "role": "6 IEEE Papers",
+      "org": "ICCIT and IEEE RAAICON",
+      "where": "3 as first author",
+      "text": "Research on brain tumour detection and distracted driving as well as tea leaf disease and mango ripeness.",
+      "tags": [
+        "Medical imaging",
+        "Driver safety",
+        "Agriculture"
+      ],
+      "more": "See every paper"
+    },
+    {
+      "now": false,
+      "date": "2020 — 2025",
+      "role": "B.Sc. in Computer Science and Engineering",
+      "org": "East Delta University",
+      "where": "Chattogram, Bangladesh",
+      "text": "CGPA 3.60 / 4.00. Five times on the Dean’s List (GPA 3.5+) and once on the Vice Chancellor’s List (GPA 4.00).\nThesis: Brain Tumor Detection Using YOLOv10 and Hybrid CNN Models with Explainable AI.",
+      "tags": [
+        "Thesis",
+        "Computer vision"
+      ]
+    }
+  ]
+}

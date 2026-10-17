@@ -3,8 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import Words from './Words';
 import { SERVICES } from '@/content';
 
-const FILTER = ['rag', 'auto', 'docs', 'cv'];   // rows are in the same order as these filters
-
 export default function Services() {
   const [open, setOpen] = useState(-1);
   const list = useRef<HTMLOListElement>(null);
@@ -29,7 +27,7 @@ export default function Services() {
             <div className="body" inert={open !== i}><div><div className="inner">
               <ul>{s.items.map(x => <li key={x}>{x}</li>)}</ul>
               <div><p><Words text={s.desc} /></p>
-                <a className="view" href="#all-projects" onClick={() => window.dispatchEvent(new CustomEvent('projects:filter', { detail: FILTER[i] }))}>VIEW PROJECTS</a></div>
+                <a className="view" href="#all-projects" onClick={() => window.dispatchEvent(new CustomEvent('projects:filter', { detail: s.filter }))}>VIEW PROJECTS</a></div>
             </div></div></div>
           </li>
         ))}

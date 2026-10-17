@@ -1,46 +1,52 @@
-[
-  {
-    "title": "AI agents & RAG chatbots",
-    "items": [
-      "Chatbots that answer from your PDFs, manuals and help docs",
-      "Every answer shows the source it came from",
-      "Agents that answer customers, qualify leads and update your CRM",
-      "Runs on your website, in your own tools or as an API",
-      "Private setups on your own server when data can’t leave"
-    ],
-    "desc": "An assistant that knows your business. It answers your customers or your team from your own documents and shows the source. When the answer isn’t there, it says so."
-  },
-  {
-    "title": "Automation workflows",
-    "items": [
-      "n8n or Python workflows that connect the apps you already use",
-      "Emails, invoices and PDFs handled without copy-paste",
-      "Follow-ups by email, SMS or WhatsApp",
-      "AI steps for writing, sorting and pulling out details",
-      "Alerts and approval steps when a person needs to check"
-    ],
-    "desc": "Repetitive work taken off your team’s plate. I map the steps you do by hand today and automate them. Checks and alerts make sure nothing fails silently."
-  },
-  {
-    "title": "Document processing & OCR",
-    "items": [
-      "Scans, receipts and invoices turned into structured data",
-      "OCR for printed and handwritten text, in English and Bangla",
-      "Checks that flag misread numbers before they reach your books",
-      "Exports to Excel, QuickBooks or your own system",
-      "Private setups that run fully on your own machine"
-    ],
-    "desc": "Paperwork turned into data you can use. Each document is read, checked and sent where you need it. Anything uncertain is flagged for a quick review."
-  },
-  {
-    "title": "Computer vision & ML",
-    "items": [
-      "Custom models that detect, count or check things in photos and video",
-      "Real-time analysis of camera feeds",
-      "Prediction and classification models trained on your data",
-      "Explainable results, so you can see why the model decided",
-      "Delivered as an API, a web demo or inside your app"
-    ],
-    "desc": "Models built and tested on your own data. You see the accuracy numbers before launch, and get a deployed system your team can use."
-  }
-]
+{
+  "items": [
+    {
+      "title": "AI agents & RAG chatbots",
+      "items": [
+        "Chatbots that answer from your PDFs, manuals and help docs",
+        "Every answer shows the source it came from",
+        "Agents that answer customers, qualify leads and update your CRM",
+        "Runs on your website, in your own tools or as an API",
+        "Private setups on your own server when data can’t leave"
+      ],
+      "desc": "An assistant that knows your business. It answers your customers or your team from your own documents and shows the source. When the answer isn’t there, it says so.",
+      "filter": "rag"
+    },
+    {
+      "title": "Automation workflows",
+      "items": [
+        "n8n or Python workflows that connect the apps you already use",
+        "Emails, invoices and PDFs handled without copy-paste",
+        "Follow-ups by email, SMS or WhatsApp",
+        "AI steps for writing, sorting and pulling out details",
+        "Alerts and approval steps when a person needs to check"
+      ],
+      "desc": "Repetitive work taken off your team’s plate. I map the steps you do by hand today and automate them. Checks and alerts make sure nothing fails silently.",
+      "filter": "auto"
+    },
+    {
+      "title": "Document processing & OCR",
+      "items": [
+        "Scans, receipts and invoices turned into structured data",
+        "OCR for printed and handwritten text, in English and Bangla",
+        "Checks that flag misread numbers before they reach your books",
+        "Exports to Excel, QuickBooks or your own system",
+        "Private setups that run fully on your own machine"
+      ],
+      "desc": "Paperwork turned into data you can use. Each document is read, checked and sent where you need it. Anything uncertain is flagged for a quick review.",
+      "filter": "docs"
+    },
+    {
+      "title": "Computer vision & ML",
+      "items": [
+        "Custom models that detect, count or check things in photos and video",
+        "Real-time analysis of camera feeds",
+        "Prediction and classification models trained on your data",
+        "Explainable results, so you can see why the model decided",
+        "Delivered as an API, a web demo or inside your app"
+      ],
+      "desc": "Models built and tested on your own data. You see the accuracy numbers before launch, and get a deployed system your team can use.",
+      "filter": "cv"
+    }
+  ]
+}
