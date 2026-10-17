@@ -21,7 +21,12 @@ export default function PinnedCards() {
     cs.forEach(c => ro.observe(c));
     addEventListener('resize', fit); addEventListener('scroll', cover, { passive: true });
     fit();
-    return () => { ro.disconnect(); cancelAnimationFrame(raf); removeEventListener('resize', fit); removeEventListener('scroll', cover); };
+    // the first fit() above can land before Inter has even started loading (document.fonts.ready can resolve
+    // before that), so refit once the font load actually finishes, and once more as a guarded fallback
+    let dead = false;
+    document.fonts.addEventListener('loadingdone', fit);
+    document.fonts.ready.then(() => { if (!dead) fit(); });
+    return () => { dead = true; document.fonts.removeEventListener('loadingdone', fit); ro.disconnect(); cancelAnimationFrame(raf); removeEventListener('resize', fit); removeEventListener('scroll', cover); };
   }, []);
   return (
     <div className="pins" id="pins" ref={root}>
