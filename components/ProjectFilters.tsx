@@ -1,20 +1,22 @@
 'use client';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { visible } from '@/lib/projects';
 
 const CAP = 6;
 
-// Toggles `hidden` on the server-rendered cards directly (no React state for the grid itself);
-// `n` counts hits so far, used for the All filter's 6-card cap.
-function applyDom(f: string, all: boolean) {
-  let n = 0;
+// Maps the pure `visible()` result onto the server-rendered cards via `data-title` (no re-parsing
+// of filter logic against DOM strings — the same shown set that drives the status text here is
+// what gets un-hidden).
+function applyDom(shownTitles: Set<string>) {
   document.querySelectorAll<HTMLElement>('#pgrid > .pcard').forEach(el => {
-    const hit = f === 'all' ? !('feat' in el.dataset) : (el.dataset.c ?? '').split(' ').includes(f);
-    el.hidden = !hit || (!all && f === 'all' && n >= CAP);
-    n += hit ? 1 : 0;
+    el.hidden = !shownTitles.has(el.dataset.title ?? '');
   });
 }
 
-export default function ProjectFilters({ categories, counts, children }: { categories: [string, string][]; counts: Record<string, number>; children: ReactNode }) {
+type Item = { title: string; cats: string[] };
+
+export default function ProjectFilters({ categories, counts, items, featuredTitles, children }: { categories: [string, string][]; counts: Record<string, number>; items: Item[]; featuredTitles: string[]; children: ReactNode }) {
+  const featured = useMemo(() => new Set(featuredTitles), [featuredTitles]);
   const [f, setF] = useState('all');
   const [all, setAll] = useState(false);
   const [said, setSaid] = useState('');   // the live status speaks only after a visitor's action
@@ -24,9 +26,9 @@ export default function ProjectFilters({ categories, counts, children }: { categ
   // stable identity: reads `all` through the ref, so the subscription below never needs to reattach
   const pick = (k: string) => {
     setF(k);
-    applyDom(k, allRef.current);
-    const shown = k === 'all' && !allRef.current ? Math.min(counts[k] ?? 0, CAP) : (counts[k] ?? 0);
-    setSaid(`${shown} projects shown`);
+    const hits = visible(items, featured, k, allRef.current, CAP);
+    applyDom(new Set(hits.map(p => p.title)));
+    setSaid(`${hits.length} projects shown`);
   };
 
   useEffect(() => {
@@ -38,8 +40,9 @@ export default function ProjectFilters({ categories, counts, children }: { categ
 
   const showAll = () => {
     setAll(true);
-    applyDom('all', true);
-    setSaid(`${counts.all ?? 0} projects shown`);
+    const hits = visible(items, featured, 'all', true, CAP);
+    applyDom(new Set(hits.map(p => p.title)));
+    setSaid(`${hits.length} projects shown`);
     [...document.querySelectorAll<HTMLElement>('#pgrid > .pcard:not([hidden])')][CAP]?.querySelector('a')?.focus();
   };
 

@@ -16,19 +16,22 @@ function Media({ p }: { p: Project }) {
   return <div className="type"><small>{NAME[p.cats[0]]}</small><b>{p.kpi || p.title}</b></div>;
 }
 
+const items = grid.map(p => ({ title: p.title, cats: p.cats }));
+const featuredTitles = [...featured];
+
 export default function ProjectGrid() {
   const n = counts(grid, featured);
   const shown = new Set(visible(grid, featured, 'all', false, CAP).map(p => p.title));
   return (
     <>
       <div className="label" role="heading" aria-level={3} id="all-projects" style={{ marginTop: '12vh', scrollMarginTop: 90 }}>More projects</div>
-      <ProjectFilters categories={CATEGORIES} counts={n}>
+      <ProjectFilters categories={CATEGORIES} counts={n} items={items} featuredTitles={featuredTitles}>
         <div className="pgrid" id="pgrid">
           {grid.map(p => {
             const hide = !shown.has(p.title);
             const Icon = LUCIDE[p.icon];
             return (
-              <article className="pcard" key={p.title} data-c={p.cats.join(' ')} data-feat={featured.has(p.title) ? true : undefined} hidden={hide}>
+              <article className="pcard" key={p.title} data-title={p.title} hidden={hide}>
                 <div className="media"><Media p={p} />
                   <div className="ov"><h5 aria-hidden="true">{p.title}</h5><p>{p.desc}</p>
                     <div className="lk">
