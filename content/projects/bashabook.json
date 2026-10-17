@@ -1,0 +1,44 @@
+{
+  "title": "BashaBook",
+  "type": "Web App / PWA",
+  "cats": [
+    "apps"
+  ],
+  "desc": "Shared accounts for flats with a hired cook. It tracks meals and payments and shows who owes whom at month end. Installable web app with reminders.",
+  "stack": [
+    "Next.js",
+    "PostgreSQL",
+    "Web push"
+  ],
+  "repo": "https://github.com/07fahim/bashabook",
+  "live": "https://bashabook.fahimfaiyaz.dev/en",
+  "image": "/pimg/bashabook/image.jpg",
+  "stock": false,
+  "icon": "users",
+  "featured": true,
+  "card": {
+    "tags": [
+      "Live",
+      "Web & mobile apps",
+      "My product"
+    ],
+    "lede": "Shared accounts for Bangladeshi flats with a hired cook. It tracks every meal and every bazar or bill payment, then shows who owes whom at month end. A website and installable web app in English and Bangla.",
+    "number": {},
+    "points": [
+      "Meals counted per person per day; tomorrow’s count locks at the cutoff, so the cook knows how many plates",
+      "At month end the app checks the cash count matches, then carries each balance forward",
+      "Push reminders for the meal lock, payments to confirm and the month-end close"
+    ],
+    "stack": [
+      "Next.js 16",
+      "React 19",
+      "Tailwind 4",
+      "PostgreSQL (Neon)",
+      "Web push",
+      "Vitest",
+      "Vercel"
+    ],
+    "diagram": false,
+    "alt": "BashaBook home page with a month ledger"
+  }
+}

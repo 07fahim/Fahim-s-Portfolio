@@ -1,0 +1,40 @@
+{
+  "title": "AI social media automation",
+  "type": "Automation / n8n",
+  "cats": [
+    "auto"
+  ],
+  "desc": "A topic and a publish time trigger the copywriting and a branded image card; a person approves each post before it is published.",
+  "stack": [
+    "n8n",
+    "Groq Llama 3.3",
+    "FastAPI",
+    "Pillow"
+  ],
+  "repo": "https://github.com/07fahim/AI-driven-social-media-automation",
+  "stock": false,
+  "kpi": "n8n",
+  "icon": "workflow",
+  "featured": true,
+  "card": {
+    "tags": [
+      "Repo",
+      "Automation"
+    ],
+    "lede": "A form starts the run: Llama 3.3 writes the post and a branded 1080×1080 image is composed. Nothing is published until a person approves it.",
+    "number": {},
+    "points": [
+      "Copy and image in one run",
+      "Human approval before anything goes out",
+      "Publish step for Facebook and Instagram, tested on mock endpoints"
+    ],
+    "stack": [
+      "Python",
+      "n8n",
+      "Groq (Llama 3.3)",
+      "FastAPI",
+      "Pillow"
+    ],
+    "diagram": true
+  }
+}

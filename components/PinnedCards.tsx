@@ -1,6 +1,6 @@
 import { Fragment, type CSSProperties } from 'react';
-import { FEATURED, FLOW } from '@/content';
-import { SITE } from '@/content/site';
+import { FLOW } from '@/content';
+import { FEATURED } from '@/content/projects';
 import PinnedCardsEffects from './PinnedCardsEffects';
 
 export default function PinnedCards() {
@@ -22,7 +22,7 @@ export default function PinnedCards() {
             <ul>{c.points.map(x => <li key={x}>{x}</li>)}</ul>
             <div className="links" style={{ marginTop: 26 }}>
               {c.live && <a className="btn solid" href={c.live} target="_blank" rel="noopener">Live&nbsp;<span aria-hidden="true">↗</span></a>}
-              <a className="btn" href={SITE.githubBase + c.repo} target="_blank" rel="noopener">GitHub&nbsp;<span aria-hidden="true">↗</span></a>
+              <a className="btn" href={c.repo} target="_blank" rel="noopener">GitHub&nbsp;<span aria-hidden="true">↗</span></a>
             </div>
           </div>
           <div className="smedia">

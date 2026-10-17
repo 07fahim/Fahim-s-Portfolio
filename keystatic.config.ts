@@ -99,8 +99,43 @@ export default config({
         }), { label: 'Rows', itemLabel: p => p.fields.tools.elements.map(e => e.value).join(', ') }),
       },
     }),
+    work: singleton({
+      label: 'Project order', path: 'content/work', format: json,
+      schema: {
+        order: fields.array(fields.relationship({ label: 'Project', collection: 'projects', validation: { isRequired: true } }), {
+          label: 'Projects, top to bottom', description: 'The big cards follow this order too. A project missing here goes last.', itemLabel: p => p.value ?? '',
+        }),
+      },
+    }),
   },
   collections: {
+    projects: collection({
+      label: 'Projects', path: 'content/projects/*', slugField: 'title', format: json, columns: ['title', 'type'],
+      schema: {
+        title: fields.slug({ name: { label: 'Title', validation: { isRequired: true } }, slug: { label: 'Address', description: 'Used in links to this project. Changing it later breaks old links.' } }),
+        type: text('Type line', 'Under the picture, for example RAG / Legal AI'),
+        cats: fields.multiselect({ label: 'Filters', options: FILTERS }),
+        desc: long('Description', 'Shown when the card is hovered.'),
+        stack: list('Stack (the small card shows the first four)', 'Tool'),
+        repo: fields.url({ label: 'GitHub link', validation: { isRequired: true } }),
+        live: fields.url({ label: 'Live demo link' }),
+        image: fields.image({ label: 'Picture', directory: 'public/pimg', publicPath: '/pimg/' }),
+        stock: fields.checkbox({ label: 'Stock photo', description: 'Tinted to match the site and skipped by screen readers.' }),
+        kpi: fields.text({ label: 'Big word', description: 'Shown instead of a picture when there is none.' }),
+        icon: fields.select({ label: 'Icon', options: ICONS, defaultValue: 'globe' }),
+        // A plain tick box, not a conditional: unticking moves the project to More projects but keeps its big-card text for later (user, 2026-10-18).
+        featured: fields.checkbox({ label: 'Big card at the top of Work', description: 'Untick to move it down to More projects. The big-card text below is kept.' }),
+        card: fields.object({
+          tags: list('Tags', 'Tag'),
+          lede: fields.text({ label: 'Intro', multiline: true }),
+          number: fields.object({ value: fields.text({ label: 'Number' }), label: fields.text({ label: 'What the number means' }) }, { label: 'Headline number (leave both empty for none)' }),
+          points: list('Points', 'Point'),
+          stack: list('Full stack', 'Tool'),
+          diagram: fields.checkbox({ label: 'Show the n8n workflow diagram instead of the picture' }),
+          alt: fields.text({ label: 'Picture description for screen readers' }),
+        }, { label: 'Big card text (used only while the box above is ticked)' }),
+      },
+    }),
     tools: collection({
       label: 'Stack tools', path: 'content/tools/*', slugField: 'name', format: json, columns: ['name'],
       schema: {

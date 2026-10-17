@@ -1,0 +1,26 @@
+{
+  "title": "FIFA Player Analytics",
+  "type": "Data Analytics / Web Scraping",
+  "cats": [
+    "data"
+  ],
+  "desc": "Scraped player ratings, wages and market values from 2012 to 2025 and built dashboards on the trends.",
+  "stack": [
+    "Selenium",
+    "Pandas",
+    "Tableau"
+  ],
+  "repo": "https://github.com/07fahim/Top-FIFA-Players-Analysis-2012-2025",
+  "live": "https://public.tableau.com/app/profile/gazi.mohammad.fahimfaiyaz/viz/LeagueandClubDomianace2012-2025/Dashboard1",
+  "image": "/pimg/fifa-player-analytics/image.jpg",
+  "stock": false,
+  "icon": "bar-chart-3",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

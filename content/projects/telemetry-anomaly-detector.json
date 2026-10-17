@@ -1,0 +1,28 @@
+{
+  "title": "Telemetry Anomaly Detector",
+  "type": "Time-Series / Anomaly Detection",
+  "cats": [
+    "data"
+  ],
+  "desc": "Spikes, multivariate outliers and slow drift each have their own detector on server telemetry; an alert needs two of the three to agree.",
+  "stack": [
+    "scikit-learn",
+    "statsmodels",
+    "FastAPI",
+    "Streamlit"
+  ],
+  "repo": "https://github.com/07fahim/telemetry-anomaly-detector",
+  "live": "https://telemetry-anomaly-detector.onrender.com",
+  "image": "/pimg/telemetry-anomaly-detector/image.jpg",
+  "stock": true,
+  "kpi": "2 of 3",
+  "icon": "activity",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

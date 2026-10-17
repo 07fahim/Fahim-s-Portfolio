@@ -1,0 +1,26 @@
+{
+  "title": "IoT Sensor Trend Prediction",
+  "type": "Time-Series / Forecasting",
+  "cats": [
+    "data"
+  ],
+  "desc": "Forecasts carbon monoxide one hour ahead from noisy air-quality sensors. It compares LSTM, gradient boosting and SARIMAX.",
+  "stack": [
+    "PyTorch",
+    "LSTM",
+    "SARIMAX"
+  ],
+  "repo": "https://github.com/07fahim/IoT-Sensor-Data-Trend-Prediction",
+  "image": "/pimg/iot-sensor-trend-prediction/image.jpg",
+  "stock": true,
+  "kpi": "−29%",
+  "icon": "trending-up",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

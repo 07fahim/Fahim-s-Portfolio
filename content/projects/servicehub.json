@@ -1,0 +1,27 @@
+{
+  "title": "ServiceHub",
+  "type": "Full-Stack / Web App",
+  "cats": [
+    "apps"
+  ],
+  "desc": "Customers book verified vendors. Vendors and admins get their own dashboards; JWT auth with refresh tokens and role-based access.",
+  "stack": [
+    "React",
+    "FastAPI",
+    "Supabase",
+    "JWT"
+  ],
+  "repo": "https://github.com/07fahim/ServiceHub-Full-Stack-Service-Marketplace",
+  "image": "/pimg/servicehub/image.jpg",
+  "stock": true,
+  "kpi": "Hub",
+  "icon": "store",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Crosscheck",
+  "type": "Document AI / OCR",
+  "cats": [
+    "docs"
+  ],
+  "desc": "Receipts and invoices read by AI, then checked by plain code. You only review what the checks flag.",
+  "stack": [
+    "Python",
+    "FastAPI",
+    "Next.js",
+    "Gemini"
+  ],
+  "repo": "https://github.com/07fahim/ai-receipt-invoice-extractor",
+  "live": "https://crosscheck.fahimfaiyaz.dev",
+  "image": "/pimg/crosscheck/image.jpg",
+  "stock": false,
+  "kpi": "91–94%",
+  "icon": "scan-line",
+  "featured": true,
+  "card": {
+    "tags": [
+      "Live",
+      "Documents & OCR",
+      "My product"
+    ],
+    "lede": "Receipts and invoices read by AI, then checked by plain code. Upload a batch and export clean rows. You only review what the checks flag.",
+    "number": {
+      "value": "91–94%",
+      "label": "of receipts read fully correct (CORD-v2 test and validation)"
+    },
+    "points": [
+      "Flagged documents get one-click fixes on a review screen",
+      "Telegram and Gmail alerts through n8n; exports to CSV, Excel and QuickBooks",
+      "Ask about your documents in English or Bangla (25 of 26 test questions right)"
+    ],
+    "stack": [
+      "Python",
+      "FastAPI",
+      "Next.js",
+      "TypeScript",
+      "Gemini",
+      "Supabase",
+      "n8n"
+    ],
+    "diagram": false,
+    "alt": "Crosscheck home page"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Bangladeshi Landmarks Recognizer",
+  "type": "Computer Vision / Deep Learning",
+  "cats": [
+    "cv"
+  ],
+  "desc": "DenseNet121 trained on a dataset scraped and cleaned by hand, deployed with Gradio on Hugging Face.",
+  "stack": [
+    "FastAI",
+    "PyTorch",
+    "Gradio"
+  ],
+  "repo": "https://github.com/07fahim/Popular-Bangladeshi-Landmarks-Recognizer",
+  "live": "https://07fahim.github.io/Popular-Bangladeshi-Landmarks-Recognizer/",
+  "image": "/pimg/bangladeshi-landmarks-recognizer/image.jpg",
+  "stock": false,
+  "kpi": "99.9%",
+  "icon": "eye",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

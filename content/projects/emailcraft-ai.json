@@ -1,0 +1,28 @@
+{
+  "title": "EmailCraft-AI",
+  "type": "LLM / Multi-Agent AI",
+  "cats": [
+    "rag",
+    "auto"
+  ],
+  "desc": "Agents research the lead, match portfolio items and draft a personalised email. A scoring step checks it before it goes out. Runs as an API in Docker.",
+  "stack": [
+    "Groq Llama",
+    "ChromaDB",
+    "FastAPI",
+    "Docker"
+  ],
+  "repo": "https://github.com/07fahim/EmailCraft-AI",
+  "live": "https://emailcraft-ai.onrender.com",
+  "image": "/pimg/emailcraft-ai/image.jpg",
+  "stock": false,
+  "icon": "message-square",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

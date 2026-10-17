@@ -1,0 +1,25 @@
+{
+  "title": "Crafty Bay",
+  "type": "Mobile App / E-commerce",
+  "cats": [
+    "apps"
+  ],
+  "desc": "A Flutter shopping app on Firebase, from product browsing and cart to sign-in and checkout.",
+  "stack": [
+    "Flutter",
+    "Firebase"
+  ],
+  "repo": "https://github.com/07fahim/Crafty-Bay-Flutter-E-commerce-app",
+  "image": "/pimg/crafty-bay/image.jpg",
+  "stock": true,
+  "kpi": "Flutter",
+  "icon": "smartphone",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

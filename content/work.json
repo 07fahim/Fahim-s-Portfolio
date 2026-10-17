@@ -1,0 +1,24 @@
+{
+  "order": [
+    "crosscheck",
+    "bashabook",
+    "legal-document-ai",
+    "ai-social-media-automation",
+    "driver-distraction-detection",
+    "emailcraft-ai",
+    "ai-fitness-coach",
+    "local-ocr-and-dynamic-rag",
+    "brain-tumor-detection",
+    "mango-ripeness-classification",
+    "bangladeshi-landmarks-recognizer",
+    "research-article-classifier",
+    "telemetry-anomaly-detector",
+    "iot-sensor-trend-prediction",
+    "king-county-house-prices",
+    "fifa-player-analytics",
+    "servicehub",
+    "crafty-bay",
+    "task-manager",
+    "todo-app"
+  ]
+}

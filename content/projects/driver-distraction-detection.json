@@ -1,0 +1,48 @@
+{
+  "title": "Driver Distraction Detection",
+  "type": "Computer Vision / Real-Time",
+  "cats": [
+    "cv"
+  ],
+  "desc": "YOLOv10 model that spots 12 distracted-driving behaviours in images and video, optimised with ONNX Runtime. Published at IEEE ICCIT 2025.",
+  "stack": [
+    "YOLOv10",
+    "ONNX Runtime",
+    "Flask",
+    "Docker"
+  ],
+  "repo": "https://github.com/07fahim/Driver-Distraction-Detection-and-Classification",
+  "live": "https://driver-distraction-detection-and.onrender.com",
+  "image": "/pimg/driver-distraction-detection/image.jpg",
+  "stock": false,
+  "kpi": "98.1%",
+  "icon": "car",
+  "featured": true,
+  "card": {
+    "tags": [
+      "Live · IEEE",
+      "Computer vision & ML"
+    ],
+    "lede": "A YOLOv10 model that watches the driver and flags distraction as it happens. Published at IEEE ICCIT 2025.",
+    "number": {
+      "value": "98.1%",
+      "label": "mAP@50 across 12 behaviours"
+    },
+    "points": [
+      "Spots 12 behaviours, from texting and phone calls to drinking and drowsiness",
+      "Works on photos and on video, frame by frame",
+      "Runs on ONNX Runtime, deployed with Docker through CI/CD"
+    ],
+    "stack": [
+      "Python",
+      "YOLOv10",
+      "ONNX Runtime",
+      "Flask",
+      "Gradio",
+      "Docker",
+      "GitHub Actions"
+    ],
+    "diagram": false,
+    "alt": "Driver distraction detection result"
+  }
+}

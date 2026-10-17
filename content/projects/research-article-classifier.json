@@ -1,0 +1,28 @@
+{
+  "title": "Research Article Classifier",
+  "type": "NLP / Multi-Label Classification",
+  "cats": [
+    "data"
+  ],
+  "desc": "SciBERT tags computer-science papers with their subjects, trained on a dataset scraped from arXiv and served from ONNX.",
+  "stack": [
+    "SciBERT",
+    "ONNX",
+    "Flask",
+    "Selenium"
+  ],
+  "repo": "https://github.com/07fahim/Multi-Label-Text-Classification-of-Computer-Science-Research-Articles",
+  "live": "https://multi-label-text-classification-of.onrender.com",
+  "image": "/pimg/research-article-classifier/image.jpg",
+  "stock": false,
+  "kpi": "SciBERT",
+  "icon": "message-square",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Legal Document AI",
+  "type": "RAG / Legal AI",
+  "cats": [
+    "rag",
+    "docs"
+  ],
+  "desc": "OCR, retrieval and LLM generation behind a FastAPI and Streamlit app. Every memo cites the documents it used, and operator edits feed back into the next draft.",
+  "stack": [
+    "RAG",
+    "ChromaDB",
+    "FastAPI",
+    "Streamlit"
+  ],
+  "repo": "https://github.com/07fahim/legal-doc-ai-system",
+  "live": "https://huggingface.co/spaces/yeager07/legal-doc-ai",
+  "image": "/pimg/legal-document-ai/image.jpg",
+  "stock": false,
+  "kpi": "RAG",
+  "icon": "scale",
+  "featured": true,
+  "card": {
+    "tags": [
+      "Live",
+      "AI agents & RAG"
+    ],
+    "lede": "Drafts internal case memos from uploaded legal documents, grounded in what the documents say.",
+    "number": {},
+    "points": [
+      "Reads scanned PDFs and images with OCR",
+      "Each memo is built from the uploaded documents",
+      "Your corrections become rules for the next memo"
+    ],
+    "stack": [
+      "Python",
+      "RAG",
+      "ChromaDB",
+      "FastAPI",
+      "Streamlit",
+      "SQLite"
+    ],
+    "diagram": false,
+    "alt": "Legal Document AI memo screen"
+  }
+}

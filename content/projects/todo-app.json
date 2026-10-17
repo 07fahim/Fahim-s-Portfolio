@@ -1,0 +1,25 @@
+{
+  "title": "TODO App",
+  "type": "Mobile App / Flutter",
+  "cats": [
+    "apps"
+  ],
+  "desc": "A small Material Design to-do app.",
+  "stack": [
+    "Flutter",
+    "Dart"
+  ],
+  "repo": "https://github.com/07fahim/TODO-Flutter-App",
+  "image": "/pimg/todo-app/image.jpg",
+  "stock": true,
+  "kpi": "Flutter",
+  "icon": "smartphone",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

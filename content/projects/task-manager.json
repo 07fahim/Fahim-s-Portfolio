@@ -1,0 +1,25 @@
+{
+  "title": "Task Manager",
+  "type": "Mobile App / Flutter",
+  "cats": [
+    "apps"
+  ],
+  "desc": "Create, prioritise and track tasks in a Flutter app with proper state management.",
+  "stack": [
+    "Flutter",
+    "Dart"
+  ],
+  "repo": "https://github.com/07fahim/task_manager",
+  "image": "/pimg/task-manager/image.jpg",
+  "stock": true,
+  "kpi": "Flutter",
+  "icon": "smartphone",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

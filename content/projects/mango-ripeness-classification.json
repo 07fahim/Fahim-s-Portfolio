@@ -1,0 +1,26 @@
+{
+  "title": "Mango Ripeness Classification",
+  "type": "Computer Vision / XAI",
+  "cats": [
+    "cv"
+  ],
+  "desc": "Hybrid Xception–LSTM model that grades mango ripeness in six stages, with Grad-CAM to show what it looked at.",
+  "stack": [
+    "TensorFlow",
+    "Xception",
+    "LSTM"
+  ],
+  "repo": "https://github.com/07fahim/Mango-Ripeness-Classification-with-GradCam",
+  "image": "/pimg/mango-ripeness-classification/image.jpg",
+  "stock": false,
+  "kpi": "98.3%",
+  "icon": "leaf",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

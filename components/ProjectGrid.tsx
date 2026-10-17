@@ -1,18 +1,18 @@
-import { CATEGORIES, FEATURED, GRID_ORDER, PROJECTS, type Project } from '@/content';
-import { SITE } from '@/content/site';
+import { CATEGORIES, type Project } from '@/content';
+import { FEATURED, PROJECTS } from '@/content/projects';
 import { counts, visible } from '@/lib/projects';
 import { Github, LUCIDE } from './icons';
 import ProjectFilters from './ProjectFilters';
 
 const CAP = 6;
 const Ext = LUCIDE['external-link'];
-const grid = GRID_ORDER.map(t => PROJECTS.find(p => p.title === t)!);
+const grid = PROJECTS;
 const featured = new Set(FEATURED.map(f => f.title));
 const NAME = Object.fromEntries(CATEGORIES);
 
 function Media({ p }: { p: Project }) {
-  if (p.img) return <img src={`/pimg/${p.img}.jpg`} alt={`${p.title} screenshot`} loading="lazy" />;
-  if (p.stock) return <div className="duo"><img src={p.stock} alt="" loading="lazy" /></div>;
+  if (p.image && !p.stock) return <img src={p.image} alt={`${p.title} screenshot`} loading="lazy" />;
+  if (p.image) return <div className="duo"><img src={p.image} alt="" loading="lazy" /></div>;
   return <div className="type"><small>{NAME[p.cats[0]]}</small><b>{p.kpi || p.title}</b></div>;
 }
 
@@ -35,7 +35,7 @@ export default function ProjectGrid() {
                 <div className="media"><Media p={p} />
                   <div className="ov"><h5 aria-hidden="true">{p.title}</h5><p>{p.desc}</p>
                     <div className="lk">
-                      <a href={SITE.githubBase + p.repo} target="_blank" rel="noopener" aria-label={`Code for ${p.title}`}><Github />Code</a>
+                      <a href={p.repo} target="_blank" rel="noopener" aria-label={`Code for ${p.title}`}><Github />Code</a>
                       {p.live && <a href={p.live} target="_blank" rel="noopener" aria-label={`Live demo of ${p.title}`}><Ext />Live demo</a>}
                     </div>
                   </div>

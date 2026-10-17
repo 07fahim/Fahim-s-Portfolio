@@ -1,0 +1,28 @@
+{
+  "title": "Local OCR & Dynamic RAG",
+  "type": "RAG / OCR / Privacy AI",
+  "cats": [
+    "rag",
+    "docs"
+  ],
+  "desc": "Reads Bangla, English and mixed documents and answers questions about them. Everything runs on your own machine.",
+  "stack": [
+    "Surya OCR",
+    "BGE-M3",
+    "Ollama",
+    "FastAPI"
+  ],
+  "repo": "https://github.com/07fahim/Local-OCR-Dynamic-RAG-System",
+  "image": "/pimg/local-ocr-and-dynamic-rag/image.jpg",
+  "stock": true,
+  "kpi": "0 calls",
+  "icon": "scan-line",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs';
 import { describe, expect, test } from 'vitest';
-import { SERVICES, PROJECTS, GRID_ORDER, FEATURED, FLOW, CATEGORIES, TIMELINE, PAPERS, COURSES } from './index';
+import { PROJECTS, FEATURED } from './projects';
+import { SERVICES, FLOW, CATEGORIES, TIMELINE, PAPERS, COURSES } from './index';
 import { STACK, TOOLS } from './tools';
 import stack from './stack.json';
 
@@ -10,14 +11,16 @@ describe('content extracted from the prototype', () => {
     expect(SERVICES.map(s => s.title)).toEqual(['AI agents & RAG chatbots', 'Automation workflows', 'Document processing & OCR', 'Computer vision & ML']);
     expect(PROJECTS).toHaveLength(20);
     expect(FEATURED.map(f => f.title)).toEqual(['Crosscheck', 'BashaBook', 'Legal Document AI', 'AI social media automation', 'Driver Distraction Detection']);
-    expect(GRID_ORDER.slice(0, 5)).toEqual(['Crosscheck', 'BashaBook', 'Legal Document AI', 'AI social media automation', 'Driver Distraction Detection']);
-    expect(GRID_ORDER).toHaveLength(20);
+    expect(PROJECTS.slice(0, 5).map(p => p.title)).toEqual(FEATURED.map(f => f.title));
     expect(CATEGORIES.map(c => c[0])).toEqual(['all', 'rag', 'auto', 'docs', 'cv', 'data', 'apps']);
     expect(TIMELINE).toHaveLength(5);
     expect(PAPERS).toHaveLength(6);
     expect(PAPERS.filter(p => p.author === 1)).toHaveLength(3);
     expect(COURSES).toHaveLength(2);
     expect(FLOW.steps.some(s => s.gate)).toBe(true);
+  });
+  test('every project picture exists', () => {
+    for (const p of PROJECTS) if (p.image) expect(existsSync('public' + p.image), p.image).toBe(true);
   });
   test('every stack row points to a tool, and every logo file exists', () => {
     for (const s of stack.rows.flatMap(r => r.tools)) expect(TOOLS.has(s), s).toBe(true);

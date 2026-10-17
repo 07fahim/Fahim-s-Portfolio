@@ -1,0 +1,27 @@
+{
+  "title": "AI Fitness Coach",
+  "type": "LLM / AI Agents",
+  "cats": [
+    "rag"
+  ],
+  "desc": "A router sends each question to a nutrition or training agent, and the profile is stored so advice stays personal across sessions.",
+  "stack": [
+    "LangChain",
+    "Groq",
+    "AstraDB",
+    "Streamlit"
+  ],
+  "repo": "https://github.com/07fahim/Advanced-Multi-Agent-AI-Fitness-Coach",
+  "live": "https://advanced-multi-agent-ai-fitness-coach-s7t2teyodwzbwhgpgqs4xw.streamlit.app/",
+  "image": "/pimg/ai-fitness-coach/image.jpg",
+  "stock": false,
+  "icon": "message-square",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

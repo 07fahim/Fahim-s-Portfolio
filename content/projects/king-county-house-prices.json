@@ -1,0 +1,26 @@
+{
+  "title": "King County House Prices",
+  "type": "Machine Learning / Web App",
+  "cats": [
+    "data"
+  ],
+  "desc": "Regression model for house prices with a real-time FastAPI endpoint and a small web front end.",
+  "stack": [
+    "XGBoost",
+    "FastAPI",
+    "Docker"
+  ],
+  "repo": "https://github.com/07fahim/king-county-house-price-predictor",
+  "live": "https://king-county-house-price-predictor.onrender.com",
+  "image": "/pimg/king-county-house-prices/image.jpg",
+  "stock": false,
+  "icon": "home",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}

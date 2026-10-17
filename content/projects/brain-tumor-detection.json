@@ -1,0 +1,26 @@
+{
+  "title": "Brain Tumor Detection",
+  "type": "Medical AI / Computer Vision",
+  "cats": [
+    "cv"
+  ],
+  "desc": "YOLOv10 and hybrid CNN models locate tumours in MRI scans, with Grad-CAM heatmaps that show why. Published at IEEE RAAICON and ICCIT 2024.",
+  "stack": [
+    "YOLOv10",
+    "TensorFlow",
+    "Grad-CAM"
+  ],
+  "repo": "https://github.com/07fahim/Brain-Tumor-Detection-using-YOLOv10-and-Hybrid-CNN-Models-with-Explainable-AI",
+  "image": "/pimg/brain-tumor-detection/image.jpg",
+  "stock": false,
+  "kpi": "0.964",
+  "icon": "brain",
+  "featured": false,
+  "card": {
+    "tags": [],
+    "number": {},
+    "points": [],
+    "stack": [],
+    "diagram": false
+  }
+}
