@@ -1,0 +1,56 @@
+[
+  [
+    "Python",
+    "PyTorch",
+    "TensorFlow",
+    "Keras",
+    "Scikit-learn",
+    "FastAI",
+    "OpenCV",
+    "Ultralytics YOLO",
+    "Pandas",
+    "Statsmodels"
+  ],
+  [
+    "LangChain",
+    "LangFlow",
+    "RAG",
+    "Transformers",
+    "Embeddings",
+    "ChromaDB",
+    "Pinecone",
+    "Ollama",
+    "Groq",
+    "Gemini",
+    "AI agents",
+    "LLM API integration",
+    "VLMs"
+  ],
+  [
+    "FastAPI",
+    "Flask",
+    "Streamlit",
+    "Gradio",
+    "n8n",
+    "Selenium",
+    "Web Scraping",
+    "Surya OCR",
+    "Tesseract OCR",
+    "PaddleOCR",
+    "HunyuanOCR",
+    "PostgreSQL",
+    "Supabase"
+  ],
+  [
+    "Docker",
+    "GitHub Actions",
+    "MLflow",
+    "ONNX Runtime",
+    "TensorRT",
+    "Hugging Face Spaces",
+    "AWS",
+    "Azure",
+    "Tableau",
+    "Git"
+  ]
+]

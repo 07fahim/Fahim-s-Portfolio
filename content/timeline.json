@@ -1,0 +1,63 @@
+[
+  {
+    "now": 1,
+    "date": "Jul 2026 — Now",
+    "role": "Machine Learning Engineer",
+    "org": "Masharah Advisory",
+    "where": "Remote · Saudi Arabia",
+    "text": "AI systems that turn classical Islamic legal texts into structured and searchable knowledge for the Legal Knowledge Platform. I work across the whole cycle, from data and experiments to evaluation and integration.",
+    "tags": [
+      "Document AI",
+      "OCR",
+      "Knowledge processing",
+      "Evaluation"
+    ]
+  },
+  {
+    "date": "Mar 2025 — Jul 2026",
+    "role": "Computer Vision Engineer",
+    "org": "Quantigo AI",
+    "where": "Remote · Bangladesh",
+    "text": "Validated and deployed object detection models for client pipelines. Built the annotated image and video datasets behind them and tracked down annotation errors and edge cases.",
+    "tags": [
+      "Object detection",
+      "Image & video annotation",
+      "Dataset QA",
+      "Model validation"
+    ]
+  },
+  {
+    "date": "2025",
+    "role": "Data Science Career Program",
+    "org": "Dokkho MasterCourse",
+    "where": "Cohort 7",
+    "text": "Selected through a competitive assessment; four end-to-end capstone projects.",
+    "tags": [
+      "Training"
+    ]
+  },
+  {
+    "date": "2024 — 2025",
+    "role": "6 IEEE papers",
+    "org": "ICCIT and IEEE RAAICON",
+    "where": "3 as first author",
+    "text": "Medical imaging, driver safety and agriculture. Four of the six explain their predictions with Grad-CAM or other explainable AI.",
+    "tags": [
+      "YOLOv10 / v11",
+      "Grad-CAM",
+      "Explainable AI"
+    ],
+    "more": "See every paper"
+  },
+  {
+    "date": "2020 — 2025",
+    "role": "B.Sc. in Computer Science",
+    "org": "East Delta University",
+    "where": "Chattogram",
+    "text": "CGPA 3.60 / 4.00, five times on the Dean’s List and once on the Vice Chancellor’s List. Thesis: brain tumour detection with YOLOv10, hybrid CNNs and explainable AI.",
+    "tags": [
+      "Thesis",
+      "Computer vision"
+    ]
+  }
+]

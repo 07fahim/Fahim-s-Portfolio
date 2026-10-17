@@ -1,0 +1,155 @@
+[
+  {
+    "title": "Crosscheck",
+    "tags": [
+      "Live",
+      "Documents & OCR",
+      "My product"
+    ],
+    "lede": "Receipts and invoices read by AI, then checked by plain code. Upload a batch and export clean rows. You only review what the checks flag.",
+    "number": {
+      "value": "91–94%",
+      "label": "of receipts read fully correct (CORD-v2 test and validation)"
+    },
+    "points": [
+      "Flagged documents get one-click fixes on a review screen",
+      "Telegram and Gmail alerts through n8n; exports to CSV, Excel and QuickBooks",
+      "Ask about your documents in English or Bangla (25 of 26 test questions right)"
+    ],
+    "media": {
+      "kind": "img",
+      "src": "/pimg/crosscheck.jpg",
+      "alt": "Crosscheck home page"
+    },
+    "live": "https://crosscheck.fahimfaiyaz.dev",
+    "repo": "ai-receipt-invoice-extractor",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "Next.js",
+      "TypeScript",
+      "Gemini",
+      "Supabase",
+      "n8n"
+    ]
+  },
+  {
+    "title": "BashaBook",
+    "tags": [
+      "Live",
+      "Web & mobile apps",
+      "My product"
+    ],
+    "lede": "Shared accounts for Bangladeshi flats with a hired cook. It tracks every meal and every bazar or bill payment, then shows who owes whom at month end. A website and installable web app in English and Bangla.",
+    "number": null,
+    "points": [
+      "Meals counted per person per day; tomorrow’s count locks at the cutoff, so the cook knows how many plates",
+      "At month end the app checks the cash count matches, then carries each balance forward",
+      "Push reminders for the meal lock, payments to confirm and the month-end close"
+    ],
+    "media": {
+      "kind": "img",
+      "src": "/pimg/bashabook.jpg",
+      "alt": "BashaBook home page with a month ledger"
+    },
+    "live": "https://bashabook.fahimfaiyaz.dev",
+    "repo": "bashabook",
+    "stack": [
+      "Next.js 16",
+      "React 19",
+      "Tailwind 4",
+      "PostgreSQL (Neon)",
+      "Web push",
+      "Vitest",
+      "Vercel"
+    ]
+  },
+  {
+    "title": "Legal Document AI",
+    "tags": [
+      "Live",
+      "AI agents & RAG"
+    ],
+    "lede": "Drafts internal case memos from uploaded legal documents, grounded in what the documents say.",
+    "number": null,
+    "points": [
+      "Reads scanned PDFs and images with OCR",
+      "Each memo is built from the uploaded documents",
+      "Your corrections become rules for the next memo"
+    ],
+    "media": {
+      "kind": "img",
+      "src": "/pimg/legal.jpg",
+      "alt": "Legal Document AI memo screen"
+    },
+    "live": "https://huggingface.co/spaces/yeager07/legal-doc-ai",
+    "repo": "legal-doc-ai-system",
+    "stack": [
+      "Python",
+      "RAG",
+      "ChromaDB",
+      "FastAPI",
+      "Streamlit",
+      "SQLite"
+    ]
+  },
+  {
+    "title": "AI social media automation",
+    "tags": [
+      "Repo",
+      "Automation"
+    ],
+    "lede": "A form starts the run: Llama 3.3 writes the post and a branded 1080×1080 image is composed. Nothing is published until a person approves it.",
+    "number": null,
+    "points": [
+      "Copy and image in one run",
+      "Human approval before anything goes out",
+      "Publish step for Facebook and Instagram, tested on mock endpoints"
+    ],
+    "media": {
+      "kind": "flow"
+    },
+    "live": "",
+    "repo": "AI-driven-social-media-automation",
+    "stack": [
+      "Python",
+      "n8n",
+      "Groq (Llama 3.3)",
+      "FastAPI",
+      "Pillow"
+    ]
+  },
+  {
+    "title": "Driver Distraction Detection",
+    "tags": [
+      "Live · IEEE",
+      "Computer vision & ML"
+    ],
+    "lede": "A YOLOv10 model that watches the driver and flags distraction as it happens. Published at IEEE ICCIT 2025.",
+    "number": {
+      "value": "98.1%",
+      "label": "mAP@50 across 12 behaviours"
+    },
+    "points": [
+      "Spots 12 behaviours, from texting and phone calls to drinking and drowsiness",
+      "Works on photos and on video, frame by frame",
+      "Runs on ONNX Runtime, deployed with Docker through CI/CD"
+    ],
+    "media": {
+      "kind": "img",
+      "src": "/pimg/driver.jpg",
+      "alt": "Driver distraction detection result"
+    },
+    "live": "https://driver-distraction-detection-and.onrender.com",
+    "repo": "Driver-Distraction-Detection-and-Classification",
+    "stack": [
+      "Python",
+      "YOLOv10",
+      "ONNX Runtime",
+      "Flask",
+      "Gradio",
+      "Docker",
+      "GitHub Actions"
+    ]
+  }
+]

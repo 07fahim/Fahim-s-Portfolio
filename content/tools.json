@@ -1,0 +1,191 @@
+{
+  "ai agents": {
+    "name": "AI agents",
+    "src": "i:bot"
+  },
+  "llm api integration": {
+    "name": "LLM API integration",
+    "src": "i:plug"
+  },
+  "gemini": {
+    "name": "Gemini",
+    "src": "si-googlegemini"
+  },
+  "groq": {
+    "name": "Groq",
+    "src": "lg-groq"
+  },
+  "ollama": {
+    "name": "Ollama",
+    "src": "si-ollama",
+    "dk": 1
+  },
+  "langchain": {
+    "name": "LangChain",
+    "src": "si-langchain",
+    "dk": 1
+  },
+  "langflow": {
+    "name": "LangFlow",
+    "src": "si-langflow"
+  },
+  "rag": {
+    "name": "RAG",
+    "src": "i:file-search"
+  },
+  "embeddings": {
+    "name": "Embeddings",
+    "src": "i:scatter-chart"
+  },
+  "transformers": {
+    "name": "Transformers",
+    "src": "i:brain-circuit"
+  },
+  "chromadb": {
+    "name": "ChromaDB",
+    "src": "lg-chroma"
+  },
+  "pinecone": {
+    "name": "Pinecone",
+    "src": "lg-pinecone"
+  },
+  "vlms": {
+    "name": "VLMs",
+    "src": "i:scan-eye"
+  },
+  "surya ocr": {
+    "name": "Surya OCR",
+    "src": "t:Su"
+  },
+  "tesseract ocr": {
+    "name": "Tesseract OCR",
+    "src": "t:Te"
+  },
+  "paddleocr": {
+    "name": "PaddleOCR",
+    "src": "t:Pd"
+  },
+  "hunyuanocr": {
+    "name": "HunyuanOCR",
+    "src": "t:Hy"
+  },
+  "pytorch": {
+    "name": "PyTorch",
+    "src": "si-pytorch"
+  },
+  "tensorflow": {
+    "name": "TensorFlow",
+    "src": "si-tensorflow"
+  },
+  "keras": {
+    "name": "Keras",
+    "src": "si-keras"
+  },
+  "scikit-learn": {
+    "name": "Scikit-learn",
+    "src": "si-scikitlearn"
+  },
+  "fastai": {
+    "name": "FastAI",
+    "src": "t:fa"
+  },
+  "opencv": {
+    "name": "OpenCV",
+    "src": "si-opencv"
+  },
+  "ultralytics yolo": {
+    "name": "Ultralytics YOLO",
+    "src": "si-ultralytics",
+    "dk": 1
+  },
+  "onnx runtime": {
+    "name": "ONNX Runtime",
+    "src": "si-onnx"
+  },
+  "tensorrt": {
+    "name": "TensorRT",
+    "src": "si-nvidia"
+  },
+  "statsmodels": {
+    "name": "Statsmodels",
+    "src": "t:Sm"
+  },
+  "n8n": {
+    "name": "n8n",
+    "src": "si-n8n"
+  },
+  "fastapi": {
+    "name": "FastAPI",
+    "src": "si-fastapi"
+  },
+  "docker": {
+    "name": "Docker",
+    "src": "si-docker"
+  },
+  "github actions": {
+    "name": "GitHub Actions",
+    "src": "si-githubactions"
+  },
+  "mlflow": {
+    "name": "MLflow",
+    "src": "si-mlflow"
+  },
+  "flask": {
+    "name": "Flask",
+    "src": "si-flask",
+    "dk": 1
+  },
+  "streamlit": {
+    "name": "Streamlit",
+    "src": "si-streamlit"
+  },
+  "gradio": {
+    "name": "Gradio",
+    "src": "si-gradio"
+  },
+  "hugging face spaces": {
+    "name": "Hugging Face Spaces",
+    "src": "si-huggingface"
+  },
+  "supabase": {
+    "name": "Supabase",
+    "src": "si-supabase"
+  },
+  "aws": {
+    "name": "AWS",
+    "src": "lg-aws"
+  },
+  "azure": {
+    "name": "Azure",
+    "src": "lg-microsoft-azure"
+  },
+  "python": {
+    "name": "Python",
+    "src": "si-python"
+  },
+  "pandas": {
+    "name": "Pandas",
+    "src": "si-pandas",
+    "dk": 1
+  },
+  "postgresql": {
+    "name": "PostgreSQL",
+    "src": "si-postgresql"
+  },
+  "selenium": {
+    "name": "Selenium",
+    "src": "si-selenium"
+  },
+  "web scraping": {
+    "name": "Web scraping",
+    "src": "i:globe"
+  },
+  "tableau": {
+    "name": "Tableau",
+    "src": "lg-tableau-icon"
+  },
+  "git": {
+    "name": "Git",
+    "src": "si-git"
+  }
+}

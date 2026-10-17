@@ -1,0 +1,399 @@
+[
+  {
+    "title": "Legal Document AI",
+    "cats": [
+      "rag",
+      "docs"
+    ],
+    "status": "Live",
+    "kpi": "RAG",
+    "desc": "OCR, retrieval and LLM generation behind a FastAPI and Streamlit app. Every memo cites the documents it used, and operator edits feed back into the next draft.",
+    "stack": [
+      "RAG",
+      "ChromaDB",
+      "FastAPI",
+      "Streamlit"
+    ],
+    "live": "https://huggingface.co/spaces/yeager07/legal-doc-ai",
+    "repo": "legal-doc-ai-system",
+    "img": "legal",
+    "icon": "scale",
+    "type": "RAG / Legal AI"
+  },
+  {
+    "title": "EmailCraft-AI",
+    "cats": [
+      "rag",
+      "auto"
+    ],
+    "status": "Live",
+    "kpi": "",
+    "desc": "Agents research the lead, match portfolio items and draft a personalised email. A scoring step checks it before it goes out. Runs as an API in Docker.",
+    "stack": [
+      "Groq Llama",
+      "ChromaDB",
+      "FastAPI",
+      "Docker"
+    ],
+    "live": "https://emailcraft-ai.onrender.com",
+    "repo": "EmailCraft-AI",
+    "img": "emailcraft",
+    "icon": "message-square",
+    "type": "LLM / Multi-Agent AI"
+  },
+  {
+    "title": "AI Fitness Coach",
+    "cats": [
+      "rag"
+    ],
+    "status": "Live",
+    "kpi": "",
+    "desc": "A router sends each question to a nutrition or training agent, and the profile is stored so advice stays personal across sessions.",
+    "stack": [
+      "LangChain",
+      "Groq",
+      "AstraDB",
+      "Streamlit"
+    ],
+    "live": "https://advanced-multi-agent-ai-fitness-coach-s7t2teyodwzbwhgpgqs4xw.streamlit.app/",
+    "repo": "Advanced-Multi-Agent-AI-Fitness-Coach",
+    "img": "fitness",
+    "icon": "message-square",
+    "type": "LLM / AI Agents"
+  },
+  {
+    "title": "Local OCR & Dynamic RAG",
+    "cats": [
+      "rag",
+      "docs"
+    ],
+    "status": "Repo",
+    "kpi": "0 calls",
+    "desc": "Reads Bangla, English and mixed documents and answers questions about them. Everything runs on your own machine.",
+    "stack": [
+      "Surya OCR",
+      "BGE-M3",
+      "Ollama",
+      "FastAPI"
+    ],
+    "live": "",
+    "repo": "Local-OCR-Dynamic-RAG-System",
+    "img": "",
+    "stock": "https://images.unsplash.com/photo-1771758249853-415175dc29b9?w=900&q=75",
+    "icon": "scan-line",
+    "type": "RAG / OCR / Privacy AI"
+  },
+  {
+    "title": "AI social media automation",
+    "cats": [
+      "auto"
+    ],
+    "status": "Repo",
+    "kpi": "n8n",
+    "desc": "A topic and a publish time trigger the copywriting and a branded image card; a person approves each post before it is published.",
+    "stack": [
+      "n8n",
+      "Groq Llama 3.3",
+      "FastAPI",
+      "Pillow"
+    ],
+    "live": "",
+    "repo": "AI-driven-social-media-automation",
+    "icon": "workflow",
+    "type": "Automation / n8n"
+  },
+  {
+    "title": "Driver Distraction Detection",
+    "cats": [
+      "cv"
+    ],
+    "status": "Live · IEEE",
+    "kpi": "98.1%",
+    "desc": "YOLOv10 model that spots 12 distracted-driving behaviours in images and video, optimised with ONNX Runtime. Published at IEEE ICCIT 2025.",
+    "stack": [
+      "YOLOv10",
+      "ONNX Runtime",
+      "Flask",
+      "Docker"
+    ],
+    "live": "https://driver-distraction-detection-and.onrender.com",
+    "repo": "Driver-Distraction-Detection-and-Classification",
+    "img": "driver",
+    "icon": "car",
+    "type": "Computer Vision / Real-Time"
+  },
+  {
+    "title": "Brain Tumor Detection",
+    "cats": [
+      "cv"
+    ],
+    "status": "IEEE",
+    "kpi": "0.964",
+    "desc": "YOLOv10 and hybrid CNN models locate tumours in MRI scans, with Grad-CAM heatmaps that show why. Published at IEEE RAAICON and ICCIT 2024.",
+    "stack": [
+      "YOLOv10",
+      "TensorFlow",
+      "Grad-CAM"
+    ],
+    "live": "",
+    "repo": "Brain-Tumor-Detection-using-YOLOv10-and-Hybrid-CNN-Models-with-Explainable-AI",
+    "img": "brain",
+    "icon": "brain",
+    "type": "Medical AI / Computer Vision"
+  },
+  {
+    "title": "Mango Ripeness Classification",
+    "cats": [
+      "cv"
+    ],
+    "status": "IEEE",
+    "kpi": "98.3%",
+    "desc": "Hybrid Xception–LSTM model that grades mango ripeness in six stages, with Grad-CAM to show what it looked at.",
+    "stack": [
+      "TensorFlow",
+      "Xception",
+      "LSTM"
+    ],
+    "live": "",
+    "repo": "Mango-Ripeness-Classification-with-GradCam",
+    "img": "mango",
+    "icon": "leaf",
+    "type": "Computer Vision / XAI"
+  },
+  {
+    "title": "Bangladeshi Landmarks Recognizer",
+    "cats": [
+      "cv"
+    ],
+    "status": "Live",
+    "kpi": "99.9%",
+    "desc": "DenseNet121 trained on a dataset scraped and cleaned by hand, deployed with Gradio on Hugging Face.",
+    "stack": [
+      "FastAI",
+      "PyTorch",
+      "Gradio"
+    ],
+    "live": "https://07fahim.github.io/Popular-Bangladeshi-Landmarks-Recognizer/",
+    "repo": "Popular-Bangladeshi-Landmarks-Recognizer",
+    "img": "landmarks",
+    "icon": "eye",
+    "type": "Computer Vision / Deep Learning"
+  },
+  {
+    "title": "Research Article Classifier",
+    "cats": [
+      "data"
+    ],
+    "status": "Live",
+    "kpi": "SciBERT",
+    "desc": "SciBERT tags computer-science papers with their subjects, trained on a dataset scraped from arXiv and served from ONNX.",
+    "stack": [
+      "SciBERT",
+      "ONNX",
+      "Flask",
+      "Selenium"
+    ],
+    "live": "https://multi-label-text-classification-of.onrender.com",
+    "repo": "Multi-Label-Text-Classification-of-Computer-Science-Research-Articles",
+    "img": "csclass",
+    "icon": "message-square",
+    "type": "NLP / Multi-Label Classification"
+  },
+  {
+    "title": "Telemetry Anomaly Detector",
+    "cats": [
+      "data"
+    ],
+    "status": "Live",
+    "kpi": "2 of 3",
+    "desc": "Spikes, multivariate outliers and slow drift each have their own detector on server telemetry; an alert needs two of the three to agree.",
+    "stack": [
+      "scikit-learn",
+      "statsmodels",
+      "FastAPI",
+      "Streamlit"
+    ],
+    "live": "https://telemetry-anomaly-detector.onrender.com",
+    "repo": "telemetry-anomaly-detector",
+    "img": "",
+    "stock": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=75",
+    "icon": "activity",
+    "type": "Time-Series / Anomaly Detection"
+  },
+  {
+    "title": "IoT Sensor Trend Prediction",
+    "cats": [
+      "data"
+    ],
+    "status": "Repo",
+    "kpi": "−29%",
+    "desc": "Forecasts carbon monoxide one hour ahead from noisy air-quality sensors. It compares LSTM, gradient boosting and SARIMAX.",
+    "stack": [
+      "PyTorch",
+      "LSTM",
+      "SARIMAX"
+    ],
+    "live": "",
+    "repo": "IoT-Sensor-Data-Trend-Prediction",
+    "img": "",
+    "stock": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=75",
+    "icon": "trending-up",
+    "type": "Time-Series / Forecasting"
+  },
+  {
+    "title": "King County House Prices",
+    "cats": [
+      "data"
+    ],
+    "status": "Live",
+    "kpi": "",
+    "desc": "Regression model for house prices with a real-time FastAPI endpoint and a small web front end.",
+    "stack": [
+      "XGBoost",
+      "FastAPI",
+      "Docker"
+    ],
+    "live": "https://king-county-house-price-predictor.onrender.com",
+    "repo": "king-county-house-price-predictor",
+    "img": "kingcounty",
+    "icon": "home",
+    "type": "Machine Learning / Web App"
+  },
+  {
+    "title": "FIFA Player Analytics",
+    "cats": [
+      "data"
+    ],
+    "status": "Live",
+    "kpi": "",
+    "desc": "Scraped player ratings, wages and market values from 2012 to 2025 and built dashboards on the trends.",
+    "stack": [
+      "Selenium",
+      "Pandas",
+      "Tableau"
+    ],
+    "live": "https://public.tableau.com/app/profile/gazi.mohammad.fahimfaiyaz/viz/LeagueandClubDomianace2012-2025/Dashboard1",
+    "repo": "Top-FIFA-Players-Analysis-2012-2025",
+    "img": "fifa",
+    "icon": "bar-chart-3",
+    "type": "Data Analytics / Web Scraping"
+  },
+  {
+    "title": "BashaBook",
+    "cats": [
+      "apps"
+    ],
+    "status": "Live",
+    "kpi": "",
+    "desc": "Shared accounts for flats with a hired cook. It tracks meals and payments and shows who owes whom at month end. Installable web app with reminders.",
+    "stack": [
+      "Next.js",
+      "PostgreSQL",
+      "Web push"
+    ],
+    "live": "https://bashabook.fahimfaiyaz.dev/en",
+    "repo": "bashabook",
+    "img": "bashabook",
+    "icon": "users",
+    "type": "Web App / PWA"
+  },
+  {
+    "title": "ServiceHub",
+    "cats": [
+      "apps"
+    ],
+    "status": "Repo",
+    "kpi": "Hub",
+    "desc": "Customers book verified vendors. Vendors and admins get their own dashboards; JWT auth with refresh tokens and role-based access.",
+    "stack": [
+      "React",
+      "FastAPI",
+      "Supabase",
+      "JWT"
+    ],
+    "live": "",
+    "repo": "ServiceHub-Full-Stack-Service-Marketplace",
+    "img": "",
+    "stock": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=75",
+    "icon": "store",
+    "type": "Full-Stack / Web App"
+  },
+  {
+    "title": "Crafty Bay",
+    "cats": [
+      "apps"
+    ],
+    "status": "Repo",
+    "kpi": "Flutter",
+    "desc": "A Flutter shopping app on Firebase, from product browsing and cart to sign-in and checkout.",
+    "stack": [
+      "Flutter",
+      "Firebase"
+    ],
+    "live": "",
+    "repo": "Crafty-Bay-Flutter-E-commerce-app",
+    "img": "",
+    "stock": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&q=75",
+    "icon": "smartphone",
+    "type": "Mobile App / E-commerce"
+  },
+  {
+    "title": "Task Manager",
+    "cats": [
+      "apps"
+    ],
+    "status": "Repo",
+    "kpi": "Flutter",
+    "desc": "Create, prioritise and track tasks in a Flutter app with proper state management.",
+    "stack": [
+      "Flutter",
+      "Dart"
+    ],
+    "live": "",
+    "repo": "task_manager",
+    "img": "",
+    "stock": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=900&q=75",
+    "icon": "smartphone",
+    "type": "Mobile App / Flutter"
+  },
+  {
+    "title": "TODO App",
+    "cats": [
+      "apps"
+    ],
+    "status": "Repo",
+    "kpi": "Flutter",
+    "desc": "A small Material Design to-do app.",
+    "stack": [
+      "Flutter",
+      "Dart"
+    ],
+    "live": "",
+    "repo": "TODO-Flutter-App",
+    "img": "",
+    "stock": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&q=75",
+    "icon": "smartphone",
+    "type": "Mobile App / Flutter"
+  },
+  {
+    "title": "Crosscheck",
+    "cats": [
+      "docs"
+    ],
+    "status": "Live",
+    "kpi": "91–94%",
+    "desc": "Receipts and invoices read by AI, then checked by plain code. You only review what the checks flag.",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "Next.js",
+      "Gemini"
+    ],
+    "live": "https://crosscheck.fahimfaiyaz.dev",
+    "repo": "ai-receipt-invoice-extractor",
+    "img": "crosscheck",
+    "stock": "",
+    "icon": "scan-line",
+    "type": "Document AI / OCR"
+  }
+]

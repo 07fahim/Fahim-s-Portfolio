@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Generative AI with LangChain & Hugging Face",
+    "school": "Udemy",
+    "year": 2025,
+    "desc": "LLM apps, RAG pipelines and agent workflows."
+  },
+  {
+    "title": "Complete ML & NLP Bootcamp + MLOps",
+    "school": "Udemy",
+    "year": 2024,
+    "desc": "Machine learning and NLP through to Docker deployment and MLOps."
+  }
+]

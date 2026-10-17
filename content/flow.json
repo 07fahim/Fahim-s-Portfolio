@@ -1,0 +1,33 @@
+{
+  "label": "The real n8n workflow",
+  "steps": [
+    {
+      "text": "Form trigger",
+      "gate": false
+    },
+    {
+      "text": "Write post (Llama 3.3)",
+      "gate": false
+    },
+    {
+      "text": "Compose brand image",
+      "gate": false
+    },
+    {
+      "text": "Ask a person to approve",
+      "gate": true
+    },
+    {
+      "text": "Approved?",
+      "gate": false
+    },
+    {
+      "text": "Publish to Facebook",
+      "gate": false
+    },
+    {
+      "text": "Instagram",
+      "gate": false
+    }
+  ]
+}
