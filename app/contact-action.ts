@@ -5,7 +5,13 @@ import { validate, type Fields } from '@/lib/validate';
 export type SendResult = { ok: true } | { ok: false; field: 'name' | 'email' | 'subject' | 'message'; error: string } | { ok: false; error: 'send' };
 
 // the browser's check is a courtesy; this one is the gate (spec: Contact form)
-export async function sendContact(f: Fields): Promise<SendResult> {
+// a server action is a public POST endpoint: the Fields type isn't enforced at runtime, so anything
+// that isn't a string becomes '' and fails validation instead of throwing
+const str = (v: unknown) => typeof v === 'string' ? v : '';
+
+export async function sendContact(input: Fields): Promise<SendResult> {
+  const raw = (input ?? {}) as Record<string, unknown>;
+  const f: Fields = { name: str(raw.name), email: str(raw.email), subject: str(raw.subject), message: str(raw.message), website: str(raw.website) };
   const r = validate(f);
   if (r.ok === 'drop') return { ok: true };   // honeypot filled: look sent, send nothing
   if (r.ok === false) return r;
@@ -20,7 +26,7 @@ export async function sendContact(f: Fields): Promise<SendResult> {
         from: 'Portfolio <onboarding@resend.dev>',   // switch to a fahimfaiyaz.dev address once the domain is verified (step 5)
         to: [SITE.email],
         reply_to: email,
-        subject: `Portfolio: ${subject || 'New message'} (from ${name})`,
+        subject: `Portfolio: ${subject || 'New message'} (from ${name})`.replace(/\s+/g, ' '),   // one line, whatever was typed
         text: `${f.message.trim()}\n\n${name} <${email}>`,
       }),
     });
