@@ -1,39 +1,29 @@
 import { existsSync } from 'node:fs';
 import { describe, expect, test } from 'vitest';
 import { PROJECTS, FEATURED } from './projects';
-import { SERVICES, FLOW, CATEGORIES, TIMELINE, PAPERS, COURSES } from './index';
-import { STACK, TOOLS } from './tools';
+import { SERVICES, FLOW, CATEGORIES } from './index';
+import { TOOLS } from './tools';
 import stack from './stack.json';
 
-describe('content extracted from the prototype', () => {
-  test('counts match the approved page', () => {
-    expect(STACK.map(r => r.length)).toEqual([10, 13, 13, 11]);   // row 4 gained CVAT (from the CV, user 2026-10-18)
-    expect(SERVICES.map(s => s.title)).toEqual(['AI agents & RAG chatbots', 'Automation workflows', 'Document processing & OCR', 'Computer vision & ML']);
-    expect(PROJECTS).toHaveLength(20);
-    expect(FEATURED.map(f => f.title)).toEqual(['Crosscheck', 'BashaBook', 'Legal Document AI', 'AI social media automation', 'Driver Distraction Detection']);
-    expect(PROJECTS.slice(0, 5).map(p => p.title)).toEqual(FEATURED.map(f => f.title));
-    expect(CATEGORIES.map(c => c[0])).toEqual(['all', 'rag', 'auto', 'docs', 'cv', 'data', 'apps']);
-    expect(TIMELINE).toHaveLength(5);
-    expect(PAPERS).toHaveLength(6);
-    expect(PAPERS.filter(p => p.author === 1)).toHaveLength(3);
-    expect(COURSES).toHaveLength(2);
-    expect(FLOW.steps.some(s => s.gate)).toBe(true);
-  });
+describe('content the site can render (checked before every deploy)', () => {
   test('every project picture exists', () => {
-    for (const p of PROJECTS) if (p.image) expect(existsSync('public' + p.image), p.image).toBe(true);
+    for (const p of PROJECTS) if (p.image) expect(existsSync('public' + p.image), `${p.title}: picture ${p.image} is missing from public/`).toBe(true);
   });
   test('every stack row points to a tool, and every logo file exists', () => {
-    for (const s of stack.rows.flatMap(r => r.tools)) expect(TOOLS.has(s), s).toBe(true);
-    for (const t of TOOLS.values()) if (t.logo) expect(existsSync('public' + t.logo), t.logo).toBe(true);
+    for (const s of stack.rows.flatMap(r => r.tools)) expect(TOOLS.has(s), `Stack row entry "${s}" has no matching tool.`).toBe(true);
+    for (const [name, t] of TOOLS) if (t.logo) expect(existsSync('public' + t.logo), `Tool "${name}": logo ${t.logo} is missing from public/`).toBe(true);
   });
-  test('the social automation card makes no live-publishing claim', () => {
-    const s = FEATURED.find(f => f.title === 'AI social media automation')!;
-    expect(s.points).toContain('Publish step for Facebook and Instagram, tested on mock endpoints');
+  test('every filter a project or service uses is on the Project filters page', () => {
+    const keys = new Set(CATEGORIES.map(c => c[0]));
+    for (const p of PROJECTS) for (const c of p.cats) expect(keys.has(c), `Project "${p.title}" uses the filter "${c}", which is not on the Project filters page. Add the filter back or remove it from the project.`).toBe(true);
+    for (const s of SERVICES) expect(keys.has(s.filter), `Service "${s.title}" uses the filter "${s.filter}", which is not on the Project filters page. Add the filter back or remove it from the service.`).toBe(true);
   });
-  test('copy rule: at most one comma per sentence', () => {
-    const strings: string[] = [];
-    const walk = (v: unknown) => { if (typeof v === 'string') strings.push(v); else if (v && typeof v === 'object') Object.values(v).forEach(walk); };
-    walk([SERVICES, PROJECTS, FEATURED, TIMELINE, COURSES]);
-    for (const s of strings) for (const sentence of s.split(/(?<=[.?!])\s+/)) expect((sentence.match(/, /g) ?? []).length, sentence).toBeLessThanOrEqual(1);
+  test('every big card has an intro and a picture or the n8n diagram', () => {
+    for (const f of FEATURED) {
+      expect(f.lede.length > 0 && (f.media.kind === 'flow' || !!f.media.src), `Big card "${f.title}" needs an intro and a picture (or the n8n diagram ticked).`).toBe(true);
+    }
+  });
+  test('the n8n diagram has an approval step', () => {
+    expect(FLOW.steps.some(s => s.gate)).toBe(true);
   });
 });

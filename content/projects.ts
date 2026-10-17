@@ -13,7 +13,7 @@ export function ordered<T extends { slug: string; title: string }>(items: T[], o
 }
 
 // Server only: read at build time, one file per project (the admin writes them).
-const files = ordered(entries<File>('projects'), work.order);
+const files = ordered(entries<File>('projects'), (work as { order: string[] }).order);
 
 export const PROJECTS: Project[] = files.map(p => ({
   slug: p.slug, title: p.title, type: p.type, cats: p.cats, desc: p.desc, stack: p.stack, repo: p.repo,

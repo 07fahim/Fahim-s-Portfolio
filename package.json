@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "check:content": "vitest run content/content.test.ts content/admin.test.ts",
     "parity": "node scripts/parity.mjs",
     "images": "node scripts/hero-images.mjs",
     "og": "node scripts/og-image.mjs"

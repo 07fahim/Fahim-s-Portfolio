@@ -6,7 +6,7 @@ import categories from './content/categories.json';
 const json = { data: 'json' } as const;
 const link = (label: string) => fields.url({ label, validation: { isRequired: true } });
 
-const FILTERS = categories.items.map(({ key, label }) => ({ label, value: key }));
+const FILTERS = (categories as { items: { key: string; label: string }[] }).items.map(({ key, label }) => ({ label, value: key }));
 const ICONS = Object.keys(LUCIDE).map(v => ({ label: v, value: v }));
 const text = (label: string, description?: string) => fields.text({ label, description, validation: { isRequired: true } });
 const long = (label: string, description?: string) => fields.text({ label, description, multiline: true, validation: { isRequired: true } });
@@ -44,7 +44,7 @@ export default config({
           title: text('Title'),
           items: list('Bullet points', 'Point'),
           desc: long('Description'),
-          filter: fields.select({ label: 'VIEW PROJECTS opens this filter', options: FILTERS, defaultValue: 'rag' }),
+          filter: fields.select({ label: 'VIEW PROJECTS opens this filter', options: FILTERS, defaultValue: FILTERS[0].value }),
         }), { label: 'Services', itemLabel: p => p.fields.title.value }),
       },
     }),
@@ -88,7 +88,7 @@ export default config({
         items: fields.array(fields.object({
           label: text('Name', 'Shown on the filter button, for example Voice AI'),
           key: fields.text({ label: 'Code', description: 'Lowercase letters, numbers and dashes. Projects and services point to it, so never change it once used.', validation: { isRequired: true, pattern: { regex: /^[a-z0-9-]+$/, message: 'Use lowercase letters, numbers and dashes only' } } }),
-        }), { label: 'Filters in button order (All always comes first)', description: 'A new filter shows up in the project and service lists after the site redeploys, about 2 minutes after saving.', itemLabel: p => p.fields.label.value }),
+        }), { label: 'Filters in button order (All always comes first)', description: 'A new filter shows up in the project and service lists after the site redeploys, about 2 minutes after saving. Before deleting a filter, remove it from every project and service that uses it.', validation: { length: { min: 1 } }, itemLabel: p => p.fields.label.value }),
       },
     }),
     stack: singleton({
@@ -96,7 +96,7 @@ export default config({
       schema: {
         rows: fields.array(fields.object({
           tools: fields.array(fields.relationship({ label: 'Tool', collection: 'tools', validation: { isRequired: true } }), { label: 'Tools', itemLabel: p => p.value ?? '' }),
-        }), { label: 'Rows', itemLabel: p => p.fields.tools.elements.map(e => e.value).join(', ') }),
+        }), { label: 'Rows', validation: { length: { min: 1 } }, itemLabel: p => p.fields.tools.elements.map(e => e.value).join(', ') }),
       },
     }),
     work: singleton({
@@ -119,7 +119,7 @@ export default config({
         stack: list('Stack (the small card shows the first four)', 'Tool'),
         repo: fields.url({ label: 'GitHub link', validation: { isRequired: true } }),
         live: fields.url({ label: 'Live demo link' }),
-        image: fields.image({ label: 'Picture', directory: 'public/pimg', publicPath: '/pimg/' }),
+        image: fields.image({ label: 'Picture', description: 'JPG or WebP, about 1600 px wide and under 500 KB. It is shown exactly as uploaded.', directory: 'public/pimg', publicPath: '/pimg/' }),
         stock: fields.checkbox({ label: 'Stock photo', description: 'Tinted to match the site and skipped by screen readers.' }),
         kpi: fields.text({ label: 'Big word', description: 'Shown instead of a picture when there is none.' }),
         icon: fields.select({ label: 'Icon', options: ICONS, defaultValue: 'globe' }),
@@ -139,8 +139,8 @@ export default config({
     tools: collection({
       label: 'Stack tools', path: 'content/tools/*', slugField: 'name', format: json, columns: ['name'],
       schema: {
-        name: fields.slug({ name: { label: 'Name', validation: { isRequired: true } } }),
-        logo: fields.image({ label: 'Logo (SVG or PNG)', description: 'Used first when set.', directory: 'public/logos', publicPath: '/logos/' }),
+        name: fields.slug({ name: { label: 'Name', validation: { isRequired: true } }, slug: { label: 'Address', description: 'Stack rows point to it. Changing it drops the tool from its row until you add it there again.' } }),
+        logo: fields.image({ label: 'Logo (SVG or PNG)', description: 'SVG, or a small square PNG. Used first when set.', directory: 'public/logos', publicPath: '/logos/' }),
         icon: fields.select({ label: 'Built-in icon', description: 'Used when there is no logo.', options: [{ label: 'None', value: '' }, ...ICONS], defaultValue: '' }),
         letters: fields.text({ label: 'Letters', description: 'Up to 2, used when there is no logo or icon. Left empty, the first two letters of the name are shown.', validation: { length: { max: 2 } } }),
         dark: fields.checkbox({ label: 'Near-black logo', description: 'Shown white on hover in dark mode.' }),

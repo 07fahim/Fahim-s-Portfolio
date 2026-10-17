@@ -15,7 +15,7 @@ export type Course = { title: string; school: string; year: number; desc: string
 
 export const SERVICES = services.items as Service[];
 export const FLOW = flow as Flow;
-export const CATEGORIES: [string, string][] = [['all', 'All'], ...categories.items.map(c => [c.key, c.label] as [string, string])];
+export const CATEGORIES: [string, string][] = [['all', 'All'], ...(categories as { items: { key: string; label: string }[] }).items.map(c => [c.key, c.label] as [string, string])];
 export const TIMELINE = timeline.entries as Entry[];
 export const PAPERS = achievements.papers as Paper[];
 export const COURSES = achievements.courses as Course[];

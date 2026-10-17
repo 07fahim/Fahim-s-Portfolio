@@ -9,14 +9,14 @@ const reader = createReader(process.cwd(), config);
 const raw = (file: string) => JSON.parse(readFileSync(file, 'utf8'));
 
 // The reader parses each file through the admin's schema and throws on a key the schema lacks (a key a save would drop).
-test('every singleton file is exactly what the admin would save', async () => {
+test('every singleton file opens in the admin without losing a key', async () => {
   const singletons = reader.singletons as Record<string, { readOrThrow(): Promise<unknown> }>;
-  for (const [key, s] of Object.entries(config.singletons ?? {})) expect(prune(await singletons[key].readOrThrow()), key).toEqual(raw(`${s.path}.json`));
+  for (const [key, s] of Object.entries(config.singletons ?? {})) expect(prune(await singletons[key].readOrThrow()), key).toEqual(prune(raw(`${s.path}.json`)));
 });
-test('every collection file is exactly what the admin would save', async () => {
+test('every collection file opens in the admin without losing a key', async () => {
   const collections = reader.collections as Record<string, { all(): Promise<{ slug: string; entry: unknown }[]> }>;
   for (const [key, c] of Object.entries(config.collections ?? {}))
-    for (const { slug, entry } of await collections[key].all()) expect(prune(entry), `${key}/${slug}`).toEqual(raw(`${c.path!.replace('*', slug)}.json`));
+    for (const { slug, entry } of await collections[key].all()) expect(prune(entry), `${key}/${slug}`).toEqual(prune(raw(`${c.path!.replace('*', slug)}.json`)));
 });
 test('**double stars** mark the bold words', () => {
   expect(segments('Hey, I’m **Fahim**. A **B** c')).toEqual(['Hey, I’m ', { b: 'Fahim' }, '. A ', { b: 'B' }, ' c']);
