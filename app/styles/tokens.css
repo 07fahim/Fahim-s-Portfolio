@@ -1,0 +1,30 @@
+:root {
+  --bg:#141617; --line:rgba(255,255,255,.08); --text:#EEF2F1; --muted:#909C99;
+  --panel:linear-gradient(90deg, rgba(29,205,159,.14), rgba(255,255,255,.03)); --ink:#fff;
+  --silver:linear-gradient(180deg, #FFFFFF 30%, #8A93A3 100%); --g1:#FFFFFF; --g2:#8A93A3;
+  --accent:#1DCD9F; --accent2:#B0E4CC; --sec-bg:transparent; --hi:#fff; --bio:#A3ABA9; --bio-dim:#4F5856;
+  --pill-bg:rgba(255,255,255,.045); --pill-fg:#C9D1CE; --pill-dot:var(--accent2);
+  --cta-bg:linear-gradient(135deg, #1DCD9F, #169976); --cta-fg:#021410;
+  --card-bg:linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.02)); --card-border:rgba(255,255,255,.1);
+  --card-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 40px 120px -50px color-mix(in srgb, var(--accent) 40%, transparent);
+  --blur:blur(18px) saturate(140%);
+  --pmuted:#C4CDCA; --ptext:#E6ECEA; --pdot:var(--accent2); --view-bg:var(--cta-bg); --view-fg:var(--cta-fg);
+  --dot:#fff; --glow:rgba(29,205,159,.6); --spot:rgba(29,205,159,.1);
+  --fg-strong:#fff; --edge:rgba(255,255,255,.22); --dd:#D9DFDD;
+  --strand:200,210,214; --net:29,205,159; --grain:.07; --scrim:45%;
+}
+[data-mode=light] {
+  --bg:#F3F4F4; --line:rgba(6,30,41,.1); --text:#061E29; --muted:#4A6470;
+  --panel:linear-gradient(90deg, rgba(95,149,152,.16), rgba(255,255,255,.4)); --ink:#061E29;
+  --silver:linear-gradient(180deg, #061E29 30%, #3F6E7A 100%); --g1:#061E29; --g2:#7FA3AA;
+  --accent:#1D546D; --accent2:#1D546D; --sec-bg:transparent; --hi:#061E29; --bio:#4A6470; --bio-dim:#A9BCC2;
+  --pill-bg:rgba(255,255,255,.65); --pill-fg:#1D3A47; --pill-dot:#5F9598;
+  --cta-bg:linear-gradient(135deg, #061E29, #1D546D); --cta-fg:#fff;
+  --card-bg:linear-gradient(160deg, rgba(255,255,255,.85), rgba(255,255,255,.55)); --card-border:rgba(6,30,41,.08);
+  --card-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 30px 80px -40px rgba(29,84,109,.35);
+  --blur:blur(18px) saturate(140%);
+  --pmuted:#2E4A56; --ptext:#061E29; --pdot:#1D546D; --view-bg:var(--cta-bg); --view-fg:#fff;
+  --dot:#061E29; --glow:rgba(29,84,109,.3); --spot:rgba(29,84,109,.07);
+  --fg-strong:#061E29; --edge:rgba(6,30,41,.3); --dd:#061E29;
+  --strand:6,30,41; --net:29,84,109; --grain:.05; --scrim:72%;
+}
