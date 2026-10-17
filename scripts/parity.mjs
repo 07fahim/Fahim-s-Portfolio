@@ -42,9 +42,10 @@ async function measure(url, vp, scheme) {
   // measurement on the end state instead of risking a mid-transition read (same rule for both sides)
   await page.addStyleTag({ content: '*, *::before, *::after { transition: none !important; }' });
   await page.evaluate(() => document.fonts.ready);
-  // layout measured before the web font arrived (either side's first JS-driven fit) is refitted here, so
-  // both sides compare at their font-loaded size instead of a load-order artifact
-  await page.evaluate(() => dispatchEvent(new Event('resize')));
+  // the prototype measures its stacked cards before its web font arrives and only refits on resize, so it
+  // needs this dispatch to reach its font-loaded size; the build refits on its own font-load callback, so
+  // dispatching here too would mask a build that fails to refit itself
+  if (url !== BUILD) await page.evaluate(() => dispatchEvent(new Event('resize')));
   const h = await page.evaluate(() => document.documentElement.scrollHeight);
   for (let y = 0; y < h; y += vp.height) await page.evaluate(y => scrollTo(0, y), y);   // lazy images and scroll state settle
   await page.evaluate(() => scrollTo(0, 0));

@@ -3,12 +3,11 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
 .work h2 { padding:0 4vw 5vh; font-weight:800; font-size:clamp(3rem, 7vw, 6.5rem); letter-spacing:-.045em; line-height:.92; }
 .work .label { padding:0 4vw; }
 
-/* line-height:1.31 pins the prototype's approved height: its Google-served Inter file and next/font's
-   self-hosted Inter resolve line-height:normal about 1px apart at this font-size, in both this component's
-   font-sizes (.66rem/1280 and .58rem/mobile's .tag override); the ratio is measured on the prototype so both
-   render at its approved size instead of each font file's own "normal" */
-.tag { font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; padding:6px 11px; border-radius:999px; border:1px solid var(--line); color:var(--muted); white-space:nowrap; line-height:1.31; }
-.tag.live { color:var(--accent); border-color:color-mix(in srgb, var(--accent) 45%, transparent); } .tag.live::before { content:'● '; }
+.tag { font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; padding:6px 11px; border-radius:999px; border:1px solid var(--line); color:var(--muted); white-space:nowrap; line-height:normal; }
+/* .tag.live::before draws the '● ' from a fallback font: the prototype falls through to system fonts, while
+   next/font's "Inter Fallback" is adjusted Arial, so the glyph's line-height:normal differs between the two
+   pages. line-height:1.31 pins the prototype's approved height instead of each fallback's own "normal" */
+.tag.live { color:var(--accent); border-color:color-mix(in srgb, var(--accent) 45%, transparent); line-height:1.31; } .tag.live::before { content:'● '; }
 .links { display:flex; flex-wrap:wrap; gap:10px; }
 
 /* filters */
@@ -17,7 +16,6 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
 .filters button sup { font-size:.66rem; margin-left:5px; color:var(--muted); }
 .filters button[aria-pressed=true] { background:var(--fg-strong); color:var(--bg); border-color:var(--fg-strong); } .filters button[aria-pressed=true] sup { color:inherit; opacity:.6; }
 .filters button:focus-visible { outline:2px solid var(--fg-strong); outline-offset:3px; }
-[hidden] { display:none !important; }
 
 /* card grid: image with a hover overlay (description and links), then type with icon, title and up to four tech tags */
 .pgrid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.5rem; margin:0 4vw; }   /* three per row, as in the first grid mockup */
@@ -75,7 +73,7 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
 .duo { position:relative; height:100%; background:#0d1012; }   /* stock pictures in their original colours in both modes (user, 2026-10-17) */
 .pinc ul { list-style:none; display:grid; gap:.55em; margin-top:22px; font-size:.95rem; color:var(--bio); } .pinc ul li { display:flex; gap:10px; } .pinc ul li::before { content:''; width:6px; height:6px; margin-top:.55em; flex:none; background:var(--accent); }
 .flow { display:flex; flex-wrap:wrap; align-items:center; gap:10px 8px; padding:28px; border-radius:14px; border:1px solid var(--line); background:color-mix(in srgb, var(--text) 3%, transparent); }
-.flow span { padding:10px 14px; border-radius:10px; font-size:.82rem; background:var(--pill-bg); border:1px solid var(--line); color:var(--pill-fg); } .flow span.gate { border-color:var(--accent); color:var(--fg-strong); } .flow i { font-style:normal; color:var(--muted); line-height:1.3125; }   /* same next/font-vs-prototype normal-line-height gap as .tag, measured on the prototype */
+.flow span { padding:10px 14px; border-radius:10px; font-size:.82rem; background:var(--pill-bg); border:1px solid var(--line); color:var(--pill-fg); } .flow span.gate { border-color:var(--accent); color:var(--fg-strong); } .flow i { font-style:normal; color:var(--muted); line-height:1.3125; }   /* the '→' draws from a fallback font (prototype: system fonts; build: next/font's "Inter Fallback", adjusted Arial), so line-height:normal differs; this pins the prototype's approved height, same cause as .tag.live */
 .smedia > img, .smedia > .flow { aspect-ratio:16/10; width:100%; height:auto; object-fit:cover; object-position:top center; box-sizing:border-box; } .smedia > .flow { align-content:center; }   /* one frame shape for every service card (user, 2026-10-17) */
 @media (max-width:800px) { .smedia > .flow { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; padding:40px 18px 18px; } .smedia > .flow small { position:absolute; top:16px; left:18px; } .flow span { flex:none; } }   /* phones: the workflow scrolls sideways inside the same frame */
 .flow small { flex-basis:100%; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
