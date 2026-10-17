@@ -1,7 +1,7 @@
-'use client';
-import { useState, type CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import { STACK, TOOLS } from '@/content';
 import { LUCIDE } from './icons';
+import StackPause from './StackPause';
 
 function Logo({ name }: { name: string }) {
   const t = TOOLS[name.toLowerCase()];
@@ -11,10 +11,9 @@ function Logo({ name }: { name: string }) {
 }
 
 export default function Stack() {
-  const [paused, setPaused] = useState(false);
   return (
-    <div className={paused ? 'stack paused' : 'stack'}>
-      <div className="label stack-head">The stack <button className="halt" type="button" aria-label={`${paused ? 'Play' : 'Pause'} the sliding rows`} onClick={() => setPaused(p => !p)}><span aria-hidden="true">{paused ? '▶' : '❚❚'}</span>{paused ? 'Play' : 'Pause'}</button></div>
+    <div className="stack">
+      <div className="label stack-head">The stack <StackPause /></div>
       <div id="rows">
         {STACK.map((row, i) => (
           <div className="marquee" key={i}><div className="track" style={{ '--d': `${36 + i * 7}s` } as CSSProperties}>
