@@ -1,0 +1,48 @@
+/* about */
+section.about, section.services { position:relative; z-index:2; background:var(--sec-bg); }
+.about { padding:9vh 0; }   /* one rhythm: every section 9vh above and below (user, 2026-10-17: too much spacing) */
+.about-top { display:grid; grid-template-columns:.8fr 1.2fr; gap:4vw; align-items:center; padding:0 8vw; }   /* the heading needs less room than the card */
+.label { font-size:.68rem; letter-spacing:.3em; color:var(--muted); text-transform:uppercase; margin-bottom:18px; }
+.about h2 { font-weight:800; font-size:clamp(4rem, 11vw, 10rem); letter-spacing:-.05em; line-height:.9; }
+.card { background:var(--card-bg); border:1px solid var(--card-border); box-shadow:var(--card-shadow); backdrop-filter:var(--blur); border-radius:22px; padding:clamp(24px, 3vw, 40px); font-size:clamp(1rem, 1.25vw, 1.15rem); line-height:1.7; }
+.about .card { max-width:38em; } #bio p { text-wrap:pretty; } #bio p + p { margin-top:1em; }   /* card capped so lines stay under ~70 characters on wide screens; no one-word last lines */
+/* bio: one size; plain words in soft grey, roles, companies and services in white medium weight, so the eye can skim the key facts */
+#bio.hl b { font-weight:500; }
+#bio.hl span.lit { color:var(--bio); }
+#bio.hl b span.lit { color:var(--hi); }
+#bio span { color:var(--bio-dim); transition:color .25s; }
+/* proof as scannable facts under the bio: label above value, two columns */
+/* the CV sits where people read the background, as an accent pill (user, 2026-10-17) */
+.card .cv { display:inline-flex; align-items:center; gap:12px; margin-top:20px; padding:7px 20px 7px 7px; border-radius:999px; color:var(--fg-strong); border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); background:color-mix(in srgb, var(--accent) 10%, transparent); transition:background .3s, border-color .3s, translate .3s; }
+.card .cv:hover, .card .cv:focus-visible { background:color-mix(in srgb, var(--accent) 20%, transparent); border-color:var(--accent); translate:0 -2px; outline:none; } .card .cv:focus-visible { box-shadow:0 0 0 2px var(--fg-strong); }
+.card .cv .ico { width:38px; height:38px; display:grid; place-items:center; border-radius:50%; background:var(--cta-bg); color:var(--cta-fg); overflow:hidden; } .card .cv .ico svg { width:18px; height:18px; }
+.card .cv b { display:block; font-weight:600; font-size:.95rem; line-height:1.2; } .card .cv small { display:block; font-size:.72rem; letter-spacing:.08em; color:var(--muted); margin-top:2px; }
+.card .cv:hover .ico svg { animation:cvdrop .7s cubic-bezier(.5,0,.3,1); } @keyframes cvdrop { 45% { translate:0 120%; } 46% { translate:0 -120%; } 100% { translate:0 0; } }   /* the arrow drops out and back in */
+@media (prefers-reduced-motion:reduce) { .card .cv, .card .cv:hover { translate:none; transition:none; } .card .cv:hover .ico svg { animation:none; } }
+.facts { display:grid; grid-template-columns:1fr 1fr; gap:16px 32px; margin-top:24px; padding-top:20px; border-top:1px solid var(--line); }
+.facts dt { font-size:.66rem; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.facts dd { font-size:.95rem; line-height:1.4; color:var(--dd); }
+.stack { margin-top:8vh; }
+.stack .label { padding:0 4vw; }
+.stack-head { display:flex; justify-content:space-between; align-items:center; }
+.halt { all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:8px; min-height:24px; color:var(--muted); transition:color .2s; } .halt span { font-size:.6rem; letter-spacing:.1em; }
+.halt:hover, .halt:focus-visible { color:var(--fg-strong); } .halt:focus-visible { outline:2px solid var(--fg-strong); outline-offset:4px; border-radius:4px; }
+.stack.paused .track { animation-play-state:paused; }   /* the rows never move on their own while paused (WCAG 2.2.2) */
+.marquee { overflow:hidden; padding:7px 0; mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.track { display:flex; gap:12px; width:max-content; animation:slide var(--d, 40s) linear infinite; }
+.marquee:nth-child(odd) .track { animation-direction:reverse; }
+.pill { display:flex; align-items:center; gap:10px; padding:9px 18px; border-radius:999px; background:var(--pill-bg); border:1px solid var(--line); font-size:.86rem; color:var(--pill-fg); white-space:nowrap; }
+.pill::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--pill-dot); }
+@keyframes slide { to { transform:translateX(-50%); } }
+
+/* logos on About's stack pills */
+.pill:has(.ic)::before { display:none; }
+.pill .ic { width:18px; height:18px; flex:none; }
+.pill img.ic { object-fit:contain; filter:grayscale(1) brightness(0) invert(.86); transition:filter .3s; } [data-mode=light] .pill img.ic { filter:grayscale(1) brightness(0) invert(.18); }   /* silver at rest */
+.pill:hover img.ic, [data-mode=light] .pill:hover img.ic { filter:none; } html:not([data-mode=light]) .pill:hover img.ic.dk { filter:grayscale(1) brightness(0) invert(1); }   /* brand colour on hover; near-black logos stay white on the dark page */
+svg.ic { color:var(--accent); stroke-width:1.6; }
+.pill .mono { display:grid; place-items:center; border-radius:5px; font:700 .56rem/1 var(--font-inter), sans-serif; color:var(--fg-strong); border:1px solid var(--edge); }
+.marquee:hover .track { animation-play-state:paused; }   /* hovering a row holds it still to read */
+
+@media (max-width:800px) { .about-top { grid-template-columns:1fr; padding:0 5vw; } .facts { grid-template-columns:1fr; gap:16px; } .card { padding:22px 20px; } }
+@media (prefers-reduced-motion:reduce) { .halt { display:none; } .track { animation:none; } }
