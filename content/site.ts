@@ -8,4 +8,5 @@ export const SITE = {
   github: 'https://github.com/07fahim',
   githubBase: 'https://github.com/07fahim/',
   cv: '/resume.pdf',
+  umami: '6d1ee970-13a2-4a90-9443-2e52643b3d40',
 } as const;

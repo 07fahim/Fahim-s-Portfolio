@@ -13,6 +13,7 @@ const ROWS = [
   ['Upwork', 'Hire me on Upwork', SITE.upwork, <Mask key="i" name="upwork" />],
   ['Fiverr', 'fahimfaiyaz325', SITE.fiverr, <Mask key="i" name="fiverr" />],
 ] as const;
+const EVENT: Record<string, string> = { [SITE.upwork]: 'upwork_click', [SITE.fiverr]: 'fiverr_click' };
 const fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dhaka', hour: 'numeric', minute: '2-digit' });
 
 function DhakaTime() {   // a client in another time zone sees when to expect a reply
@@ -81,12 +82,12 @@ export default function Contact() {
         <div className="glass">
           <div><h3>Contact information</h3><p className="sub">Tell me what you want to build. Messages come straight to my inbox.</p></div>
           <div className="quick">
-            <a className="btn solid" href={SITE.whatsapp} target="_blank" rel="noopener">Message on WhatsApp <Mask name="whatsapp" /></a>
+            <a className="btn solid" href={SITE.whatsapp} target="_blank" rel="noopener" data-umami-event="whatsapp_click">Message on WhatsApp <Mask name="whatsapp" /></a>
             <a className="btn" href={'mailto:' + SITE.email}>Send an email <Mail /></a>
           </div>
           <ul className="info">
             {ROWS.map(([label, value, href, icon]) => (
-              <li key={label}><a href={href} {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})}>
+              <li key={label}><a href={href} data-umami-event={EVENT[href]} {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})}>
                 <span className="tile" aria-hidden="true">{icon}</span><span><small>{label}</small><span className="v">{value}</span></span><span className="go" aria-hidden="true">↗</span>
               </a></li>
             ))}

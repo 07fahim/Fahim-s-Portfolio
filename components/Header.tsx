@@ -62,8 +62,8 @@ export default function Header() {
           {LINKS.map(([id, n], k) => <a key={id} {...link(id)} style={{ '--k': k } as CSSProperties}>{n}</a>)}
         </nav>
         <div className="menu-foot">
-          <a className="btn solid" href={SITE.whatsapp} target="_blank" rel="noopener">Message on WhatsApp<span className="wa" aria-hidden="true" /></a>
-          <a className="btn" href={SITE.cv} download="Fahim-Faiyaz-CV.pdf">Download CV&nbsp;<span aria-hidden="true">↓</span></a>
+          <a className="btn solid" href={SITE.whatsapp} target="_blank" rel="noopener" data-umami-event="whatsapp_click">Message on WhatsApp<span className="wa" aria-hidden="true" /></a>
+          <a className="btn" href={SITE.cv} download="Fahim-Faiyaz-CV.pdf" data-umami-event="resume_click">Download CV&nbsp;<span aria-hidden="true">↓</span></a>
           <button className="btn" type="button" onClick={flip}>{mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}</button>
         </div>
       </div>

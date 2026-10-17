@@ -15,9 +15,9 @@ export default function Hero() {
         <div className="row">
           <div className="title ui d2">AI/ML <i>Engineer</i></div>
           <div className="btns ui d3">
-            <a className="btn" href={SITE.upwork} target="_blank" rel="noopener">Upwork&nbsp;<span aria-hidden="true">↗</span></a>
-            <a className="btn" href={SITE.fiverr} target="_blank" rel="noopener">Fiverr&nbsp;<span aria-hidden="true">↗</span></a>
-            <a className="btn solid" href={SITE.whatsapp} target="_blank" rel="noopener">Message on WhatsApp<span className="wa" aria-hidden="true" /></a>
+            <a className="btn" href={SITE.upwork} target="_blank" rel="noopener" data-umami-event="upwork_click">Upwork&nbsp;<span aria-hidden="true">↗</span></a>
+            <a className="btn" href={SITE.fiverr} target="_blank" rel="noopener" data-umami-event="fiverr_click">Fiverr&nbsp;<span aria-hidden="true">↗</span></a>
+            <a className="btn solid" href={SITE.whatsapp} target="_blank" rel="noopener" data-umami-event="whatsapp_click">Message on WhatsApp<span className="wa" aria-hidden="true" /></a>
           </div>
         </div>
         <div className="skip" aria-hidden="true">CLICK TO SKIP</div>
