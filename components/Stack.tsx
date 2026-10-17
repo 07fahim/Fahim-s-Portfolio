@@ -7,7 +7,7 @@ function Logo({ name }: { name: string }) {
   const t = TOOLS[name.toLowerCase()];
   if (t.src.startsWith('i:')) { const Icon = LUCIDE[t.src.slice(2)]; return <Icon className="ic" aria-hidden="true" />; }
   if (t.src.startsWith('t:')) return <b className="ic mono" aria-hidden="true">{t.src.slice(2)}</b>;
-  return <img className={t.dk ? 'ic dk' : 'ic'} src={`/logos/${t.src}.svg`} alt="" />;
+  return <img className={t.dk ? 'ic dk' : 'ic'} src={`/logos/${t.src}.svg`} alt="" loading="lazy" />;
 }
 
 export default function Stack() {

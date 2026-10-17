@@ -3,14 +3,33 @@ import { css } from './css';
 
 const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// PORT P1189, P1193–1194, P1196, P1199–1205: one drifting blob (jade in dark, petrol in light). Geometry + colour
+// both live here so a mode switch (tint()) rewrites the full entry, not just the colour.
+const BLOBS = {
+  jade: { c: 'rgba(29,205,159,.1)', w: 80, h: 60, l: 30, t: 20, r0: 0, r1: 0, x: '-10vw', y: '8vh', d: 40 },
+  petrol: { c: 'rgba(95,149,152,.14)', w: 90, h: 60, l: 20, t: 10, r0: 0, r1: 0, x: '-12vw', y: '8vh', d: 44 },
+} as const;
+
 export function mountSilk(host: HTMLElement): () => void {
-  const cv = host.querySelector('canvas')!;
   const ac = new AbortController(), on = { signal: ac.signal };
   let raf = 0;
 
+  // the prototype creates the blob even with no WebGL2, so it's created and tinted, and the modechange
+  // listener for tinting is wired, before the WebGL early return.
+  const blob = document.createElement('i');
+  const tint = () => {
+    const b = BLOBS[currentMode() === 'light' ? 'petrol' : 'jade'];
+    Object.assign(blob.style, { width: b.w + 'vmax', height: b.h + 'vmax', left: b.l + 'vw', top: b.t + 'vh', background: `radial-gradient(closest-side, ${b.c}, transparent)` });
+    Object.entries({ '--r0': b.r0 + 'deg', '--r1': b.r1 + 'deg', '--x': b.x, '--y': b.y, '--t': b.d + 's' }).forEach(([k, val]) => blob.style.setProperty(k, val));
+  };
+  host.prepend(blob);
+  tint();
+  addEventListener('modechange', tint, on);
+
+  const cv = host.querySelector('canvas')!;
   // PORT P1002–1023: the gpuBackground setup and size(). Keep the Silk dpr rule (min(devicePixelRatio, 1.5) * .5).
   const gl = cv.getContext('webgl2', { antialias: true, premultipliedAlpha: true });
-  if (!gl) return () => ac.abort();
+  if (!gl) return () => { ac.abort(); blob.remove(); };
 
   const program = (vs: string, fs: string) => {
     const p = gl.createProgram()!;
@@ -66,24 +85,12 @@ void main() {
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   };
 
-  // PORT P1189, P1193–1194, P1196, P1199–1205: one drifting blob (jade in dark, petrol in light).
-  const BLOBS = {
-    jade: { c: 'rgba(29,205,159,.1)', w: 80, h: 60, l: 30, t: 20, r0: 0, r1: 0, x: '-10vw', y: '8vh', d: 40 },
-    petrol: { c: 'rgba(95,149,152,.14)', w: 90, h: 60, l: 20, t: 10, r0: 0, r1: 0, x: '-12vw', y: '8vh', d: 44 },
-  } as const;
-  const b = BLOBS[currentMode() === 'light' ? 'petrol' : 'jade'];
-  const blob = document.createElement('i');
-  Object.assign(blob.style, { width: b.w + 'vmax', height: b.h + 'vmax', left: b.l + 'vw', top: b.t + 'vh' });
-  Object.entries({ '--r0': b.r0 + 'deg', '--r1': b.r1 + 'deg', '--x': b.x, '--y': b.y, '--t': b.d + 's' }).forEach(([k, val]) => blob.style.setProperty(k, val));
-  host.prepend(blob);
-  const tint = () => { const bb = BLOBS[currentMode() === 'light' ? 'petrol' : 'jade']; blob.style.background = `radial-gradient(closest-side, ${bb.c}, transparent)`; };
-
   // PORT P1170–1172: tick().
   const tick = (now: number) => { gl.clear(gl.COLOR_BUFFER_BIT); frame(now / 1000); if (!reduce()) raf = requestAnimationFrame(tick); };
-  colours(); tint();
+  colours();
   size();
   raf = requestAnimationFrame(tick);
   addEventListener('resize', () => { size(); if (reduce()) raf = requestAnimationFrame(tick); }, on);
-  addEventListener('modechange', () => { colours(); tint(); if (reduce()) raf = requestAnimationFrame(tick); }, on);
+  addEventListener('modechange', () => { colours(); if (reduce()) raf = requestAnimationFrame(tick); }, on);
   return () => { ac.abort(); cancelAnimationFrame(raf); blob.remove(); gl.getExtension('WEBGL_lose_context')?.loseContext(); };
 }

@@ -17,10 +17,10 @@ export default function Header() {
   // section highlight and progress line (prototype P979–994; the bio's lighting lives in Bio)
   useEffect(() => {
     const run = () => {
-      const vh = innerHeight, de = document.documentElement;
-      if (bar.current) bar.current.style.width = (scrollY / (de.scrollHeight - vh) * 100) + '%';
+      const vh = innerHeight, de = document.documentElement, y = scrollY, sh = de.scrollHeight;
       let c = 'home';
       for (const s of document.querySelectorAll('section[id]')) if (s.getBoundingClientRect().top < vh * 0.5) c = s.id;
+      if (bar.current) bar.current.style.width = (y / (sh - vh) * 100) + '%';
       setCur(ALIAS[c] ?? c);
     };
     addEventListener('scroll', run, { passive: true }); run();
@@ -48,6 +48,7 @@ export default function Header() {
   return (
     <>
       <header>
+        {/* the hero engine owns inert and .show on this element (lib/hero/scene.ts); keep them static props here */}
         <a className="logo" href="#home" inert>FAHIM FAIYAZ</a>
         <nav>
           {LINKS.map(([id, n]) => <a key={id} {...link(id)}>{n.toUpperCase()}</a>)}
