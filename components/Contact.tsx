@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Mail, MapPin } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { validate, type Fields } from '@/lib/validate';
+import { sendContact } from '@/app/contact-action';
 import { Github, Linkedin, Mask } from './icons';
 
 const ROWS = [
@@ -34,21 +35,29 @@ function CopyEmail() {
 
 function ContactForm() {
   const [error, setError] = useState<{ field: string; text: string } | null>(null);
+  const [failed, setFailed] = useState(false);
+  const [pending, setPending] = useState(false);
   const [sent, setSent] = useState<{ name: string; email: string } | null>(null);
   const note = useRef<HTMLDivElement>(null);
   useEffect(() => { if (sent) note.current?.focus(); }, [sent]);
-  const submit = (e: FormEvent<HTMLFormElement>) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (pending) return;
     const form = e.currentTarget, data = Object.fromEntries(new FormData(form)) as unknown as Fields, r = validate(data);
     if (r.ok === 'drop') return;
-    if (r.ok === false) { setError({ field: r.field, text: r.error }); (form.elements.namedItem(r.field) as HTMLElement).focus(); return; }
-    setError(null); setSent({ name: data.name.trim(), email: data.email.trim() });   // build step 3 sends it through Resend
+    if (r.ok === false) { setError({ field: r.field, text: r.error }); setFailed(false); (form.elements.namedItem(r.field) as HTMLElement).focus(); return; }
+    setError(null); setFailed(false); setPending(true);
+    const res = await sendContact(data).catch(() => ({ ok: false, error: 'send' }) as const);
+    setPending(false);
+    if (res.ok) { (window as { umami?: { track: (e: string) => void } }).umami?.track('contact_submit'); setSent({ name: data.name.trim(), email: data.email.trim() }); return; }
+    if ('field' in res) { setError({ field: res.field, text: res.error }); (form.elements.namedItem(res.field) as HTMLElement).focus(); return; }
+    setFailed(true);   // the form keeps everything typed
   };
   // the note takes the form's place in the grid, as the prototype's outerHTML swap did
-  if (sent) return <div className="sent" ref={note} tabIndex={-1}>Thanks, {sent.name}. Your message is on its way, and I’ll reply to {sent.email}.<small>Prototype preview: the live site sends this to my inbox.</small></div>;
+  if (sent) return <div className="sent" ref={note} tabIndex={-1}>Thanks, {sent.name}. Your message is on its way, and I’ll reply to {sent.email}.</div>;
   const bad = (f: string) => error?.field === f ? { 'aria-invalid': true, 'aria-describedby': 'ct-err' } : {};
   return (
-    <form className="glass" noValidate onSubmit={submit}>
+    <form className="glass" noValidate onSubmit={submit} aria-busy={pending}>
       <label className="hp" aria-hidden="true">Leave this empty <input name="website" tabIndex={-1} autoComplete="off" /></label>
       <div><h3>Send a message</h3><p className="sub">I’ll reply to the email you leave here.</p></div>
       <div className="two">
@@ -57,8 +66,8 @@ function ContactForm() {
       </div>
       <label className="f"><span>Subject <i>(optional)</i></span><input name="subject" maxLength={150} placeholder="e.g. a chatbot that answers from our documents" {...bad('subject')} /></label>
       <label className="f">Message <textarea name="message" placeholder="The problem, your data and the result you want." maxLength={5000} required {...bad('message')} /></label>
-      <p className="err" id="ct-err" role="alert">{error?.text}</p>
-      <button className="btn solid send" type="submit">Send message <span aria-hidden="true">→</span></button>
+      <p className="err" id="ct-err" role="alert">{error?.text}{failed && <>The message didn’t send. Email me at <a href={'mailto:' + SITE.email}>{SITE.email}</a> instead.</>}</p>
+      <button className="btn solid send" type="submit" disabled={pending}>{pending ? 'Sending…' : <>Send message <span aria-hidden="true">→</span></>}</button>
     </form>
   );
 }
