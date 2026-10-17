@@ -1,0 +1,29 @@
+/* nav */
+header { position:fixed; inset:0 0 auto; z-index:20; height:62px; display:flex; align-items:center; justify-content:space-between; padding:0 3vw;
+  background:linear-gradient(var(--bg), color-mix(in srgb, var(--bg) 60%, transparent) 70%, transparent); opacity:0; transition:opacity .8s, background .4s; }
+body.ready header { opacity:1; }
+header .logo { font-weight:800; letter-spacing:.06em; font-size:1.05rem; opacity:0; transition:opacity .4s; }
+header .logo.show { opacity:1; }   /* the name lives in the hero; the logo only takes over once the hero name has scrolled away */
+header nav { display:flex; gap:2.2vw; font-size:.78rem; letter-spacing:.06em; }
+header nav a { padding:4px 0; border-bottom:1px solid transparent; opacity:.85; transition:border-color .3s, opacity .3s; }
+header nav a.on { border-color:var(--accent); opacity:1; }
+/* phone menu (user, 2026-10-17): MENU opens a full-screen frosted panel with the five links, WhatsApp, the CV and the light/dark switch */
+.menu-btn { display:none; background:none; border:0; color:inherit; font:500 .78rem var(--font-inter), system-ui, sans-serif; letter-spacing:.16em; padding:12px 0 12px 16px; cursor:pointer; }
+.menu-btn:focus-visible { outline:2px solid var(--fg-strong); outline-offset:2px; }
+.menu { position:fixed; inset:0; z-index:19; display:flex; flex-direction:column; justify-content:space-between; gap:5vh; padding:96px 6vw 5vh; overflow-y:auto;
+  background:color-mix(in srgb, var(--bg) 86%, transparent); -webkit-backdrop-filter:blur(18px) saturate(140%); backdrop-filter:blur(18px) saturate(140%); opacity:0; visibility:hidden; transition:opacity .35s, visibility 0s .35s; }
+.menu.open { opacity:1; visibility:visible; transition:opacity .35s; }
+.menu-links a { display:flex; align-items:center; gap:14px; font-weight:800; font-size:clamp(2.4rem, 11vw, 3.4rem); letter-spacing:-.04em; line-height:1.15; color:var(--fg-strong); opacity:0; translate:0 18px; transition:opacity .4s, translate .5s cubic-bezier(.2,.7,.2,1); }
+.menu.open .menu-links a { opacity:1; translate:0 0; transition-delay:calc(var(--k) * 55ms + 80ms); }   /* the links slide in one after another */
+.menu-links a::after { content:''; width:10px; height:10px; border-radius:50%; background:var(--accent); opacity:0; transition:opacity .3s; } .menu-links a.on::after { opacity:1; }   /* where you are now */
+.menu-links a:focus-visible { outline:2px solid var(--fg-strong); outline-offset:4px; border-radius:6px; }
+.menu-foot { display:grid; gap:10px; } .menu-foot .btn { display:flex; justify-content:center; align-items:center; padding:14px 20px; font-size:.95rem; background:none; color:inherit; font-family:inherit; cursor:pointer; } .menu-foot .btn.solid { background:var(--cta-bg); color:var(--cta-fg); }
+@media (max-width:800px) { .menu-btn { display:inline-block; } }
+@media (min-width:801px) { .menu { display:none; } }
+@media (prefers-reduced-motion:reduce) { .menu, .menu-links a { transition:none; translate:none; } }
+.progress { position:absolute; left:0; bottom:0; height:1px; width:0; background:var(--accent); opacity:.5; }
+
+.mode { all:unset; display:inline-block; cursor:pointer; margin-left:2.2vw; font-size:.78rem; letter-spacing:.06em; padding:4px 0; opacity:.85; } .mode:focus-visible { outline:2px solid var(--fg-strong); outline-offset:4px; }
+body.scrolled header { background:color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter:blur(14px) saturate(140%); border-bottom:1px solid var(--line); }   /* frosted bar once scrolled, so text never runs under the links */
+
+@media (max-width:800px) { header nav { display:none; } }
