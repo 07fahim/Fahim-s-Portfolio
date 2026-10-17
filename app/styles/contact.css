@@ -1,0 +1,43 @@
+/* contact (?ct=1 brief composer, 2 sentence form, 3 big call to action); booking first, then the form, then the details */
+section.ct { position:relative; z-index:2; padding:9vh 0 5vh; }   /* the game below adds its own 13vh before its caption */
+.ct > .label { padding:0 4vw; } .ct > h2 { padding:0 4vw 5vh; font-weight:800; font-size:clamp(3rem, 7vw, 6.5rem); letter-spacing:-.045em; line-height:.92; }
+.ct .avail { display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+.ct .avail::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--accent); animation:ping 2s infinite; }
+.ct .copy { all:unset; cursor:pointer; margin-left:10px; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line); }
+.ct .copy:hover, .ct .copy:focus-visible { color:var(--fg-strong); border-color:var(--accent); } .ct .copy:focus-visible { outline:2px solid var(--fg-strong); outline-offset:3px; }
+/* fields */
+.ct form { display:grid; gap:14px; } .ct .hp { position:absolute; left:-9999px; }
+.ct label.f { display:grid; gap:6px; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+.ct label.f i { font-style:normal; text-transform:none; letter-spacing:0; opacity:.8; }
+.ct input, .ct textarea, .ct select { font:inherit; font-size:.98rem; letter-spacing:0; text-transform:none; color:var(--fg-strong); background:color-mix(in srgb, var(--text) 4%, transparent); border:1px solid var(--line); border-radius:12px; padding:12px 14px; transition:border-color .2s, background .2s; }
+.ct textarea { resize:vertical; min-height:120px; line-height:1.55; }
+.ct input:focus-visible, .ct textarea:focus-visible, .ct select:focus-visible { outline:none; border-color:var(--accent); background:color-mix(in srgb, var(--text) 6%, transparent); }
+.ct ::placeholder { color:var(--muted); opacity:.75; }
+.ct .err { font-size:.8rem; color:#FF6B70; min-height:1em; } [data-mode=light] .ct .err { color:#C62A2F; }
+.ct .sent { padding:22px; border-radius:14px; border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); color:var(--fg-strong); line-height:1.6; }
+.ct .sent small { display:block; margin-top:6px; color:var(--muted); }
+.ct .send { display:inline-flex; align-items:center; gap:10px; justify-self:start; }
+.ct .glass { border-radius:24px; padding:clamp(20px, 2.6vw, 34px); background:var(--card-bg); border:1px solid var(--card-border); box-shadow:var(--card-shadow); }
+/* 4: the old portfolio's layout (user, 2026-10-17): a contact information card beside a send a message card */
+.ct .c4 { display:grid; grid-template-columns:minmax(0, .9fr) minmax(0, 1.3fr); gap:1.5rem; margin:0 4vw; align-items:stretch; }
+.ct .c4 .glass { display:flex; flex-direction:column; gap:22px; }
+.ct .c4 h3 { font-weight:800; font-size:clamp(1.3rem, 1.8vw, 1.6rem); letter-spacing:-.02em; color:var(--fg-strong); }
+.ct .c4 .sub { margin-top:6px; font-size:.92rem; color:var(--bio); }
+.ct .info { list-style:none; display:grid; gap:6px; }
+.ct .info a, .ct .info .loc { display:grid; grid-template-columns:44px 1fr auto; gap:14px; align-items:center; padding:10px; margin:0 -10px; border-radius:14px; transition:background .25s; }
+.ct .info a:hover, .ct .info a:focus-visible { background:color-mix(in srgb, var(--text) 5%, transparent); outline:none; }
+.ct .info a:focus-visible { box-shadow:inset 0 0 0 2px var(--fg-strong); }
+.ct .tile { width:44px; height:44px; display:grid; place-items:center; border-radius:12px; border:1px solid var(--line); background:var(--pill-bg); color:var(--fg-strong); transition:border-color .25s, color .25s; }
+.ct .info a:hover .tile, .ct .info a:focus-visible .tile { border-color:var(--accent); color:var(--accent); }
+.ct .tile svg { width:19px; height:19px; } .ct .tile .mk.mk-fiverr { width:30px; height:30px; }   /* Fiverr's mark is a wordmark, unreadable at 18 px */ .ct .tile .mk { width:18px; height:18px; background:currentColor; -webkit-mask:var(--m) center / contain no-repeat; mask:var(--m) center / contain no-repeat; }
+.ct .info small { display:block; font-size:.64rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.ct .info span.v { font-size:.98rem; color:var(--fg-strong); overflow-wrap:anywhere; }
+.ct .info .go { color:var(--muted); transition:translate .25s, color .25s; } .ct .info a:hover .go { translate:3px -3px; color:var(--fg-strong); }
+.ct .c4 .avail { margin-top:auto; align-self:flex-start; }
+.ct .quick { display:flex; flex-wrap:wrap; gap:10px; } .ct .quick .btn { display:inline-flex; align-items:center; gap:10px; padding:13px 22px; }
+.ct .quick .btn .mk, .ct .quick .btn svg { width:17px; height:17px; } .ct .quick .mk { background:currentColor; -webkit-mask:var(--m) center / contain no-repeat; mask:var(--m) center / contain no-repeat; }
+.ct .c4 form .two { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .ct .c4 form textarea { min-height:150px; }
+.ct .c4 form > label:has(textarea) { flex:1; grid-template-rows:auto 1fr; } .ct .c4 form > label:has(textarea) textarea { height:100%; box-sizing:border-box; }   /* the message box takes the spare height, so both cards end level */
+.ct .c4 .send { align-self:flex-end; padding:14px 26px; }   /* the card is a flex column, so align-self, not justify-self */
+@media (max-width:800px) { .ct .c4 { grid-template-columns:1fr; margin:0 5vw; } .ct .c4 form .two { grid-template-columns:1fr; } .ct .c4 .send { align-self:stretch; justify-content:center; } }
+@media (prefers-reduced-motion:reduce) { .ct .avail::before { animation:none; } }

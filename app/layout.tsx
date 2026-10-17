@@ -11,6 +11,7 @@ import './styles/services.css';
 import './styles/work.css';
 import './styles/timeline.css';
 import './styles/achievements.css';
+import './styles/contact.css';
 
 // one variable font file per style; weights 400–800 and the 300 italic all come from it
 const inter = Inter({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--font-inter', display: 'swap' });
