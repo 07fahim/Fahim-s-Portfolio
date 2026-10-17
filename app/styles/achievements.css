@@ -1,0 +1,24 @@
+/* achievements: the six IEEE papers, then courses; every line from the CV */
+section.ach { position:relative; z-index:2; padding:9vh 0; }
+.ach > .label { padding:0 4vw; } .ach > h2 { padding:0 4vw 5vh; font-weight:800; font-size:clamp(3rem, 7vw, 6.5rem); letter-spacing:-.045em; line-height:.92; }
+.ach .grp { margin:0 4vw; } .ach .grp + .grp { margin-top:8vh; }
+.ach .gh { display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding-bottom:14px; border-bottom:1px solid var(--line); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.ach .gh b { font-weight:600; color:var(--fg-strong); }
+.ach h3 { font-weight:600; font-size:clamp(1.02rem, 1.3vw, 1.18rem); line-height:1.4; letter-spacing:-.01em; color:var(--fg-strong); text-wrap:pretty; }
+.ach .au { font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; padding:4px 9px; border-radius:999px; border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
+.ach .au.first { color:var(--accent); border-color:color-mix(in srgb, var(--accent) 45%, transparent); }
+.ach .doi { font-size:.82rem; font-weight:500; color:var(--muted); border-bottom:1px solid transparent; white-space:nowrap; transition:color .2s, border-color .2s; }
+.ach .doi:hover, .ach .doi:focus-visible { color:var(--fg-strong); border-color:var(--accent); outline:none; }
+.ach .desc { margin-top:8px; font-size:.9rem; line-height:1.55; color:var(--bio); max-width:52em; }
+/* glass cards, like the project grid */
+.ach .cards { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.5rem; margin-top:24px; list-style:none; }
+.ach .cards > li { display:flex; flex-direction:column; gap:14px; padding:22px; border-radius:16px; background:var(--card-bg); border:1px solid var(--card-border); box-shadow:var(--card-shadow); transition:translate .3s, border-color .3s; }
+.ach .cards > li:hover { translate:0 -6px; border-color:color-mix(in srgb, var(--accent) 40%, transparent); }
+.ach .cards .top { display:flex; justify-content:space-between; align-items:center; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+.ach .cards .foot { margin-top:auto; display:flex; justify-content:space-between; align-items:center; gap:10px; padding-top:14px; border-top:1px solid var(--line); }
+.ach .cards .topic { font-size:.8rem; color:var(--muted); }
+.ach .cards.small { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+@media (max-width:1100px) and (min-width:801px) { .ach .cards { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+@media (max-width:800px) {
+  .ach > h2 { font-size:min(3rem, 11.5vw); } .ach .grp { margin:0 5vw; } .ach .gh span + span { display:none; } .ach .cards, .ach .cards.small { grid-template-columns:1fr; } }
+@media (prefers-reduced-motion:reduce) { .ach .cards > li { transition:none; } }
