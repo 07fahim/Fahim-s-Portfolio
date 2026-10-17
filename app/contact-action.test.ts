@@ -15,7 +15,7 @@ describe('sendContact', () => {
     expect(url).toBe('https://api.resend.com/emails');
     expect((init.headers as Record<string, string>).Authorization).toBe('Bearer re_test');
     const body = JSON.parse(init.body as string);
-    expect(body).toMatchObject({ to: ['faiyazfahim743@gmail.com'], reply_to: 'ayesha@company.com', from: 'Portfolio <onboarding@resend.dev>' });
+    expect(body).toMatchObject({ to: ['faiyazfahim743@gmail.com'], reply_to: 'ayesha@company.com', from: 'Fahim Faiyaz Portfolio <contact@fahimfaiyaz.dev>' });
     expect(body.text).toContain('We need a chatbot for our policy PDFs.');
   });
   test('a filled honeypot looks sent but sends nothing', async () => {

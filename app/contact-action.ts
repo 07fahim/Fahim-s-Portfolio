@@ -23,7 +23,7 @@ export async function sendContact(input: Fields): Promise<SendResult> {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'Portfolio <onboarding@resend.dev>',   // switch to a fahimfaiyaz.dev address once the domain is verified (step 5)
+        from: 'Fahim Faiyaz Portfolio <contact@fahimfaiyaz.dev>',   // fahimfaiyaz.dev verified in Resend 2026-10-18
         to: [SITE.email],
         reply_to: email,
         subject: `Portfolio: ${subject || 'New message'} (from ${name})`.replace(/\s+/g, ' '),   // one line, whatever was typed
