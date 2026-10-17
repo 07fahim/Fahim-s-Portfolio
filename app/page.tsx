@@ -8,6 +8,7 @@ import Work from '@/components/Work';
 import Timeline from '@/components/Timeline';
 import Achievements from '@/components/Achievements';
 import Contact from '@/components/Contact';
+import Game from '@/components/Game';
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <Background />
       <Header />
       <Intro />
-      <main><Hero /><About /><Services /><Work /><Timeline /><Achievements /><Contact /></main>
+      <main><Hero /><About /><Services /><Work /><Timeline /><Achievements /><Contact /><Game /></main>
     </>
   );
 }

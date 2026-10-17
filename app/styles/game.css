@@ -1,0 +1,10 @@
+/* hello world */
+.game { position:relative; height:100vh; overflow:hidden; }
+.game canvas { touch-action:pan-y; }   /* sideways drags move the paddle, vertical ones still scroll the page */
+.game:focus { outline:none; }   /* focused by Play so the arrow keys work; the section itself needs no ring (it drew a frame round the game) */
+.cap { position:absolute; left:50%; top:calc(var(--pt, 70vh) - 40px); translate:-50% -50%; z-index:1; width:max-content; max-width:90vw; text-align:center; font-size:.92rem; color:var(--muted); }   /* the challenge sits with Play under the bricks, as one centred group (user, 2026-10-17: above HELLO it looked stuck on) */
+.play { position:absolute; left:50%; top:calc(var(--pt, 70vh) + 12px); translate:-50% -50%; z-index:1; display:inline-flex; align-items:center; gap:10px; background:none; border:1px solid var(--edge); border-radius:999px; color:var(--fg-strong); font:600 .74rem var(--font-inter), system-ui, sans-serif;
+  letter-spacing:.24em; padding:12px 24px 12px 20px; cursor:pointer; transition:background .3s, color .3s, border-color .3s; }   /* a pill like the other buttons, centred between the bricks and the ball */
+.play::before { content:''; width:0; height:0; border-left:8px solid currentColor; border-top:5px solid transparent; border-bottom:5px solid transparent; }
+.play:hover { background:var(--fg-strong); color:var(--bg); }
+.play:focus-visible { outline:2px solid var(--fg-strong); outline-offset:3px; }
