@@ -22,22 +22,25 @@ export function mountCountUp(root: HTMLElement): () => void {
   const els = [...root.querySelectorAll<HTMLElement>('.big-n .cnt')];
   if (!els.length) return () => ac.abort();
 
+  let raf = 0;
   const run = (el: HTMLElement) => {
     const final = el.dataset.final || el.textContent || '';
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = final; return; }
+    el.classList.add('counting');
     const t0 = performance.now();
     const tick = (now: number) => {
       const t = Math.min(1, (now - t0) / DURATION);
       el.textContent = countValue(final, easeOut(t));
-      if (t < 1 && !ac.signal.aborted) requestAnimationFrame(tick);
+      if (t < 1 && !ac.signal.aborted) { raf = requestAnimationFrame(tick); return; }
+      el.classList.remove('counting');
     };
-    requestAnimationFrame(tick);
+    raf = requestAnimationFrame(tick);
   };
 
   const obs = new IntersectionObserver((entries, o) => {
     entries.forEach(e => { if (e.isIntersecting) { run(e.target as HTMLElement); o.unobserve(e.target); } });
   }, { threshold: 0 });
   els.forEach(el => obs.observe(el));
-  ac.signal.addEventListener('abort', () => obs.disconnect());
+  ac.signal.addEventListener('abort', () => { obs.disconnect(); cancelAnimationFrame(raf); });
   return () => ac.abort();
 }

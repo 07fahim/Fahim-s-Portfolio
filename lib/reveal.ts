@@ -1,8 +1,10 @@
 // Fade-up: 24px + opacity-0 → settled, once, at 20% visible. Groups stagger 60ms apart in DOM
-// order (transition-delay). Never hides anything already on screen at mount, so there's no flash
-// and no LCP hit; CSS (base.css) guarantees everything is visible at once under reduced motion,
-// so this still passes even if the observer hasn't fired yet (e.g. parity).
-const SINGLES = '.label, h2, .about .card, .svc';
+// order (transition-delay). Visibility is decided from the observer's own first report, never a
+// one-off getBoundingClientRect at mount, so a restored scroll position or a #hash load can't
+// measure the wrong thing and flash an on-screen element. CSS (base.css) guarantees everything is
+// visible at once under reduced motion, so this still passes even if the observer hasn't fired yet
+// (e.g. parity). #all-projects carries .label too but is out of the approved scope, so it's excluded.
+const SINGLES = '.label:not(#all-projects), h2, .about .card, .svc';
 const GROUPS = ['.pcard', '.tl-list > li', '.ct .c4 > *'];
 const GROUP_LISTS = '.ach .cards'; // each list (papers, courses) staggers on its own
 
@@ -22,16 +24,24 @@ export function mountReveal(): () => void {
   const singles = [...document.querySelectorAll<HTMLElement>(SINGLES)];
   const all = [...singles, ...groups.flat()];
 
+  // first report per element decides visibility (intersecting = already on screen, never animate;
+  // not intersecting = below the fold, hide and wait); every later report at the same 0.2
+  // threshold is the real reveal.
+  const seen = new WeakSet<Element>();
   const obs = new IntersectionObserver((entries, o) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); } });
+    entries.forEach(e => {
+      const el = e.target;
+      if (!seen.has(el)) {
+        seen.add(el);
+        if (e.isIntersecting) { o.unobserve(el); return; }
+        el.classList.add('reveal');
+        return;
+      }
+      if (e.isIntersecting) { el.classList.add('in'); o.unobserve(el); }
+    });
   }, { threshold: 0.2 });
 
-  const vh = innerHeight;
-  all.forEach(el => {
-    if (el.getBoundingClientRect().top < vh) return; // already on screen: leave as server-rendered
-    el.classList.add('reveal');
-    obs.observe(el);
-  });
+  all.forEach(el => obs.observe(el));
 
   ac.signal.addEventListener('abort', () => obs.disconnect());
   return () => ac.abort();

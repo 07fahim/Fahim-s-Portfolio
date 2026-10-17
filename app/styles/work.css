@@ -55,6 +55,7 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
 .pinc > * { min-width:0; }   /* grid columns never grow to fit content: the one-row n8n flow widened the whole page to 846 px on touch phones */
 .pinc h3 { font-weight:800; font-size:clamp(2rem, 4vw, 3.6rem); letter-spacing:-.045em; line-height:.95; margin:16px 0 14px; }
 .pinc .big-n { font-weight:800; font-size:clamp(2.4rem, 4.4vw, 4rem); letter-spacing:-.04em; color:var(--fg-strong); margin-top:24px; } .pinc .big-n small { display:block; font-size:.8rem; font-weight:400; letter-spacing:0; color:var(--muted); }
+.pinc .big-n .cnt.counting { font-variant-numeric:tabular-nums; } /* build-only: fixed-width digits while counting, so the number doesn't jitter */
 .pinc img { width:100%; border-radius:14px; border:1px solid var(--line); display:block; }
 /* service cards: hovering the image shows the project's stack */
 .smedia { position:relative; border-radius:14px; overflow:hidden; } .smedia > img { border:0 !important; border-radius:0 !important; transition:scale .5s; } .smedia:hover > img { scale:1.03; }

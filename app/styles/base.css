@@ -22,8 +22,11 @@ canvas { position:absolute; inset:0; width:100%; height:100%; }
 
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 
-/* build-only: fade-up reveal, not in the prototype. .reveal is only ever added by lib/reveal.ts
-   to elements below the viewport at mount, so server-rendered and no-JS pages stay fully visible. */
-.reveal { opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s; }
-.reveal.in { opacity:1; transform:none; }
-@media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+/* build-only: fade-up reveal, not in the prototype. .reveal is only ever added by lib/reveal.ts,
+   decided from the observer's own reports, so server-rendered and no-JS pages stay fully visible.
+   The hidden state itself has no transition, so it always takes hold instantly (never a visible
+   fade-to-invisible if the observer's first report lags a real scroll, e.g. a #hash load); only
+   .reveal.in (the reveal) animates, which is the only direction the spec actually asks for. */
+.reveal { opacity:0; transform:translateY(24px); }
+.reveal.in { opacity:1; transform:none; transition:opacity .6s, transform .6s; }
+@media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; } .reveal.in { transition:none; } }
