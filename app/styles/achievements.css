@@ -9,6 +9,7 @@ section.ach { position:relative; z-index:2; padding:9vh 0; }
 .ach .au.first { color:var(--accent); border-color:color-mix(in srgb, var(--accent) 45%, transparent); }
 .ach .doi { font-size:.82rem; font-weight:500; color:var(--muted); border-bottom:1px solid transparent; white-space:nowrap; transition:color .2s, border-color .2s; }
 .ach .doi:hover, .ach .doi:focus-visible { color:var(--fg-strong); border-color:var(--accent); outline:none; }
+.ach .doi:focus-visible { outline:2px solid var(--fg-strong); outline-offset:3px; }
 .ach .desc { margin-top:8px; font-size:.9rem; line-height:1.55; color:var(--bio); max-width:52em; }
 /* glass cards, like the project grid */
 .ach .cards { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.5rem; margin-top:24px; list-style:none; }

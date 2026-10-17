@@ -79,7 +79,7 @@
     "live": "",
     "repo": "Local-OCR-Dynamic-RAG-System",
     "img": "",
-    "stock": "https://images.unsplash.com/photo-1771758249853-415175dc29b9?w=900&q=75",
+    "stock": "/pimg/stock-local-ocr-dynamic-rag.jpg",
     "icon": "scan-line",
     "type": "RAG / OCR / Privacy AI"
   },
@@ -216,7 +216,7 @@
     "live": "https://telemetry-anomaly-detector.onrender.com",
     "repo": "telemetry-anomaly-detector",
     "img": "",
-    "stock": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=75",
+    "stock": "/pimg/stock-telemetry-anomaly-detector.jpg",
     "icon": "activity",
     "type": "Time-Series / Anomaly Detection"
   },
@@ -236,7 +236,7 @@
     "live": "",
     "repo": "IoT-Sensor-Data-Trend-Prediction",
     "img": "",
-    "stock": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=75",
+    "stock": "/pimg/stock-iot-sensor-trend-prediction.jpg",
     "icon": "trending-up",
     "type": "Time-Series / Forecasting"
   },
@@ -314,7 +314,7 @@
     "live": "",
     "repo": "ServiceHub-Full-Stack-Service-Marketplace",
     "img": "",
-    "stock": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=75",
+    "stock": "/pimg/stock-servicehub.jpg",
     "icon": "store",
     "type": "Full-Stack / Web App"
   },
@@ -333,7 +333,7 @@
     "live": "",
     "repo": "Crafty-Bay-Flutter-E-commerce-app",
     "img": "",
-    "stock": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&q=75",
+    "stock": "/pimg/stock-crafty-bay.jpg",
     "icon": "smartphone",
     "type": "Mobile App / E-commerce"
   },
@@ -352,7 +352,7 @@
     "live": "",
     "repo": "task_manager",
     "img": "",
-    "stock": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=900&q=75",
+    "stock": "/pimg/stock-task-manager.jpg",
     "icon": "smartphone",
     "type": "Mobile App / Flutter"
   },
@@ -371,7 +371,7 @@
     "live": "",
     "repo": "TODO-Flutter-App",
     "img": "",
-    "stock": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&q=75",
+    "stock": "/pimg/stock-todo-app.jpg",
     "icon": "smartphone",
     "type": "Mobile App / Flutter"
   },
