@@ -86,7 +86,13 @@ void main() {
   };
 
   // PORT P1170–1172: tick().
-  const tick = (now: number) => { gl.clear(gl.COLOR_BUFFER_BIT); frame(now / 1000); if (!reduce()) raf = requestAnimationFrame(tick); };
+  // 30 fps (user, 2026-10-17): the folds drift slowly, so every other frame looks the same and halves the GPU work,
+  // including the glass cards re-blurring the canvas behind them. A skipped frame keeps the last drawn image.
+  let last = -1e9;
+  const tick = (now: number) => {
+    if (!reduce()) { raf = requestAnimationFrame(tick); if (now - last < 30) return; }
+    last = now; gl.clear(gl.COLOR_BUFFER_BIT); frame(now / 1000);
+  };
   colours();
   size();
   raf = requestAnimationFrame(tick);
