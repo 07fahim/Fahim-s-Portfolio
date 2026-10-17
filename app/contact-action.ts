@@ -21,6 +21,7 @@ export async function sendContact(input: Fields): Promise<SendResult> {
   try {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
+      signal: AbortSignal.timeout(10_000),
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from: 'Fahim Faiyaz Portfolio <contact@fahimfaiyaz.dev>',   // fahimfaiyaz.dev verified in Resend 2026-10-18
@@ -30,8 +31,11 @@ export async function sendContact(input: Fields): Promise<SendResult> {
         text: `${f.message.trim()}\n\n${name} <${email}>`,
       }),
     });
-    return res.ok ? { ok: true } : { ok: false, error: 'send' };
-  } catch {
+    if (res.ok) return { ok: true };
+    console.error('contact: Resend answered', res.status, await res.text().catch(() => ''));   // the status and Resend's message only, never the key
+    return { ok: false, error: 'send' };
+  } catch (e) {
+    console.error('contact: Resend unreachable', e instanceof Error ? e.message : e);
     return { ok: false, error: 'send' };
   }
 }

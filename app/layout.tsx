@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head><script dangerouslySetInnerHTML={{ __html: MODE_SCRIPT }} /></head>
       <body>
         {children}
-        {SITE.umami && <Script src="https://cloud.umami.is/script.js" data-website-id={SITE.umami} strategy="afterInteractive" />}
+        {SITE.umami && <Script src="https://cloud.umami.is/script.js" data-website-id={SITE.umami} data-domains="fahimfaiyaz.dev" strategy="afterInteractive" />}
       </body>
     </html>
   );

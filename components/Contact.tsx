@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { Mail, MapPin } from 'lucide-react';
+import { Check, Mail, MapPin } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { validate, type Fields } from '@/lib/validate';
 import { sendContact } from '@/app/contact-action';
@@ -40,7 +40,11 @@ function ContactForm() {
   const [pending, setPending] = useState(false);
   const [sent, setSent] = useState<{ name: string; email: string } | null>(null);
   const note = useRef<HTMLDivElement>(null);
-  useEffect(() => { if (sent) note.current?.focus(); }, [sent]);
+  const form = useRef<HTMLFormElement>(null), again = useRef(false);
+  useEffect(() => {
+    if (sent) note.current?.focus();
+    else if (again.current) { again.current = false; (form.current?.elements.namedItem('name') as HTMLElement | null)?.focus(); }
+  }, [sent]);
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (pending) return;
@@ -55,10 +59,17 @@ function ContactForm() {
     setFailed(true);   // the form keeps everything typed
   };
   // the note takes the form's place in the grid, as the prototype's outerHTML swap did
-  if (sent) return <div className="sent" ref={note} tabIndex={-1}>Thanks, {sent.name}. Your message is on its way, and I’ll reply to {sent.email}.</div>;
+  if (sent) return (
+    <div className="glass sent" ref={note} tabIndex={-1}>
+      <span className="ok" aria-hidden="true"><Check /></span>
+      <h3>Message sent</h3>
+      <p>Thanks, {sent.name}. Your message is on its way. I’ll reply to {sent.email}.</p>
+      <button className="btn" type="button" onClick={() => { again.current = true; setSent(null); }}>Send another message</button>
+    </div>
+  );
   const bad = (f: string) => error?.field === f ? { 'aria-invalid': true, 'aria-describedby': 'ct-err' } : {};
   return (
-    <form className="glass" noValidate onSubmit={submit} aria-busy={pending}>
+    <form className="glass" ref={form} method="post" noValidate onSubmit={submit} aria-busy={pending}>
       <label className="hp" aria-hidden="true">Leave this empty <input name="website" tabIndex={-1} autoComplete="off" /></label>
       <div><h3>Send a message</h3><p className="sub">I’ll reply to the email you leave here.</p></div>
       <div className="two">
@@ -68,7 +79,7 @@ function ContactForm() {
       <label className="f"><span>Subject <i>(optional)</i></span><input name="subject" maxLength={150} placeholder="e.g. a chatbot that answers from our documents" {...bad('subject')} /></label>
       <label className="f">Message <textarea name="message" placeholder="The problem, your data and the result you want." maxLength={5000} required {...bad('message')} /></label>
       <p className="err" id="ct-err" role="alert">{error?.text}{failed && <>The message didn’t send. Email me at <a href={'mailto:' + SITE.email}>{SITE.email}</a> instead.</>}</p>
-      <button className="btn solid send" type="submit" disabled={pending}>{pending ? 'Sending…' : <>Send message <span aria-hidden="true">→</span></>}</button>
+      <button className="btn solid send" type="submit" aria-disabled={pending}>{pending ? 'Sending…' : <>Send message <span aria-hidden="true">→</span></>}</button>
     </form>
   );
 }
