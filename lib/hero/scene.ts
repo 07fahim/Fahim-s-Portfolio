@@ -3,7 +3,7 @@ import { currentMode } from '../mode';
 type Theme = { stops: string[]; tints: number[][]; speck: number[]; light?: boolean };
 type Part = { tx: number; ty: number; v: number; a: number; tint: number; x: number; y: number; vx: number; vy: number; shine: number; delay: number; dx: number; dy: number; sx?: number; sy?: number; on?: number };
 
-// PORT P735–977, wrapped so the page can mount and clean it up. Changes from the prototype are the brief's 1–8 only.
+// PORT P735–977, wrapped so the page can mount and clean it up. Changes from the prototype are the brief's 1–8, plus the timers list and the unmount guards on promise callbacks that keep the opening in step with the mount lifecycle.
 export function mountHero(): () => void {
 const ac = new AbortController(), on = { signal: ac.signal };
 let raf = 0;
@@ -232,6 +232,9 @@ function jumpToEnd() {   // straight to the final hero: photo in, tiles home
 const skip = () => { if (t0 === undefined) return; finishIntro(); jumpToEnd(); };   // nothing to skip before the opening starts
 addEventListener('pointerdown', skip, on); addEventListener('keydown', skip, on); addEventListener('wheel', skip, { passive: true, ...on });
 const away = () => scrollY > 8;   // a link to a section, or a reload anywhere below the top: the opening would play over the page
+const SESSION_KEY = 'opened';   // spec: the opening plays once per browser session
+const openedBefore = () => { try { return sessionStorage.getItem(SESSION_KEY) === '1'; } catch { return false; } };   // storage blocked: behaves as not-yet-opened, so it plays as it does today
+const markOpened = () => { try { sessionStorage.setItem(SESSION_KEY, '1'); } catch {} };
 addEventListener('scroll', () => { if (!introDone && away()) skip(); }, { passive: true, ...on });
 addEventListener('modechange', () => { palette(); build(); }, on);   // regrade the portrait; the next frame redraws
 
@@ -239,11 +242,11 @@ addEventListener('modechange', () => { palette(); build(); }, on);   // regrade 
 // next/font renames the family, so the font to wait for is read from the page
 const fam = getComputedStyle(document.body).fontFamily.split(',')[0];
 Promise.race([document.fonts.load(`800 100px ${fam}`), new Promise(r => timers.push(setTimeout(r, 3000)))]).catch(() => {}).then(() => { if (!ac.signal.aborted) raf = requestAnimationFrame(() => {   // a stalled font file never holds the page hidden
-  fitBig(); build(); t0 = performance.now(); document.fonts.ready.then(fitBig);   // refit if Inter arrived after the timeout
-  if (reduce || away()) skip();
-  else { playIntro(); spot.getAnimations()[0].ready.then(a => { if (!introDone) t0 = a.startTime as number; }, () => {}); }   // one clock: the word timers and the particles follow the animations, which only start on the first drawn frame (up to ~0.4 s late on a slow load)
+  fitBig(); build(); t0 = performance.now(); document.fonts.ready.then(() => { if (!ac.signal.aborted) fitBig(); });   // refit if Inter arrived after the timeout
+  if (reduce || away() || openedBefore()) skip();
+  else { markOpened(); playIntro(); spot.getAnimations()[0].ready.then(a => { if (!ac.signal.aborted && !introDone) t0 = a.startTime as number; }, () => {}); }   // one clock: the word timers and the particles follow the animations, which only start on the first drawn frame (up to ~0.4 s late on a slow load)
   raf = requestAnimationFrame(frame);
-  img.decode().then(() => { build(); }, () => { ph.hidden = true; });   // no photo: the hero still works, just without the portrait
+  img.decode().then(() => { if (!ac.signal.aborted) build(); }, () => { if (!ac.signal.aborted) ph.hidden = true; });   // no photo: the hero still works, just without the portrait
 }); });
 let cw = canvas.clientWidth, ch = canvas.clientHeight;
 addEventListener('resize', () => { if (t0 === undefined || (canvas.clientWidth === cw && canvas.clientHeight === ch)) return; cw = canvas.clientWidth; ch = canvas.clientHeight; fitBig(); build(); skip(); }, on);   // a phone's address bar doesn't reshuffle the portrait
