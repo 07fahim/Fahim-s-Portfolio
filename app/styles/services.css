@@ -1,0 +1,25 @@
+/* services (prototype P212-234, P80) */
+.services { padding:9vh 0; }
+.services h2 { text-align:right; padding:0 4vw 5vh; font-weight:800; font-size:clamp(3rem, 7vw, 6.5rem); letter-spacing:-.045em; line-height:.92; }
+.svc { list-style:none; border-top:1px solid var(--line); }
+.svc > li { border-bottom:1px solid var(--line); transition:background .35s, color .35s; }
+.svc > li:hover, .svc > li.open { background:var(--panel); color:var(--ink); }   /* direct rows only, not the bullets inside */
+.svc button { all:unset; box-sizing:border-box; cursor:pointer; width:100%; display:grid; grid-template-columns:max(5vw, 2.6em) 1fr auto; align-items:center; padding:26px 4vw; }
+.svc button:focus-visible { outline:2px solid var(--fg-strong); outline-offset:-4px; }
+.svc > li:hover button:focus-visible, .svc > li.open button:focus-visible { outline-color:var(--ink); }   /* the row turns light, so the ring turns dark */
+.svc .n { font-size:1.35rem; color:var(--accent2); }
+.svc .t { font-weight:800; font-size:clamp(1rem, 1.5vw, 1.25rem); letter-spacing:.01em; text-transform:uppercase; }
+.svc .arr { font-size:1.3rem; transition:rotate .35s; } .svc li.open .arr { rotate:-90deg; }
+.body { display:grid; grid-template-rows:0fr; transition:grid-template-rows .45s cubic-bezier(.2,.7,.2,1); }
+.svc li.open .body { grid-template-rows:1fr; }
+.body > div { overflow:hidden; }
+.inner { display:grid; grid-template-columns:1fr 1fr; gap:4vw; padding:0 8vw 32px calc(4vw + max(5vw, 2.6em)); }   /* bullets line up under the row title */
+.inner ul { list-style:none; font-size:.92rem; line-height:1.5; color:var(--pmuted); display:grid; gap:.6em; }   /* tight lines inside a bullet, clear gaps between bullets */
+.inner ul li { display:flex; gap:12px; align-items:baseline; } .inner ul li::before { content:''; width:6px; height:6px; background:var(--pdot); flex:none; translate:0 -1px; }
+.inner p { font-size:1rem; line-height:1.65; color:var(--ptext); }
+.inner li, .inner p { text-wrap:pretty; }   /* no one-word last lines */
+.inner p span { color:color-mix(in srgb, var(--ptext) 32%, transparent); transition:color .25s; } .inner p span.lit { color:var(--ptext); }   /* dim until scrolled to, like the bio */
+.view { display:flex; align-items:center; gap:10px; margin-top:26px; padding:13px 20px; background:var(--view-bg); color:var(--view-fg); font-size:.72rem; font-weight:600; letter-spacing:.14em; }
+.view::before { content:'⌜'; } .view::after { content:'⌟'; }
+@media (max-width:800px) { .inner { grid-template-columns:1fr; } }
+@media (prefers-reduced-motion:reduce) { .body { transition:none; } }

@@ -7,6 +7,7 @@ import './styles/header.css';
 import './styles/background.css';
 import './styles/hero.css';
 import './styles/about.css';
+import './styles/services.css';
 
 // one variable font file per style; weights 400–800 and the 300 italic all come from it
 const inter = Inter({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--font-inter', display: 'swap' });
