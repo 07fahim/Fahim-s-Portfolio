@@ -19,10 +19,11 @@ import './styles/footer.css';
 const inter = Inter({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--font-inter', display: 'swap' });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://fahimfaiyaz.dev'),
   title: 'Fahim Faiyaz · AI/ML Engineer',
   description: 'I’m Fahim Faiyaz, an AI/ML engineer in Dhaka. I build AI agents, automation workflows and document AI for businesses. Message me on WhatsApp or hire me on Upwork.',
-  openGraph: { type: 'website', title: 'Fahim Faiyaz · AI/ML Engineer', description: 'I build AI agents, automation workflows and document AI for businesses.' },
-  twitter: { card: 'summary' },
+  openGraph: { type: 'website', title: 'Fahim Faiyaz · AI/ML Engineer', description: 'I build AI agents, automation workflows and document AI for businesses.', images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'Fahim Faiyaz, AI/ML Engineer' }] },
+  twitter: { card: 'summary_large_image', images: ['/og.jpg'] },
   icons: { icon: { url: '/favicon.svg', type: 'image/svg+xml' } },
 };
 export const viewport: Viewport = {

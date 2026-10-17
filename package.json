@@ -12,7 +12,8 @@
     "test": "vitest run",
     "parity": "node scripts/parity.mjs",
     "content": "node scripts/extract-content.mjs",
-    "images": "node scripts/hero-images.mjs"
+    "images": "node scripts/hero-images.mjs",
+    "og": "node scripts/og-image.mjs"
   },
   "dependencies": {
     "lucide-react": "1.59.0",
