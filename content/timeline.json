@@ -5,7 +5,7 @@
     "role": "Machine Learning Engineer",
     "org": "Masharah Advisory",
     "where": "Remote · Saudi Arabia",
-    "text": "AI systems that turn classical Islamic legal texts into structured and searchable knowledge for the Legal Knowledge Platform. I work across the whole cycle, from data and experiments to evaluation and integration.",
+    "text": "I build AI that turns classical Islamic legal texts into structured and searchable knowledge for the Legal Knowledge Platform. I cover the whole ML cycle from data and experiments to evaluation and integration. The focus is accuracy and reliability at scale.",
     "tags": [
       "Document AI",
       "OCR",
@@ -18,7 +18,7 @@
     "role": "Computer Vision Engineer",
     "org": "Quantigo AI",
     "where": "Remote · Bangladesh",
-    "text": "Validated and deployed object detection models for client pipelines. Built the annotated image and video datasets behind them and tracked down annotation errors and edge cases.",
+    "text": "I validated and deployed object detection models for client computer vision pipelines. I also built and maintained the annotated image and video datasets behind them. Tracking down annotation errors and edge cases made the models more robust.",
     "tags": [
       "Object detection",
       "Image & video annotation",
@@ -31,17 +31,18 @@
     "role": "Data Science Career Program",
     "org": "Dokkho MasterCourse",
     "where": "Cohort 7",
-    "text": "Selected through a competitive assessment; four end-to-end capstone projects.",
+    "text": "Selected through a competitive assessment. I completed four end‑to‑end capstone projects.",
     "tags": [
-      "Training"
+      "Data science",
+      "Capstone projects"
     ]
   },
   {
     "date": "2024 — 2025",
-    "role": "6 IEEE papers",
+    "role": "6 IEEE Papers",
     "org": "ICCIT and IEEE RAAICON",
     "where": "3 as first author",
-    "text": "Medical imaging, driver safety and agriculture. Four of the six explain their predictions with Grad-CAM or other explainable AI.",
+    "text": "Research on brain tumour detection and distracted driving as well as tea leaf disease and mango ripeness.",
     "tags": [
       "YOLOv10 / v11",
       "Grad-CAM",
@@ -51,10 +52,10 @@
   },
   {
     "date": "2020 — 2025",
-    "role": "B.Sc. in Computer Science",
+    "role": "B.Sc. in Computer Science and Engineering",
     "org": "East Delta University",
-    "where": "Chattogram",
-    "text": "CGPA 3.60 / 4.00, five times on the Dean’s List and once on the Vice Chancellor’s List. Thesis: brain tumour detection with YOLOv10, hybrid CNNs and explainable AI.",
+    "where": "Chattogram, Bangladesh",
+    "text": "CGPA 3.60 / 4.00. Five times on the Dean’s List (GPA 3.5+) and once on the Vice Chancellor’s List (GPA 4.00).\nThesis: Brain Tumor Detection Using YOLOv10 and Hybrid CNN Models with Explainable AI.",
     "tags": [
       "Thesis",
       "Computer vision"

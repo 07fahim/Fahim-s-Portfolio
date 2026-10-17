@@ -2,17 +2,17 @@
 section.tl { position:relative; z-index:2; padding:9vh 0; }   /* same spacing and heading as Work (user, 2026-10-17: the heading sat on the screen edge) */
 .tl > .label { padding:0 4vw; } .tl > h2 { padding:0 4vw 5vh; font-weight:800; font-size:clamp(3rem, 7vw, 6.5rem); letter-spacing:-.045em; line-height:.92; }
 .tl-list { list-style:none; margin:0 4vw; position:relative; }
-.tl-list > li { display:grid; grid-template-columns:minmax(150px, 1.2fr) 5fr; gap:3vw; padding:30px 0; border-top:1px solid var(--line); transition:opacity .3s; }
+.tl-list > li { display:grid; grid-template-columns:11rem 1fr; gap:2.5rem; padding:30px 0; border-top:1px solid var(--line); transition:opacity .3s; }
 .tl-list > li:last-child { border-bottom:1px solid var(--line); }
 @media (hover:hover) { .tl-list:hover > li:not(:hover) { opacity:.45; } }
-.tl-date { font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding-top:6px; }
+.tl-date { white-space:nowrap; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding-top:6px; }
 .tl-date .now { display:inline-flex; align-items:center; gap:6px; margin-bottom:8px; padding:4px 10px; border-radius:999px; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); letter-spacing:.18em; font-size:.66rem; }
 .tl-date .now::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 0 var(--accent); animation:ping 2s infinite; }
 @keyframes ping { 70% { box-shadow:0 0 0 7px transparent; } }
 .tl h3 { font-weight:800; font-size:clamp(1.25rem, 2vw, 1.7rem); letter-spacing:-.02em; color:var(--fg-strong); }
-.tl h3 small { font-weight:400; color:var(--muted); font-size:.9em; } .tl h3 small::before { content:' · '; }
-.tl .where { font-size:.82rem; color:var(--muted); margin-top:4px; }
-.tl p { margin-top:12px; font-size:1rem; line-height:1.65; color:var(--bio); max-width:46em; text-wrap:pretty; }
+.tl h3 small { display:block; margin-top:6px; font-size:1.05rem; font-weight:500; letter-spacing:0; color:var(--fg-strong); opacity:.85; }   /* build (user, 2026-10-18): the organisation on its own line under the title; the dates sit close to the entry */
+.tl .where { font-size:.82rem; color:var(--muted); margin-top:2px; }
+.tl p + p { margin-top:6px; } .tl p { margin-top:12px; font-size:1rem; line-height:1.65; color:var(--bio); max-width:46em; text-wrap:pretty; }
 .tl .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; } .tl .tags span { font-size:.74rem; padding:5px 10px; border-radius:999px; background:var(--pill-bg); border:1px solid var(--line); color:var(--pill-fg); }
 .tl .more { display:inline-block; margin-top:14px; font-size:.84rem; color:var(--fg-strong); border-bottom:1px solid var(--accent); }
 /* T2: a rail that fills as the list scrolls through the screen */

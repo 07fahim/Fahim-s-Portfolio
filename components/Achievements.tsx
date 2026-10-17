@@ -9,7 +9,7 @@ export default function Achievements() {
       <h2 className="silver">ACHIEVEMENTS</h2>
       <div>
         <div className="grp">
-          <div className="gh"><span><b>6 IEEE papers</b> · 3 as first author</span><span>2024 — 2025</span></div>
+          <div className="gh"><span><b>6 IEEE Papers</b> · 3 as first author</span><span>2024 — 2025</span></div>
           <ul className="cards">
             {PAPERS.map(p => (
               <li key={p.doi}>

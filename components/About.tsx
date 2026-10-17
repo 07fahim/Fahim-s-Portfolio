@@ -11,7 +11,7 @@ export default function About() {
           <Bio />
           <dl className="facts">
             <div><dt>Now</dt><dd>Machine Learning Engineer, Masharah Advisory</dd></div>
-            <div><dt>Research</dt><dd>6 IEEE papers, 3 as first author</dd></div>
+            <div><dt>Research</dt><dd>6 IEEE Papers, 3 as first author</dd></div>
           </dl>
           <a className="cv" href={SITE.cv} download="Fahim-Faiyaz-CV.pdf" target="_blank" rel="noopener" data-umami-event="resume_click">
             <span className="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7" /></svg></span>

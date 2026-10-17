@@ -12,7 +12,7 @@ export default function Timeline() {
             <div>
               <h3>{e.role}<small>{e.org}</small></h3>
               <div className="where">{e.where}</div>
-              <p>{e.text}</p>
+              {e.text.split('\n').map(t => <p key={t}>{t}</p>)}{/* a line break in the text starts a new paragraph (the thesis line) */}
               <div className="tags">{e.tags.map(t => <span key={t}>{t}</span>)}</div>
               {e.more && <a className="more" href="#achievements">{e.more}&nbsp;<span aria-hidden="true">↓</span></a>}
             </div>
