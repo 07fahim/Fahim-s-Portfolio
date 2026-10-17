@@ -1,24 +1,18 @@
 'use client';
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
 import { currentMode, setMode, type Mode } from '@/lib/mode';
 import { SITE } from '@/content/site';
 
 const LINKS = [['home', 'Home'], ['about', 'About'], ['services', 'Services'], ['work', 'Work'], ['contact', 'Contact']] as const;
 const ALIAS: Record<string, string> = { timeline: 'about', achievements: 'about', game: 'contact' };   // no section lights nothing
+// module-level so identity is stable across renders (useSyncExternalStore re-subscribes on identity change)
+const subscribe = (cb: () => void) => { addEventListener('modechange', cb); return () => removeEventListener('modechange', cb); };
 
 export default function Header() {
-  const [mode, setM] = useState<Mode>('dark');
+  const mode = useSyncExternalStore(subscribe, currentMode, () => 'dark' as Mode);
   const [open, setOpen] = useState(false);
   const [cur, setCur] = useState('home');
   const btn = useRef<HTMLButtonElement>(null), menu = useRef<HTMLDivElement>(null), bar = useRef<HTMLDivElement>(null), wasOpen = useRef(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- reading the external dataset.mode set by MODE_SCRIPT before hydration; cannot be a render-time read (SSR has no document)
-    setM(currentMode());
-    const on = (e: Event) => setM((e as CustomEvent<Mode>).detail);
-    addEventListener('modechange', on);
-    return () => removeEventListener('modechange', on);
-  }, []);
 
   // section highlight and progress line (prototype P979–994; the bio's lighting lives in Bio)
   useEffect(() => {

@@ -38,6 +38,9 @@ async function measure(url, vp, scheme) {
   const ctx = await browser.newContext({ viewport: vp, colorScheme: scheme, reducedMotion: 'reduce', isMobile: mobile, hasTouch: mobile });
   const page = await ctx.newPage();
   await page.goto(url, { waitUntil: 'networkidle' });
+  // prototype transitions run up to .8s (header: opacity .8s, background .4s); killing them lands every
+  // measurement on the end state instead of risking a mid-transition read (same rule for both sides)
+  await page.addStyleTag({ content: '*, *::before, *::after { transition: none !important; }' });
   await page.evaluate(() => document.fonts.ready);
   const h = await page.evaluate(() => document.documentElement.scrollHeight);
   for (let y = 0; y < h; y += vp.height) await page.evaluate(y => scrollTo(0, y), y);   // lazy images and scroll state settle
