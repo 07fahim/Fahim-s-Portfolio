@@ -55,7 +55,7 @@
       "AstraDB",
       "Streamlit"
     ],
-    "live": "",
+    "live": "https://advanced-multi-agent-ai-fitness-coach-s7t2teyodwzbwhgpgqs4xw.streamlit.app/",
     "repo": "Advanced-Multi-Agent-AI-Fitness-Coach",
     "img": "fitness",
     "icon": "message-square",
@@ -193,7 +193,7 @@
       "Flask",
       "Selenium"
     ],
-    "live": "",
+    "live": "https://multi-label-text-classification-of.onrender.com",
     "repo": "Multi-Label-Text-Classification-of-Computer-Science-Research-Articles",
     "img": "csclass",
     "icon": "message-square",
