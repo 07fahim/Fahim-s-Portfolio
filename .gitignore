@@ -23,3 +23,8 @@ dist-ssr
 .env
 
 .playwright-mcp
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.lighthouse/
