@@ -1,0 +1,81 @@
+/* work (prototype P249–251, P256–257, P263, P268–273, P292–343, P345–353, P359–360) */
+section.work { position:relative; z-index:2; padding:9vh 0; }
+.work h2 { padding:0 4vw 5vh; font-weight:800; font-size:clamp(3rem, 7vw, 6.5rem); letter-spacing:-.045em; line-height:.92; }
+.work .label { padding:0 4vw; }
+
+.tag { font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; padding:6px 11px; border-radius:999px; border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
+.tag.live { color:var(--accent); border-color:color-mix(in srgb, var(--accent) 45%, transparent); } .tag.live::before { content:'● '; }
+.links { display:flex; flex-wrap:wrap; gap:10px; }
+
+/* filters */
+.filters { display:flex; flex-wrap:wrap; gap:8px; margin:0 4vw 4vh; }
+.filters button { all:unset; position:relative; cursor:pointer; padding:10px 16px; border-radius:999px; border:1px solid var(--line); font-size:.84rem; color:var(--pill-fg); transition:background .25s, color .25s, border-color .25s; }
+.filters button sup { font-size:.66rem; margin-left:5px; color:var(--muted); }
+.filters button[aria-pressed=true] { background:var(--fg-strong); color:var(--bg); border-color:var(--fg-strong); } .filters button[aria-pressed=true] sup { color:inherit; opacity:.6; }
+.filters button:focus-visible { outline:2px solid var(--fg-strong); outline-offset:3px; }
+[hidden] { display:none !important; }
+
+/* card grid: image with a hover overlay (description and links), then type with icon, title and up to four tech tags */
+.pgrid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.5rem; margin:0 4vw; }   /* three per row, as in the first grid mockup */
+@media (max-width:1100px) and (min-width:801px) { .pgrid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+.pcard { position:relative; display:flex; flex-direction:column; border-radius:16px; overflow:hidden; background:var(--card-bg); border:1px solid var(--card-border); box-shadow:var(--card-shadow); transition:translate .3s, border-color .3s, box-shadow .3s; }
+.pcard:hover, .pcard:focus-within { translate:0 -8px; border-color:color-mix(in srgb, var(--accent) 40%, transparent); box-shadow:0 16px 48px rgba(0,0,0,.35), 0 0 30px color-mix(in srgb, var(--accent) 12%, transparent); }
+.pcard .media { position:relative; height:200px; overflow:hidden; background:#1a1a1a; }
+.pcard .media > img, .pcard .duo img { width:100%; height:100%; object-fit:cover; display:block; transition:scale .5s; } .pcard:hover .media img { scale:1.1; }
+.pcard .ov { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; gap:.5rem; padding:1rem; opacity:0; transition:opacity .3s;
+  background:linear-gradient(to bottom, rgba(6,10,12,.6), rgba(6,10,12,.96)); }   /* dark enough to read over busy screenshots */
+.pcard:hover .ov, .pcard:focus-within .ov { opacity:1; }
+.ov h5 { font-size:1rem; font-weight:800; color:#fff; line-height:1.3; } .ov p { font-size:.78rem; line-height:1.45; color:#D5DCDA; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.ov .lk { display:flex; gap:.75rem; margin-top:.4rem; }
+.ov .lk a { display:flex; align-items:center; gap:.3rem; padding:.4rem .75rem; border-radius:6px; font-size:.8rem; font-weight:600; color:#fff; background:color-mix(in srgb, var(--accent) 22%, transparent); border:1px solid color-mix(in srgb, var(--accent) 40%, transparent); transition:background .2s, color .2s; }
+.ov .lk a:hover, .ov .lk a:focus-visible { background:var(--accent); color:#04130F; outline:none; } .ov .lk svg { width:14px; height:14px; }
+.type { height:100%; display:flex; flex-direction:column; justify-content:space-between; padding:22px; background:radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%), color-mix(in srgb, var(--text) 3%, transparent); }
+.type b { font-weight:800; font-size:clamp(2rem, 3.4vw, 3rem); letter-spacing:-.04em; line-height:1; color:var(--fg-strong); }
+.type small { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
+.pcard .txt { padding:1rem; display:flex; flex-direction:column; gap:.5rem; flex:1; }
+.pcard .ptype { display:flex; align-items:center; gap:.3rem; font-size:.7rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); } .pcard .ptype svg { width:16px; height:16px; }
+[data-mode=light] .pcard .ptype { color:#1D546D; }
+.pcard h4 { font-size:1rem; font-weight:800; line-height:1.3; color:var(--fg-strong); }
+.pcard .tech { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:auto; } .pcard .tech span { padding:.2rem .5rem; border-radius:4px; font-size:.7rem; color:var(--muted); background:var(--pill-bg); border:1px solid var(--line); }
+@media (hover:none) { .pcard .ov { opacity:1; background:linear-gradient(to bottom, transparent 30%, rgba(6,10,12,.92)); } .ov p, .ov h5 { display:none; } }   /* touch has no hover, so the title and links stay visible */
+
+/* stacked service cards */
+.pins { margin:0 4vw; }
+.pinc { position:sticky; top:calc(12vh + var(--i) * 26px); min-height:74vh; margin-bottom:6vh; display:grid; grid-template-columns:1fr 1.25fr; gap:4vw; align-items:center;
+  border-radius:28px; padding:clamp(24px, 3.5vw, 56px); background:var(--card-bg); -webkit-backdrop-filter:blur(28px) saturate(140%); backdrop-filter:blur(28px) saturate(140%); border:1px solid var(--card-border); box-shadow:0 -20px 60px -30px rgba(0,0,0,.5); }
+.pinc { background:var(--card-bg), color-mix(in srgb, var(--bg) 62%, transparent); }   /* glass: the silk shows through, a bright card underneath does not */
+[data-mode=light] :is(.work, .ach, .ct) { --card-bg:linear-gradient(160deg, rgba(255,255,255,.3), rgba(255,255,255,.08)); --card-border:rgba(6,30,41,.12); }   /* light project cards copy the dark glass: a faint tint, so the silk shows through (user, 2026-10-17) */
+[data-mode=light] .pinc { background:var(--card-bg); -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:0 -20px 60px -30px rgba(6,30,41,.22); }   /* light: the same see-through glass as the grid cards; the covered card is clipped instead (user, 2026-10-17) */
+.pinc > * { min-width:0; }   /* grid columns never grow to fit content: the one-row n8n flow widened the whole page to 846 px on touch phones */
+.pinc h3 { font-weight:800; font-size:clamp(2rem, 4vw, 3.6rem); letter-spacing:-.045em; line-height:.95; margin:16px 0 14px; }
+.pinc .big-n { font-weight:800; font-size:clamp(2.4rem, 4.4vw, 4rem); letter-spacing:-.04em; color:var(--fg-strong); margin-top:24px; } .pinc .big-n small { display:block; font-size:.8rem; font-weight:400; letter-spacing:0; color:var(--muted); }
+.pinc img { width:100%; border-radius:14px; border:1px solid var(--line); display:block; }
+/* service cards: hovering the image shows the project's stack */
+.smedia { position:relative; border-radius:14px; overflow:hidden; } .smedia > img { border:0 !important; border-radius:0 !important; transition:scale .5s; } .smedia:hover > img { scale:1.03; }
+.sov { position:absolute; inset:0; pointer-events:none; display:flex; flex-direction:column; justify-content:flex-end; gap:12px; padding:24px; opacity:0; transition:opacity .3s;
+  background:linear-gradient(to bottom, rgba(6,10,12,.35), rgba(6,10,12,.94)); }
+.smedia:hover .sov, .pinc:focus-within .sov { opacity:1; }
+.sov small { font-size:.68rem; letter-spacing:.24em; text-transform:uppercase; color:#C9D1CE; }
+.sov div { display:flex; flex-wrap:wrap; gap:8px; }
+.sov span { padding:7px 12px; border-radius:999px; font-size:.82rem; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); translate:0 8px; transition:translate .35s calc(var(--k) * 35ms); }
+.smedia:hover .sov span, .pinc:focus-within .sov span { translate:0 0; }
+@media (hover:none) { .smedia { overflow:visible; } .smedia > img { border-radius:14px !important; } .sov { position:static; opacity:1; padding:14px 0 0; background:none; } .sov small { display:none; }
+  .sov span { translate:none; font-size:.74rem; padding:5px 10px; color:var(--pill-fg); background:var(--pill-bg); border-color:var(--line); } }   /* touch has no hover, so the stack sits under the image instead of over it */
+@media (prefers-reduced-motion:reduce) { .sov span, .smedia > img { transition:none; translate:none; } }
+@media (max-width:800px) {   /* phones: a compact card, same content, so it fits the screen and the stack still shows its edges */
+  .pinc { padding:18px; gap:12px; align-content:space-between; } .pinc .tag { font-size:.58rem; padding:5px 9px; letter-spacing:.12em; } .pinc h3 { margin:10px 0 6px; } .pinc .lede { font-size:.92rem; }   /* space-between: text at the top, the image at the bottom of every card */
+  .pinc .big-n { font-size:1.75rem; margin-top:10px; } .pinc ul { margin-top:10px; font-size:.84rem; gap:.3em; } .pinc .links { margin-top:14px !important; }
+  .smedia > img, .smedia > .flow { aspect-ratio:16/9; } }
+@media (hover:none) and (max-width:800px) { .sov div { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; } .sov span { flex:none; } }   /* the stack pills: one row you can swipe */
+/* stock pictures: a dark backing behind the image while it loads */
+.duo { position:relative; height:100%; background:#0d1012; }   /* stock pictures in their original colours in both modes (user, 2026-10-17) */
+.pinc ul { list-style:none; display:grid; gap:.55em; margin-top:22px; font-size:.95rem; color:var(--bio); } .pinc ul li { display:flex; gap:10px; } .pinc ul li::before { content:''; width:6px; height:6px; margin-top:.55em; flex:none; background:var(--accent); }
+.flow { display:flex; flex-wrap:wrap; align-items:center; gap:10px 8px; padding:28px; border-radius:14px; border:1px solid var(--line); background:color-mix(in srgb, var(--text) 3%, transparent); }
+.flow span { padding:10px 14px; border-radius:10px; font-size:.82rem; background:var(--pill-bg); border:1px solid var(--line); color:var(--pill-fg); } .flow span.gate { border-color:var(--accent); color:var(--fg-strong); } .flow i { font-style:normal; color:var(--muted); }
+.smedia > img, .smedia > .flow { aspect-ratio:16/10; width:100%; height:auto; object-fit:cover; object-position:top center; box-sizing:border-box; } .smedia > .flow { align-content:center; }   /* one frame shape for every service card (user, 2026-10-17) */
+@media (max-width:800px) { .smedia > .flow { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; padding:40px 18px 18px; } .smedia > .flow small { position:absolute; top:16px; left:18px; } .flow span { flex:none; } }   /* phones: the workflow scrolls sideways inside the same frame */
+.flow small { flex-basis:100%; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.more { display:flex; justify-content:center; margin-top:28px; } .more button { all:unset; cursor:pointer; padding:12px 22px; border-radius:999px; border:1px solid var(--edge); font-size:.86rem; } .more button:focus-visible { outline:2px solid var(--fg-strong); outline-offset:3px; }
+@media (max-width:800px) { .pinc { grid-template-columns:1fr; } .pgrid { grid-template-columns:1fr; margin:0 5vw; } .filters { flex-wrap:nowrap; overflow-x:auto; margin-inline:0; padding:0 5vw; scrollbar-width:none; } .filters button { flex:none; } .pinc { height:auto; min-height:70vh; top:calc(9vh + var(--i) * 16px); } }
+@media (max-width:800px), (max-height:699px) { .pinc { min-height:0; } }
+@media (prefers-reduced-motion:reduce) { .pinc { position:static; } .pcard, .pcard .media img { transition:none; } }
