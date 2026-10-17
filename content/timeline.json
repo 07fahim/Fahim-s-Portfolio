@@ -44,9 +44,9 @@
     "where": "3 as first author",
     "text": "Research on brain tumour detection and distracted driving as well as tea leaf disease and mango ripeness.",
     "tags": [
-      "YOLOv10 / v11",
-      "Grad-CAM",
-      "Explainable AI"
+      "Medical imaging",
+      "Driver safety",
+      "Agriculture"
     ],
     "more": "See every paper"
   },
