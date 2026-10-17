@@ -69,7 +69,9 @@ function build() {
   parts = [];
   const top = H * .11, dispH = H * .96, dispW = dispH * img.naturalWidth / img.naturalHeight, left = (W - dispW) / 2;
   const cols = Math.floor(dispW / GAP), rows = Math.floor(dispH / GAP), nw = img.naturalWidth, nh = img.naturalHeight;
-  const o = gl && cols > 0 && new OffscreenCanvas(cols, rows).getContext('2d', { willReadFrequently: true });
+  // OffscreenCanvas is missing before Safari 16.4 (and in Playwright's WebKit); without it the throw here left the hero blank
+  const sample = () => typeof OffscreenCanvas === 'function' ? new OffscreenCanvas(cols, rows) : Object.assign(document.createElement('canvas'), { width: cols, height: rows });
+  const o = gl && cols > 0 && sample().getContext('2d', { willReadFrequently: true }) as OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D | null;
   if (o) o.drawImage(img, 0, 0, nw * cols * GAP / dispW, nh * rows * GAP / dispH, 0, 0, cols, rows);   // sample exactly the area the GAP grid covers, so tiles don't drift off the photo at the right and bottom
   const d: ArrayLike<number> = o ? o.getImageData(0, 0, cols, rows).data : [];
   if (o) for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
