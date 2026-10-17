@@ -1,0 +1,37 @@
+/* hero (P136–173; canvas and .btn live in base.css) */
+.hero-wrap { height:150vh; }
+.hero { position:sticky; top:0; height:100vh; overflow:hidden; }
+.big { position:absolute; left:0; right:0; bottom:14vh; text-align:center; white-space:pre; font-weight:800; line-height:.9;
+  font-size:clamp(4rem, 15vw, 15rem); letter-spacing:-.045em; }
+.row { position:absolute; left:15vw; right:15vw; bottom:7vh; display:flex; justify-content:space-between; align-items:center; }
+.title { font-weight:600; font-size:clamp(1.2rem, 2vw, 1.8rem); letter-spacing:-.02em; } .title i { font-weight:300; }
+.btns { display:flex; gap:10px; }
+.ui { opacity:0; translate:0 18px; transition:opacity .8s, translate .8s cubic-bezier(.2,.7,.2,1); }
+body.ready .ui { opacity:1; translate:0 0; }
+body.ready .ui.d2 { transition-delay:.15s; } body.ready .ui.d3 { transition-delay:.3s; }
+/* opening */
+#intro { position:fixed; inset:0; z-index:30; pointer-events:none; perspective:900px; }
+#intro .spot { position:absolute; inset:0; opacity:0; background:radial-gradient(38vmax 38vmax at 50% 50%, var(--spot), transparent 70%); }
+#intro .name, #intro .word { position:absolute; left:50%; top:50%; translate:-50% -50%; display:flex; white-space:nowrap;
+  font-weight:800; font-size:clamp(3.5rem, 10vw, 10rem); letter-spacing:-.045em; line-height:1; }
+#intro .name span, #intro .word { background:var(--silver); background-size:100% 1lh; -webkit-background-clip:text; background-clip:text; color:transparent; }
+#intro .name span { display:inline-block; opacity:0; transform-style:preserve-3d; }
+#intro .name span.i { opacity:1; translate:0 -120vh; transform-origin:50% 86%; }
+#intro .word { visibility:hidden; transform-origin:0 0; display:block; white-space:pre; text-align:center; line-height:.9; }
+#intro .dot { position:absolute; border-radius:50%; background:var(--dot); box-shadow:0 0 24px var(--glow); translate:0 -120vh; }
+.big, #intro .word { word-spacing:.14em; }   /* tight tracking squeezed the gap between FAHIM and FAIYAZ */
+.scrim { position:absolute; inset:0; pointer-events:none; background:linear-gradient(to top, color-mix(in srgb, var(--bg) 85%, transparent), color-mix(in srgb, var(--bg) var(--scrim, 45%), transparent) 24%, transparent 46%); }
+.big { visibility:hidden; } body.landed .big { visibility:visible; }
+/* hero photo: real colours, a soft accent glow behind the head and shoulders, fades into the page below the chest; the name sits in front */
+.ph { position:absolute; left:50%; top:11vh; height:96vh; translate:-50% 0; opacity:0; pointer-events:none; }   /* opacity set per frame: fades in as the particles dissolve */
+.ph::before { content:''; position:absolute; z-index:-1; left:50%; top:3vh; width:70vh; height:70vh; translate:-50% 0; border-radius:50%; filter:blur(10px);
+  background:radial-gradient(closest-side, color-mix(in srgb, var(--accent) 38%, transparent), color-mix(in srgb, var(--accent) 12%, transparent) 55%, transparent); }
+.ph img { display:block; height:100%; width:auto; --lens:radial-gradient(circle var(--lr, 0px) at var(--lx, -999px) var(--ly, -999px), transparent 55%, #000 100%);
+  -webkit-mask-image:var(--lens), linear-gradient(to bottom, #000 48%, transparent 86%); mask-image:var(--lens), linear-gradient(to bottom, #000 48%, transparent 86%); -webkit-mask-composite:source-in; mask-composite:intersect; }   /* --lens: the particle lens under the cursor */
+
+.skip { position:absolute; right:3vw; bottom:3vh; font-size:.72rem; letter-spacing:.14em; color:var(--muted); transition:opacity .5s; }
+body.ready .skip { opacity:0; pointer-events:none; }
+
+/* P245, P246: the hero's share of the shared phone and reduced-motion rules */
+@media (max-width:800px) { .row { left:6vw; right:6vw; flex-direction:column; gap:16px; } .btns { flex-wrap:wrap; justify-content:center; } .btn { padding:10px 14px; font-size:.85rem; } }
+@media (prefers-reduced-motion:reduce) { .ui { transition:none; } }
