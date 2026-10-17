@@ -68,7 +68,11 @@ for (const vp of [{ width: 1280, height: 800 }, { width: 375, height: 812 }]) fo
       // the build's `<main />` placeholder (Step 7) has nowhere near the prototype's body height until every
       // section exists, so box geometry for `body` is only checked once every section is in (section === 'all').
       if (s !== 'body' || want === 'all') for (const k of ['x', 'y', 'w', 'h']) if (Math.abs(ea[k] - eb[k]) > TOL) fails.push(`${tag} ${s}[${i}].${k}: ${ea[k].toFixed(1)} → ${eb[k].toFixed(1)}`);
-      for (const k of ['color', 'bg', 'fs', 'fw']) if (ea[k] !== eb[k]) fails.push(`${tag} ${s}[${i}].${k}: ${ea[k]} → ${eb[k]}`);
+      for (const k of ['color', 'bg', 'fs', 'fw']) {
+        // the prototype loads no 700 face, so 700 draws as 800; compare it as what it renders, not what it asked for
+        const va = k === 'fw' && ea[k] === '700' ? '800' : ea[k];
+        if (va !== eb[k]) fails.push(`${tag} ${s}[${i}].${k}: ${ea[k]} → ${eb[k]}`);
+      }
     });
   }
 }

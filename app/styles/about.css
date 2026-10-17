@@ -41,7 +41,7 @@ section.about, section.services { position:relative; z-index:2; background:var(-
 .pill img.ic { object-fit:contain; filter:grayscale(1) brightness(0) invert(.86); transition:filter .3s; } [data-mode=light] .pill img.ic { filter:grayscale(1) brightness(0) invert(.18); }   /* silver at rest */
 .pill:hover img.ic, [data-mode=light] .pill:hover img.ic { filter:none; } html:not([data-mode=light]) .pill:hover img.ic.dk { filter:grayscale(1) brightness(0) invert(1); }   /* brand colour on hover; near-black logos stay white on the dark page */
 svg.ic { color:var(--accent); stroke-width:1.6; }
-.pill .mono { display:grid; place-items:center; border-radius:5px; font:700 .56rem/1 var(--font-inter), sans-serif; color:var(--fg-strong); border:1px solid var(--edge); }
+.pill .mono { display:grid; place-items:center; border-radius:5px; font:800 .56rem/1 var(--font-inter), sans-serif; color:var(--fg-strong); border:1px solid var(--edge); }
 .marquee:hover .track { animation-play-state:paused; }   /* hovering a row holds it still to read */
 
 @media (max-width:800px) { .about-top { grid-template-columns:1fr; padding:0 5vw; } .facts { grid-template-columns:1fr; gap:16px; } .card { padding:22px 20px; } }
