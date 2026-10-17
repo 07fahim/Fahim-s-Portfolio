@@ -11,7 +11,7 @@ section.ct { position:relative; z-index:2; padding:9vh 0 5vh; }   /* the game be
 .ct label.f i { font-style:normal; text-transform:none; letter-spacing:0; opacity:.8; }
 .ct input, .ct textarea, .ct select { font:inherit; font-size:.98rem; letter-spacing:0; text-transform:none; color:var(--fg-strong); background:color-mix(in srgb, var(--text) 4%, transparent); border:1px solid var(--line); border-radius:12px; padding:12px 14px; transition:border-color .2s, background .2s; }
 .ct textarea { resize:vertical; min-height:120px; line-height:1.55; }
-.ct input:focus-visible, .ct textarea:focus-visible, .ct select:focus-visible { outline:none; border-color:var(--accent); background:color-mix(in srgb, var(--text) 6%, transparent); }
+.ct input:focus-visible, .ct textarea:focus-visible, .ct select:focus-visible { outline:2px solid var(--fg-strong); outline-offset:3px; border-color:var(--accent); background:color-mix(in srgb, var(--text) 6%, transparent); }
 .ct ::placeholder { color:var(--muted); opacity:.75; }
 .ct .err { font-size:.8rem; color:#FF6B70; min-height:1em; } [data-mode=light] .ct .err { color:#C62A2F; }
 .ct .sent { padding:22px; border-radius:14px; border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); color:var(--fg-strong); line-height:1.6; }

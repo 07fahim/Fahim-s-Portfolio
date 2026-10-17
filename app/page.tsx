@@ -7,6 +7,7 @@ import Game from '@/components/Game';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Intro from '@/components/Intro';
+import Reveal from '@/components/Reveal';
 import Services from '@/components/Services';
 import Timeline from '@/components/Timeline';
 import Work from '@/components/Work';
@@ -15,6 +16,7 @@ export default function Home() {
   return (
     <>
       <Background />
+      <Reveal />
       <Header />
       <Intro />
       <main>

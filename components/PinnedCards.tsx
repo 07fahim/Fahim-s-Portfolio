@@ -2,6 +2,7 @@
 import { Fragment, useEffect, useRef, type CSSProperties } from 'react';
 import { FEATURED, FLOW } from '@/content';
 import { SITE } from '@/content/site';
+import { mountCountUp } from '@/lib/countup';
 import { computePins } from '@/lib/pins';
 
 export default function PinnedCards() {
@@ -26,7 +27,8 @@ export default function PinnedCards() {
     let dead = false;
     document.fonts.addEventListener('loadingdone', fit);
     document.fonts.ready.then(() => { if (!dead) fit(); });
-    return () => { dead = true; document.fonts.removeEventListener('loadingdone', fit); ro.disconnect(); cancelAnimationFrame(raf); removeEventListener('resize', fit); removeEventListener('scroll', cover); };
+    const stopCount = mountCountUp(root.current!);
+    return () => { dead = true; document.fonts.removeEventListener('loadingdone', fit); ro.disconnect(); cancelAnimationFrame(raf); removeEventListener('resize', fit); removeEventListener('scroll', cover); stopCount(); };
   }, []);
   return (
     <div className="pins" id="pins" ref={root}>
@@ -36,7 +38,13 @@ export default function PinnedCards() {
             <div className="eyebrow" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>{c.tags.map((x, j) => <span key={x} className={j === 0 && x.startsWith('Live') ? 'tag live' : 'tag'}>{x}</span>)}</div>
             <h3 className="silver">{c.title}</h3>
             <p className="lede" style={{ color: 'var(--bio)', lineHeight: 1.6 }}>{c.lede}</p>
-            {c.number && <div className="big-n">{c.number.value}<small>{c.number.label}</small></div>}
+            {c.number && (
+              <div className="big-n">
+                <span className="cnt" aria-hidden="true" data-final={c.number.value}>{c.number.value}</span>
+                <span className="sr-only">{c.number.value}</span>
+                <small>{c.number.label}</small>
+              </div>
+            )}
             <ul>{c.points.map(x => <li key={x}>{x}</li>)}</ul>
             <div className="links" style={{ marginTop: 26 }}>
               {c.live && <a className="btn solid" href={c.live} target="_blank" rel="noopener">Live&nbsp;<span aria-hidden="true">↗</span></a>}
