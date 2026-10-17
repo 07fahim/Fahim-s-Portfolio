@@ -75,7 +75,9 @@ for (const vp of [{ width: 1280, height: 800 }, { width: 375, height: 812 }]) fo
       for (const k of ['color', 'bg', 'fs', 'fw']) {
         // the prototype loads no 700 face, so 700 draws as 800; compare it as what it renders, not what it asked for
         const va = k === 'fw' && ea[k] === '700' ? '800' : ea[k];
-        if (va !== eb[k]) fails.push(`${tag} ${s}[${i}].${k}: ${ea[k]} → ${eb[k]}`);
+        // font sizes fitted from measured glyph widths (the hero name) differ by thousandths between the two Inter files
+        const same = k === 'fs' ? Math.abs(parseFloat(va) - parseFloat(eb[k])) <= 0.1 : va === eb[k];
+        if (!same) fails.push(`${tag} ${s}[${i}].${k}: ${ea[k]} → ${eb[k]}`);
       }
     });
   }
