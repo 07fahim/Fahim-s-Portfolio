@@ -112,7 +112,7 @@ export default config({
     projects: collection({
       label: 'Projects', path: 'content/projects/*', slugField: 'title', format: json, columns: ['title', 'type'],
       schema: {
-        title: fields.slug({ name: { label: 'Title', validation: { isRequired: true } }, slug: { label: 'Address', description: 'Used in links to this project. Changing it later breaks old links.' } }),
+        title: fields.slug({ name: { label: 'Title', validation: { isRequired: true } }, slug: { label: 'Address', description: 'Used in links to this project. Changing it breaks old links and moves the project to the end of Project order until you add it there again.' } }),
         type: text('Type line', 'Under the picture, for example RAG / Legal AI'),
         cats: fields.multiselect({ label: 'Filters', options: FILTERS }),
         desc: long('Description', 'Shown when the card is hovered.'),

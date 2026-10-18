@@ -3,6 +3,7 @@ import { describe, expect, test } from 'vitest';
 import { PROJECTS, FEATURED } from './projects';
 import { SERVICES, FLOW, CATEGORIES } from './index';
 import { TOOLS } from './tools';
+import { SITE } from './site';
 import stack from './stack.json';
 
 describe('content the site can render (checked before every deploy)', () => {
@@ -21,7 +22,11 @@ describe('content the site can render (checked before every deploy)', () => {
   test('every big card has an intro and a picture or the n8n diagram', () => {
     for (const f of FEATURED) {
       expect(f.lede.length > 0 && (f.media.kind === 'flow' || !!f.media.src), `Big card "${f.title}" needs an intro and a picture (or the n8n diagram ticked).`).toBe(true);
+      if (f.media.kind === 'img') expect(f.media.alt.length > 0, `Big card "${f.title}" needs a picture description for screen readers.`).toBe(true);
     }
+  });
+  test('the CV is a PDF that exists', () => {
+    expect(SITE.cv.endsWith('.pdf') && existsSync('public' + SITE.cv), `The CV must be a PDF file (now ${SITE.cv}). Upload a PDF under Contact links and CV.`).toBe(true);
   });
   test('the n8n diagram has an approval step', () => {
     expect(FLOW.steps.some(s => s.gate)).toBe(true);
