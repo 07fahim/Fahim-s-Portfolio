@@ -1,7 +1,7 @@
 :root {
   --bg:#141617; --line:rgba(255,255,255,.08); --text:#EEF2F1; --muted:#909C99;
   --panel:linear-gradient(90deg, rgba(29,205,159,.14), rgba(255,255,255,.03)); --ink:#fff;
-  --silver:linear-gradient(180deg, #FFFFFF 30%, #8A93A3 100%); --silver-end:#8A93A3; --g1:#FFFFFF; --g2:#8A93A3;
+  --silver-end:#8A93A3; --silver:linear-gradient(180deg, #FFFFFF 30%, var(--silver-end) 100%); --g1:#FFFFFF; --g2:#8A93A3;
   --accent:#1DCD9F; --accent2:#B0E4CC; --sec-bg:transparent; --hi:#fff; --bio:#A3ABA9; --bio-dim:#4F5856;
   --pill-bg:rgba(255,255,255,.045); --pill-fg:#C9D1CE; --pill-dot:var(--accent2);
   --cta-bg:linear-gradient(135deg, #1DCD9F, #169976); --cta-fg:#021410;
@@ -16,7 +16,7 @@
 [data-mode=light] {
   --bg:#F3F4F4; --line:rgba(6,30,41,.1); --text:#061E29; --muted:#4A6470;
   --panel:linear-gradient(90deg, rgba(95,149,152,.16), rgba(255,255,255,.4)); --ink:#061E29;
-  --silver:linear-gradient(180deg, #061E29 30%, #3F6E7A 100%); --silver-end:#3F6E7A; --g1:#061E29; --g2:#7FA3AA;
+  --silver-end:#3F6E7A; --silver:linear-gradient(180deg, #061E29 30%, var(--silver-end) 100%); --g1:#061E29; --g2:#7FA3AA;
   --accent:#1D546D; --accent2:#1D546D; --sec-bg:transparent; --hi:#061E29; --bio:#4A6470; --bio-dim:#A9BCC2;
   --pill-bg:rgba(255,255,255,.65); --pill-fg:#1D3A47; --pill-dot:#5F9598;
   --cta-bg:linear-gradient(135deg, #061E29, #1D546D); --cta-fg:#fff;
