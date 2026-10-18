@@ -10,7 +10,7 @@ export default function PinnedCardsEffects() {
     const fit = () => {
       cs.forEach(c => { c.style.minHeight = ''; });
       const p = computePins({ viewport: innerHeight, heights: cs.map(c => c.offsetHeight), wide: !matchMedia('(max-width:800px)').matches, header: document.querySelector('header')?.offsetHeight ?? 0, pad: cs[0] ? parseFloat(getComputedStyle(cs[0]).paddingTop) : 0 });
-      // unpinned (phones, and desktop windows too short for a card's text): normal scroll with the settle effect (work.css)
+      // unpinned (phones, and desktop windows too short for a card's text): normal scroll; phones also get the settle effect (work.css)
       root.classList.toggle('flat', p.unpin);
       cs.forEach((c, k) => { c.style.minHeight = p.unpin ? '' : p.minHeight + 'px'; c.style.top = p.tops[k].toFixed(1) + 'px'; c.style.position = p.unpin ? 'static' : ''; });
       cover();
