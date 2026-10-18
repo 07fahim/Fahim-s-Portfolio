@@ -103,7 +103,7 @@ export default config({
       label: 'Project order', path: 'content/work', format: json,
       schema: {
         order: fields.array(fields.relationship({ label: 'Project', collection: 'projects', validation: { isRequired: true } }), {
-          label: 'Projects, top to bottom', description: 'The big cards follow this order too. A project missing here goes last.', itemLabel: p => p.value ?? '',
+          label: 'Projects, top to bottom', description: 'The big cards follow this order too, and inside a filter they come first. A project missing here goes last.', itemLabel: p => p.value ?? '',
         }),
       },
     }),

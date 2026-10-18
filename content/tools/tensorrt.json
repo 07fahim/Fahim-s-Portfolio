@@ -1,5 +1,6 @@
 {
   "name": "TensorRT",
   "logo": "/logos/tensorrt/logo.svg",
+  "icon": "",
   "dark": false
 }

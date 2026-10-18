@@ -1,5 +1,6 @@
 {
   "name": "ONNX Runtime",
   "logo": "/logos/onnx-runtime/logo.svg",
+  "icon": "",
   "dark": false
 }

@@ -1,5 +1,6 @@
 {
   "name": "FastAPI",
   "logo": "/logos/fastapi/logo.svg",
+  "icon": "",
   "dark": false
 }

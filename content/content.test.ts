@@ -26,7 +26,7 @@ describe('content the site can render (checked before every deploy)', () => {
     }
   });
   test('the CV is a PDF that exists', () => {
-    expect(SITE.cv.endsWith('.pdf') && existsSync('public' + SITE.cv), `The CV must be a PDF file (now ${SITE.cv}). Upload a PDF under Contact links and CV.`).toBe(true);
+    expect(/\.pdf$/i.test(SITE.cv) && existsSync('public' + SITE.cv), `The CV must be a PDF file (now ${SITE.cv}). Upload a PDF under Contact links and CV.`).toBe(true);
   });
   test('the n8n diagram has an approval step', () => {
     expect(FLOW.steps.some(s => s.gate)).toBe(true);

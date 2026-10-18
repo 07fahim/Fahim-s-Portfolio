@@ -1,5 +1,6 @@
 {
   "name": "Flask",
   "logo": "/logos/flask/logo.svg",
+  "icon": "",
   "dark": true
 }
