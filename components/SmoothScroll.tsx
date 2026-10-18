@@ -13,7 +13,7 @@ export default function SmoothScroll() {
   useEffect(() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const lenis = new Lenis({ autoRaf: true, allowNestedScroll: true, autoToggle: true });
-    const halt = () => { if (lenis.isScrolling === 'smooth') lenis.scrollTo(lenis.actualScroll, { immediate: true, force: true }); };
+    const halt = () => { if (lenis.isScrolling === 'smooth') lenis.scrollTo(lenis.actualScroll, { immediate: true }); };
     addEventListener('pointerdown', halt, true);
     addEventListener('keydown', halt, true);
     return () => { removeEventListener('pointerdown', halt, true); removeEventListener('keydown', halt, true); lenis.destroy(); };
