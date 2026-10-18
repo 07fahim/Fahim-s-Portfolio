@@ -9,12 +9,10 @@ export default function PinnedCardsEffects() {
     const cs = [...root.querySelectorAll<HTMLElement>('.pinc')];
     const fit = () => {
       cs.forEach(c => { c.style.minHeight = ''; });
-      const p = computePins({ viewport: innerHeight, heights: cs.map(c => c.offsetHeight), wide: innerWidth > 800 });
-      // a card taller than the screen pins with its top under the menu bar; where that would hide its text (not just its
-      // padding), the cards scroll like normal content instead, so every line stays readable (user, 2026-10-19; short
-      // phones such as 375x667 and narrow short windows)
-      const unpin = p.tall && p.tops[0] + parseFloat(getComputedStyle(cs[0]).paddingTop) < (document.querySelector('header')?.offsetHeight ?? 0);
-      cs.forEach((c, k) => { c.style.minHeight = p.minHeight + 'px'; c.style.top = p.tops[k].toFixed(1) + 'px'; c.style.position = unpin ? 'static' : ''; });
+      const p = computePins({ viewport: innerHeight, heights: cs.map(c => c.offsetHeight), wide: innerWidth > 800, header: document.querySelector('header')?.offsetHeight ?? 0, pad: cs[0] ? parseFloat(getComputedStyle(cs[0]).paddingTop) : 0 });
+      // unpinned (phones, and desktop windows too short for a card's text): normal scroll with the settle effect (work.css)
+      root.classList.toggle('flat', p.unpin);
+      cs.forEach((c, k) => { c.style.minHeight = p.unpin ? '' : p.minHeight + 'px'; c.style.top = p.tops[k].toFixed(1) + 'px'; c.style.position = p.unpin ? 'static' : ''; });
       cover();
     };
     // each card is cut at the top edge of the card sliding over it, so the glass never shows the card below
