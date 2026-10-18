@@ -10,7 +10,7 @@ describe('content the site can render (checked before every deploy)', () => {
     for (const p of PROJECTS) if (p.image) expect(existsSync('public' + p.image), `${p.title}: picture ${p.image} is missing from public/`).toBe(true);
   });
   test('every stack row points to a tool, and every logo file exists', () => {
-    for (const s of stack.rows.flatMap(r => r.tools)) expect(TOOLS.has(s), `Stack row entry "${s}" has no matching tool.`).toBe(true);
+    for (const s of stack.rows.flatMap(r => r.tools)) expect(TOOLS.has(s), `Stack row entry "${s}" has no matching tool. Open Stack rows and pick the tool again, or change the tool's Address back.`).toBe(true);
     for (const [name, t] of TOOLS) if (t.logo) expect(existsSync('public' + t.logo), `Tool "${name}": logo ${t.logo} is missing from public/`).toBe(true);
   });
   test('every filter a project or service uses is on the Project filters page', () => {

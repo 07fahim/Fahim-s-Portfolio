@@ -139,7 +139,7 @@ export default config({
     tools: collection({
       label: 'Stack tools', path: 'content/tools/*', slugField: 'name', format: json, columns: ['name'],
       schema: {
-        name: fields.slug({ name: { label: 'Name', validation: { isRequired: true } }, slug: { label: 'Address', description: 'Stack rows point to it. Changing it drops the tool from its row until you add it there again.' } }),
+        name: fields.slug({ name: { label: 'Name', validation: { isRequired: true } }, slug: { label: 'Address', description: 'Stack rows point to it. After changing it, open Stack rows and pick the tool again, or the site stops updating until you do.' } }),
         logo: fields.image({ label: 'Logo (SVG or PNG)', description: 'SVG, or a small square PNG. Used first when set.', directory: 'public/logos', publicPath: '/logos/' }),
         icon: fields.select({ label: 'Built-in icon', description: 'Used when there is no logo.', options: [{ label: 'None', value: '' }, ...ICONS], defaultValue: '' }),
         letters: fields.text({ label: 'Letters', description: 'Up to 2, used when there is no logo or icon. Left empty, the first two letters of the name are shown.', validation: { length: { max: 2 } } }),
