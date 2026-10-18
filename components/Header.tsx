@@ -62,7 +62,7 @@ export default function Header() {
         <button ref={btn} className="menu-btn" type="button" aria-expanded={open} aria-controls="menu" onClick={() => setOpen(o => !o)}>{open ? 'CLOSE' : 'MENU'}</button>
         <div className="progress" ref={bar} />
       </header>
-      <div ref={menu} className={open ? 'menu open' : 'menu'} id="menu" role="dialog" aria-label="Menu" onClick={e => { if ((e.target as Element).closest('a')) setOpen(false); }}>
+      <div ref={menu} className={open ? 'menu open' : 'menu'} id="menu" data-lenis-prevent role="dialog" aria-label="Menu" onClick={e => { if ((e.target as Element).closest('a')) setOpen(false); }}>
         <nav className="menu-links" aria-label="Sections">
           {LINKS.map(([id, n], k) => <a key={id} {...link(id)} style={{ '--k': k } as CSSProperties}>{n}</a>)}
         </nav>

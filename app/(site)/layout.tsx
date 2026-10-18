@@ -6,6 +6,7 @@ import { SITE } from '@/content/site';
 import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/background.css';
+import 'lenis/dist/lenis.css';
 import '../styles/header.css';
 import '../styles/hero.css';
 import '../styles/about.css';

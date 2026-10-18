@@ -9,6 +9,7 @@ import Hero from '@/components/Hero';
 import Intro from '@/components/Intro';
 import Reveal from '@/components/Reveal';
 import Services from '@/components/Services';
+import SmoothScroll from '@/components/SmoothScroll';
 import Timeline from '@/components/Timeline';
 import Work from '@/components/Work';
 
@@ -17,6 +18,7 @@ export default function Home() {
     <>
       <Background />
       <Reveal />
+      <SmoothScroll />
       <Header />
       <Intro />
       <main>
