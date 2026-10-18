@@ -44,10 +44,11 @@ export function setSetting(s: Setting): void {
 // - While "system" is chosen, follow the device when it switches (e.g. at sunset).
 // - A theme picked in another tab of the site is applied here too.
 export function syncTheme(): () => void {
+  apply();   // a change saved by another tab or the device before this tab hydrated: bring the page in line with the switch
   const q = matchMedia(LIGHT_QUERY);
   const device = () => { if (currentSetting() === 'system') apply(); };
   const tab = (e: StorageEvent) => {
-    if (e.key !== KEY) return;
+    if (e.key !== KEY && e.key !== null) return;   // null: storage was cleared, which means light
     setting = settingFrom(e.newValue);
     apply();
     window.dispatchEvent(new CustomEvent<Setting>('themesetting', { detail: setting }));

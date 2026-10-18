@@ -107,20 +107,44 @@ test('a saved setting is read back on first use; blocked storage opens light', a
   expect((await import('./mode')).currentSetting()).toBe('light');
 });
 
-test('a theme picked in another tab is applied here too', () => {
-  const { dataset, events } = stubDom(false);
-  const on: Record<string, (e: { key: string; newValue: string | null }) => void> = {};
+function stubListeners() {
+  const on: Record<string, (e: { key: string | null; newValue: string | null }) => void> = {};
+  const removed: string[] = [];
   const g = globalThis as Record<string, unknown>;
-  g.matchMedia = () => ({ matches: false, addEventListener: () => {}, removeEventListener: () => {} });
-  g.addEventListener = (type: string, cb: (e: { key: string; newValue: string | null }) => void) => { on[type] = cb; };
-  g.removeEventListener = () => {};
+  g.addEventListener = (type: string, cb: (e: { key: string | null; newValue: string | null }) => void) => { on[type] = cb; };
+  g.removeEventListener = (type: string) => removed.push(type);
+  return { on, removed };
+}
+
+test('a theme picked in another tab is applied here too; a cleared storage means light', () => {
+  const { dataset, events } = stubDom(false);
+  const { on, removed } = stubListeners();
+  (globalThis as Record<string, unknown>).matchMedia = () => ({ matches: false, addEventListener: () => {}, removeEventListener: (t: string) => removed.push('media ' + t) });
   setSetting('light');
   const stop = syncTheme();
+  const before = events.filter(e => e === 'modechange').length;
   on.storage({ key: 'mode', newValue: 'dark' });
   expect(currentSetting()).toBe('dark');
   expect(dataset.mode).toBeUndefined();
+  expect(events.filter(e => e === 'modechange')).toHaveLength(before + 1);   // the engines regrade
   expect(events.at(-1)).toBe('themesetting');
   on.storage({ key: 'other', newValue: 'light' });   // other keys are ignored
   expect(currentSetting()).toBe('dark');
+  on.storage({ key: null, newValue: null });   // localStorage.clear() in another tab
+  expect(currentSetting()).toBe('light');
   stop();
+  expect(removed.sort()).toEqual(['media change', 'storage']);
+});
+
+test('a theme changed before this tab finished loading is applied when the switch mounts', async () => {
+  vi.resetModules();
+  const { dataset } = stubDom(false);   // the pre-paint script showed light
+  stubListeners();
+  const g = globalThis as Record<string, unknown>;
+  g.localStorage = { getItem: () => 'dark', setItem: () => {} };   // another tab saved dark before we hydrated
+  g.matchMedia = () => ({ matches: false, addEventListener: () => {}, removeEventListener: () => {} });
+  const m = await import('./mode');
+  m.syncTheme();
+  expect(m.currentSetting()).toBe('dark');
+  expect(dataset.mode).toBeUndefined();
 });
