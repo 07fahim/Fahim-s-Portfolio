@@ -1,18 +1,25 @@
 import { expect, test, afterEach } from 'vitest';
-import { initialMode, setMode, MODE_SCRIPT } from './mode';
+import { settingFrom, resolve, NEXT, setSetting, currentSetting, MODE_SCRIPT } from './mode';
 
-test('a saved choice wins over the system setting', () => {
-  expect(initialMode('light', false)).toBe('light');
-  expect(initialMode('dark', true)).toBe('dark');
+test('a saved setting wins; nothing saved or a corrupt value opens light (user, 2026-10-18)', () => {
+  expect(settingFrom('dark')).toBe('dark');
+  expect(settingFrom('system')).toBe('system');
+  expect(settingFrom('light')).toBe('light');
+  expect(settingFrom(null)).toBe('light');
+  expect(settingFrom('blue')).toBe('light');
 });
-test('no saved choice follows the system setting', () => {
-  expect(initialMode(null, true)).toBe('light');
-  expect(initialMode(null, false)).toBe('dark');
+test('system follows the device; light and dark ignore it', () => {
+  expect(resolve('system', true)).toBe('light');
+  expect(resolve('system', false)).toBe('dark');
+  expect(resolve('light', false)).toBe('light');
+  expect(resolve('dark', true)).toBe('dark');
 });
-test('a corrupt saved value is ignored', () => expect(initialMode('blue', true)).toBe('light'));
+test('the switch cycles light → dark → system → light', () => {
+  expect([NEXT.light, NEXT.dark, NEXT.system]).toEqual(['dark', 'system', 'light']);
+});
 
 // MODE_SCRIPT is a duplicated string injected as a pre-paint <script>; production never calls
-// initialMode(). Run it directly against stubs so the code that actually executes is covered.
+// settingFrom()/resolve() before paint. Run it directly against stubs so the code that actually executes is covered.
 function runModeScript(opts: { saved?: string | null; throws?: boolean; systemLight: boolean }) {
   const dataset: Record<string, string> = {};
   const metas = [{ content: '' }, { content: '' }];
@@ -32,55 +39,60 @@ function runModeScript(opts: { saved?: string | null; throws?: boolean; systemLi
   return { dataset, metaColor: metas[0].content };
 }
 
-test('MODE_SCRIPT: saved light gives light', () => {
-  const { dataset, metaColor } = runModeScript({ saved: 'light', systemLight: false });
+test('MODE_SCRIPT: nothing saved opens light, even on a dark device', () => {
+  const { dataset, metaColor } = runModeScript({ saved: null, systemLight: false });
   expect(dataset.mode).toBe('light');
   expect(metaColor).toBe('#F3F4F4');
 });
-test('MODE_SCRIPT: saved dark with system light gives dark', () => {
+test('MODE_SCRIPT: saved dark stays dark on a light device', () => {
   const { dataset, metaColor } = runModeScript({ saved: 'dark', systemLight: true });
   expect(dataset.mode).toBeUndefined();
   expect(metaColor).toBe('#141617');
 });
-test('MODE_SCRIPT: nothing saved with system light gives light', () => {
-  const { dataset, metaColor } = runModeScript({ saved: null, systemLight: true });
-  expect(dataset.mode).toBe('light');
-  expect(metaColor).toBe('#F3F4F4');
+test('MODE_SCRIPT: saved system follows the device', () => {
+  expect(runModeScript({ saved: 'system', systemLight: false }).dataset.mode).toBeUndefined();
+  expect(runModeScript({ saved: 'system', systemLight: true }).dataset.mode).toBe('light');
 });
-test('MODE_SCRIPT: corrupt value with system dark gives dark', () => {
-  const { dataset, metaColor } = runModeScript({ saved: 'blue', systemLight: false });
-  expect(dataset.mode).toBeUndefined();
-  expect(metaColor).toBe('#141617');
-});
-test('MODE_SCRIPT: storage that throws falls back to the system setting', () => {
-  const { dataset, metaColor } = runModeScript({ throws: true, systemLight: true });
-  expect(dataset.mode).toBe('light');
-  expect(metaColor).toBe('#F3F4F4');
+test('MODE_SCRIPT: a corrupt value or blocked storage opens light', () => {
+  expect(runModeScript({ saved: 'blue', systemLight: false }).dataset.mode).toBe('light');
+  expect(runModeScript({ throws: true, systemLight: false }).dataset.mode).toBe('light');
 });
 
-// setMode is pure DOM-side-effect code; there's no jsdom here (vitest env is node), so stub just
-// enough of document/window/localStorage to observe the meta-tag update.
+// setSetting is DOM-side-effect code; there's no jsdom here (vitest env is node), so stub just
+// enough of document/window/localStorage/matchMedia to observe what it does.
 afterEach(() => {
-  delete (globalThis as Record<string, unknown>).document;
-  delete (globalThis as Record<string, unknown>).window;
-  delete (globalThis as Record<string, unknown>).localStorage;
-  delete (globalThis as Record<string, unknown>).CustomEvent;
+  for (const k of ['document', 'window', 'localStorage', 'CustomEvent', 'matchMedia']) delete (globalThis as Record<string, unknown>)[k];
 });
 
-test('setMode sets theme-color meta content for the chosen mode', () => {
-  const dataset: Record<string, string> = {};
+function stubDom(systemLight: boolean) {
+  const dataset: Record<string, string> = { mode: 'light' };   // a first visit: MODE_SCRIPT opened light
   const metas = [{ content: '' }];
-  (globalThis as Record<string, unknown>).document = {
+  const saved: string[] = [];
+  const events: string[] = [];
+  const g = globalThis as Record<string, unknown>;
+  g.document = {
     documentElement: { dataset },
     querySelectorAll: () => ({ forEach: (cb: (m: { setAttribute: (k: string, v: string) => void }) => void) => metas.forEach(m => cb({ setAttribute: (_: string, v: string) => { m.content = v; } })) }),
   };
-  (globalThis as Record<string, unknown>).localStorage = { setItem: () => {} };
-  (globalThis as Record<string, unknown>).CustomEvent = class { constructor(public type: string, public init?: unknown) {} };
-  (globalThis as Record<string, unknown>).window = { dispatchEvent: () => {} };
+  g.localStorage = { setItem: (_: string, v: string) => saved.push(v), getItem: () => null };
+  g.matchMedia = (q: string) => ({ matches: q.includes('light') ? systemLight : false });
+  g.CustomEvent = class { constructor(public type: string, public init?: unknown) {} };
+  g.window = { dispatchEvent: (e: { type: string }) => events.push(e.type) };
+  return { dataset, metas, saved, events };
+}
 
-  setMode('light');
-  expect(metas[0].content).toBe('#F3F4F4');
-
-  setMode('dark');
+test('setSetting applies the mode, saves the setting and only announces a real mode change', () => {
+  const { dataset, metas, saved, events } = stubDom(false);
+  setSetting('dark');
+  expect(dataset.mode).toBeUndefined();
   expect(metas[0].content).toBe('#141617');
+  setSetting('system');   // dark device: still dark, so the engines needn't regrade
+  expect(currentSetting()).toBe('system');
+  expect(saved).toEqual(['dark', 'system']);
+  expect(events.filter(e => e === 'modechange')).toHaveLength(1);
+  expect(events.filter(e => e === 'themesetting')).toHaveLength(2);
+  setSetting('light');
+  expect(dataset.mode).toBe('light');
+  expect(metas[0].content).toBe('#F3F4F4');
+  expect(events.filter(e => e === 'modechange')).toHaveLength(2);
 });

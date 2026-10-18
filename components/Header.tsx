@@ -1,15 +1,17 @@
 'use client';
 import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
-import { currentMode, setMode, type Mode } from '@/lib/mode';
+import { currentSetting, followSystem, NEXT, setSetting, type Setting } from '@/lib/mode';
 import { SITE } from '@/content/site';
 
 const LINKS = [['home', 'Home'], ['about', 'About'], ['services', 'Services'], ['work', 'Work'], ['contact', 'Contact']] as const;
 const ALIAS: Record<string, string> = { timeline: 'about', achievements: 'about', game: 'contact' };   // no section lights nothing
 // module-level so identity is stable across renders (useSyncExternalStore re-subscribes on identity change)
-const subscribe = (cb: () => void) => { addEventListener('modechange', cb); return () => removeEventListener('modechange', cb); };
+const subscribe = (cb: () => void) => { addEventListener('themesetting', cb); return () => removeEventListener('themesetting', cb); };
+const NAME: Record<Setting, string> = { light: 'Light', dark: 'Dark', system: 'System' };
 
 export default function Header() {
-  const mode = useSyncExternalStore(subscribe, currentMode, () => 'dark' as Mode);
+  const theme = useSyncExternalStore(subscribe, currentSetting, () => 'light' as Setting);
+  useEffect(followSystem, []);   // while System is chosen, follow the device when it switches
   const [open, setOpen] = useState(false);
   const [cur, setCur] = useState('home');
   const btn = useRef<HTMLButtonElement>(null), menu = useRef<HTMLDivElement>(null), bar = useRef<HTMLDivElement>(null), wasOpen = useRef(false);
@@ -42,7 +44,8 @@ export default function Header() {
     return () => { removeEventListener('keydown', key); removeEventListener('resize', wide); };
   }, [open]);
 
-  const flip = () => setMode(mode === 'light' ? 'dark' : 'light');
+  const flip = () => setSetting(NEXT[theme]);   // one word cycles Light → Dark → System (user, 2026-10-18)
+  const themeLabel = `Theme: ${NAME[theme]}. Switch to ${NAME[NEXT[theme]]}`;
   const link = (id: string) => ({ href: `#${id}`, className: cur === id ? 'on' : undefined, 'aria-current': cur === id ? ('location' as const) : undefined });
 
   return (
@@ -52,7 +55,7 @@ export default function Header() {
         <a className="logo" href="#home" inert>FAHIM FAIYAZ</a>
         <nav>
           {LINKS.map(([id, n]) => <a key={id} {...link(id)}>{n.toUpperCase()}</a>)}
-          <button className="mode" type="button" onClick={flip} aria-label={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`}>{mode === 'light' ? 'DARK' : 'LIGHT'}</button>
+          <button className="mode" type="button" onClick={flip} aria-label={themeLabel}>{theme.toUpperCase()}</button>
         </nav>
         <button ref={btn} className="menu-btn" type="button" aria-expanded={open} aria-controls="menu" onClick={() => setOpen(o => !o)}>{open ? 'CLOSE' : 'MENU'}</button>
         <div className="progress" ref={bar} />
@@ -64,7 +67,7 @@ export default function Header() {
         <div className="menu-foot">
           <a className="btn solid" href={SITE.whatsapp} target="_blank" rel="noopener" data-umami-event="whatsapp_click">Message on WhatsApp<span className="wa" aria-hidden="true" /></a>
           <a className="btn" href={SITE.cv} download="Fahim-Faiyaz-CV.pdf" target="_blank" rel="noopener" data-umami-event="resume_click">Download CV&nbsp;<span aria-hidden="true">↓</span></a>
-          <button className="btn" type="button" onClick={flip}>{mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}</button>
+          <button className="btn" type="button" onClick={flip} aria-label={themeLabel}>Theme: {NAME[theme]}</button>
         </div>
       </div>
     </>
