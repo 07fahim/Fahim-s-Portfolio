@@ -28,3 +28,6 @@ out/
 next-env.d.ts
 *.tsbuildinfo
 .lighthouse/
+
+# planning docs stay local (user, 2026-10-18)
+docs/
