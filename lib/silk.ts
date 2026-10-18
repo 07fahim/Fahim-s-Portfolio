@@ -52,6 +52,7 @@ export function mountSilk(host: HTMLElement): () => void {
   const size = () => { dpr = Math.min(devicePixelRatio, 1.5) * .5; w = innerWidth; h = innerHeight; cv.width = w * dpr; cv.height = h * dpr; gl.viewport(0, 0, cv.width, cv.height); };
 
   // PORT P1026–1028, P1120–1145: blend mode, the Silk shaders, VAO and uniforms.
+  // Dark smoke at half the prototype's strength (user, 2026-10-18): it then varies 6.4 in L* above the hero name, light 5.8.
   gl.enable(gl.BLEND); gl.clearColor(0, 0, 0, 0);
   gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
@@ -70,7 +71,7 @@ void main() {
   float ridge = pow(.5 + .5 * sin(f * 16. + T * 4.), 10.);
   float body = .5 + .5 * sin(f * 16. + T * 4. - .9);
   vec3 c = light > .5 ? mix(str, acc, .45) : mix(vec3(.86, .9, .92), acc, .4);
-  float al = light > .5 ? body * .03 + ridge * .06 : body * .045 + ridge * .1;
+  float al = light > .5 ? body * .03 + ridge * .06 : body * .0225 + ridge * .05;
   o = vec4(c * al, al);
 }`);
   const vaoHandle = vao(p, 'a', new Float32Array([-1, -1, 3, -1, -1, 3]), 2), U = uni(p, ['res', 't', 'light', 'acc', 'str']);
