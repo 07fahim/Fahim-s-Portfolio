@@ -1,11 +1,10 @@
+import type { CSSProperties } from 'react';
 import { CATEGORIES, type Project } from '@/content';
 import { FEATURED, PROJECTS } from '@/content/projects';
 import { bigFirst, counts, visible } from '@/lib/projects';
-import { Github, LUCIDE } from './icons';
 import ProjectFilters from './ProjectFilters';
 
 const CAP = 6;
-const Ext = LUCIDE['external-link'];
 const featured = new Set(FEATURED.map(f => f.title));
 const grid = bigFirst(PROJECTS, featured);
 const NAME = Object.fromEntries(CATEGORIES);
@@ -29,18 +28,18 @@ export default function ProjectGrid() {
         <div className="pgrid" id="pgrid">
           {grid.map(p => {
             const hide = !shown.has(p.title);
-            const Icon = LUCIDE[p.icon];
             return (
               <article className="pcard" key={p.title} data-title={p.title} hidden={hide}>
-                <div className="media"><Media p={p} />
-                  <div className="ov"><h5 aria-hidden="true">{p.title}</h5><p>{p.desc}</p>
-                    <div className="lk">
-                      <a href={p.repo} target="_blank" rel="noopener" aria-label={`Code for ${p.title}`}><Github />Code</a>
-                      {p.live && <a href={p.live} target="_blank" rel="noopener" aria-label={`Live demo of ${p.title}`}><Ext />Live demo</a>}
-                    </div>
-                  </div>
+                <div className="smedia"><Media p={p} />
+                  <div className="sov"><small>Built with</small><div>{p.stack.map((x, j) => <span key={x} style={{ '--k': j } as CSSProperties}>{x}</span>)}</div></div>
                 </div>
-                <div className="txt"><span className="ptype"><Icon />{p.type}</span><h4>{p.title}</h4><div className="tech">{p.stack.slice(0, 4).map(t => <span key={t}>{t}</span>)}</div></div>
+                <div className="eyebrow">{p.live && <span className="tag live">Live</span>}<span className="tag">{NAME[p.cats[0]]}</span></div>
+                <h4 className="silver">{p.title}</h4>
+                <p className="lede">{p.desc}</p>
+                <div className="links">
+                  {p.live && <a className="btn solid" href={p.live} target="_blank" rel="noopener" aria-label={`Live demo of ${p.title}`}>Live&nbsp;<span aria-hidden="true">↗</span></a>}
+                  <a className="btn" href={p.repo} target="_blank" rel="noopener" aria-label={`${p.title} on GitHub`}>GitHub&nbsp;<span aria-hidden="true">↗</span></a>
+                </div>
               </article>
             );
           })}

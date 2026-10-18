@@ -4,7 +4,7 @@ section.about, section.services { position:relative; z-index:2; background:var(-
 .about-top { display:grid; grid-template-columns:.8fr 1.2fr; gap:4vw; align-items:center; padding:0 8vw; }   /* the heading needs less room than the card */
 .label { font-size:.68rem; letter-spacing:.3em; color:var(--muted); text-transform:uppercase; margin-bottom:18px; }
 .about h2 { font-weight:800; font-size:clamp(4rem, 11vw, 10rem); letter-spacing:-.05em; line-height:.9; }
-.card { background:var(--card-bg); border:1px solid var(--card-border); box-shadow:var(--card-shadow); backdrop-filter:var(--blur); border-radius:22px; padding:clamp(24px, 3vw, 40px); font-size:clamp(1rem, 1.25vw, 1.15rem); line-height:1.7; }
+.card { background:var(--card-bg); border:1px solid var(--card-border); box-shadow:var(--card-shadow); -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur); border-radius:22px; padding:clamp(24px, 3vw, 40px); font-size:clamp(1rem, 1.25vw, 1.15rem); line-height:1.7; }
 .about .card { max-width:38em; } #bio p { text-wrap:pretty; } #bio p + p { margin-top:1em; }   /* card capped so lines stay under ~70 characters on wide screens; no one-word last lines */
 /* bio: one size; plain words in soft grey, roles, companies and services in white medium weight, so the eye can skim the key facts */
 #bio.hl b { font-weight:500; }

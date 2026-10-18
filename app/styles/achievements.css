@@ -13,7 +13,7 @@ section.ach { position:relative; z-index:2; padding:9vh 0; }
 .ach .desc { margin-top:8px; font-size:.9rem; line-height:1.55; color:var(--bio); max-width:52em; }
 /* glass cards, like the project grid */
 .ach .cards { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.5rem; margin-top:24px; list-style:none; }
-.ach .cards > li { display:flex; flex-direction:column; gap:14px; padding:22px; border-radius:16px; background:var(--card-bg); border:1px solid var(--card-border); box-shadow:var(--card-shadow); transition:translate .3s, border-color .3s; }
+.ach .cards > li { display:flex; flex-direction:column; gap:14px; padding:22px; border-radius:16px; background:var(--card-bg); -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur); border:1px solid var(--card-border); box-shadow:var(--card-shadow); transition:translate .3s, border-color .3s; }
 .ach .cards > li:hover { translate:0 -6px; border-color:color-mix(in srgb, var(--accent) 40%, transparent); }
 .ach .cards .top { display:flex; justify-content:space-between; align-items:center; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
 .ach .cards .foot { margin-top:auto; display:flex; justify-content:space-between; align-items:center; gap:10px; padding-top:14px; border-top:1px solid var(--line); }

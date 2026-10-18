@@ -15,7 +15,7 @@ section.ct { position:relative; z-index:2; padding:9vh 0 5vh; }   /* the game be
 .ct ::placeholder { color:var(--muted); opacity:.75; }
 .ct .err { font-size:.8rem; color:#FF6B70; min-height:1em; } [data-mode=light] .ct .err { color:#C62A2F; }
 .ct .send { display:inline-flex; align-items:center; gap:10px; justify-self:start; }
-.ct .glass { border-radius:24px; padding:clamp(20px, 2.6vw, 34px); background:var(--card-bg); border:1px solid var(--card-border); box-shadow:var(--card-shadow); }
+.ct .glass { border-radius:24px; padding:clamp(20px, 2.6vw, 34px); background:var(--card-bg); -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur); border:1px solid var(--card-border); box-shadow:var(--card-shadow); }
 /* 4: the old portfolio's layout (user, 2026-10-17): a contact information card beside a send a message card */
 .ct .c4 { display:grid; grid-template-columns:minmax(0, .9fr) minmax(0, 1.3fr); gap:1.5rem; margin:0 4vw; align-items:stretch; }
 .ct .c4 .glass { display:flex; flex-direction:column; gap:22px; }
