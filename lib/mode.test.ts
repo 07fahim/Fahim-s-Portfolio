@@ -1,5 +1,5 @@
-import { expect, test, afterEach } from 'vitest';
-import { settingFrom, resolve, NEXT, setSetting, currentSetting, MODE_SCRIPT } from './mode';
+import { expect, test, afterEach, vi } from 'vitest';
+import { settingFrom, resolve, NEXT, setSetting, currentSetting, syncTheme, MODE_SCRIPT } from './mode';
 
 test('a saved setting wins; nothing saved or a corrupt value opens light (user, 2026-10-18)', () => {
   expect(settingFrom('dark')).toBe('dark');
@@ -61,7 +61,7 @@ test('MODE_SCRIPT: a corrupt value or blocked storage opens light', () => {
 // setSetting is DOM-side-effect code; there's no jsdom here (vitest env is node), so stub just
 // enough of document/window/localStorage/matchMedia to observe what it does.
 afterEach(() => {
-  for (const k of ['document', 'window', 'localStorage', 'CustomEvent', 'matchMedia']) delete (globalThis as Record<string, unknown>)[k];
+  for (const k of ['document', 'window', 'localStorage', 'CustomEvent', 'matchMedia', 'addEventListener', 'removeEventListener']) delete (globalThis as Record<string, unknown>)[k];
 });
 
 function stubDom(systemLight: boolean) {
@@ -95,4 +95,32 @@ test('setSetting applies the mode, saves the setting and only announces a real m
   expect(dataset.mode).toBe('light');
   expect(metas[0].content).toBe('#F3F4F4');
   expect(events.filter(e => e === 'modechange')).toHaveLength(2);
+});
+
+test('a saved setting is read back on first use; blocked storage opens light', async () => {
+  const g = globalThis as Record<string, unknown>;
+  vi.resetModules();
+  g.localStorage = { getItem: () => 'system' };
+  expect((await import('./mode')).currentSetting()).toBe('system');
+  vi.resetModules();
+  g.localStorage = { getItem: () => { throw new Error('blocked'); } };
+  expect((await import('./mode')).currentSetting()).toBe('light');
+});
+
+test('a theme picked in another tab is applied here too', () => {
+  const { dataset, events } = stubDom(false);
+  const on: Record<string, (e: { key: string; newValue: string | null }) => void> = {};
+  const g = globalThis as Record<string, unknown>;
+  g.matchMedia = () => ({ matches: false, addEventListener: () => {}, removeEventListener: () => {} });
+  g.addEventListener = (type: string, cb: (e: { key: string; newValue: string | null }) => void) => { on[type] = cb; };
+  g.removeEventListener = () => {};
+  setSetting('light');
+  const stop = syncTheme();
+  on.storage({ key: 'mode', newValue: 'dark' });
+  expect(currentSetting()).toBe('dark');
+  expect(dataset.mode).toBeUndefined();
+  expect(events.at(-1)).toBe('themesetting');
+  on.storage({ key: 'other', newValue: 'light' });   // other keys are ignored
+  expect(currentSetting()).toBe('dark');
+  stop();
 });

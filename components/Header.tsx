@@ -1,17 +1,19 @@
 'use client';
 import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
-import { currentSetting, followSystem, NEXT, setSetting, type Setting } from '@/lib/mode';
+import { currentMode, currentSetting, syncTheme, NEXT, setSetting, type Mode, type Setting } from '@/lib/mode';
 import { SITE } from '@/content/site';
 
 const LINKS = [['home', 'Home'], ['about', 'About'], ['services', 'Services'], ['work', 'Work'], ['contact', 'Contact']] as const;
 const ALIAS: Record<string, string> = { timeline: 'about', achievements: 'about', game: 'contact' };   // no section lights nothing
 // module-level so identity is stable across renders (useSyncExternalStore re-subscribes on identity change)
 const subscribe = (cb: () => void) => { addEventListener('themesetting', cb); return () => removeEventListener('themesetting', cb); };
+const subscribeMode = (cb: () => void) => { addEventListener('modechange', cb); return () => removeEventListener('modechange', cb); };
 const NAME: Record<Setting, string> = { light: 'Light', dark: 'Dark', system: 'System' };
 
 export default function Header() {
   const theme = useSyncExternalStore(subscribe, currentSetting, () => 'light' as Setting);
-  useEffect(followSystem, []);   // while System is chosen, follow the device when it switches
+  const shown = useSyncExternalStore(subscribeMode, currentMode, () => 'light' as Mode);
+  useEffect(syncTheme, []);   // follow the device while System is chosen, and a theme picked in another tab
   const [open, setOpen] = useState(false);
   const [cur, setCur] = useState('home');
   const btn = useRef<HTMLButtonElement>(null), menu = useRef<HTMLDivElement>(null), bar = useRef<HTMLDivElement>(null), wasOpen = useRef(false);
@@ -45,7 +47,7 @@ export default function Header() {
   }, [open]);
 
   const flip = () => setSetting(NEXT[theme]);   // one word cycles Light → Dark → System (user, 2026-10-18)
-  const themeLabel = `Theme: ${NAME[theme]}. Switch to ${NAME[NEXT[theme]]}`;
+  const themeLabel = `Theme: ${NAME[theme]}${theme === 'system' ? ` (${shown})` : ''}. Switch to ${NAME[NEXT[theme]]}`;   // System says what it shows
   const link = (id: string) => ({ href: `#${id}`, className: cur === id ? 'on' : undefined, 'aria-current': cur === id ? ('location' as const) : undefined });
 
   return (

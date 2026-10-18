@@ -40,10 +40,19 @@ export function setSetting(s: Setting): void {
   window.dispatchEvent(new CustomEvent<Setting>('themesetting', { detail: s }));
 }
 
-// While "system" is chosen, follow the device when it switches (e.g. at sunset). Returns the cleanup.
-export function followSystem(): () => void {
+// Keeps the theme in step with the outside world. Returns the cleanup.
+// - While "system" is chosen, follow the device when it switches (e.g. at sunset).
+// - A theme picked in another tab of the site is applied here too.
+export function syncTheme(): () => void {
   const q = matchMedia(LIGHT_QUERY);
-  const on = () => { if (currentSetting() === 'system') apply(); };
-  q.addEventListener('change', on);
-  return () => q.removeEventListener('change', on);
+  const device = () => { if (currentSetting() === 'system') apply(); };
+  const tab = (e: StorageEvent) => {
+    if (e.key !== KEY) return;
+    setting = settingFrom(e.newValue);
+    apply();
+    window.dispatchEvent(new CustomEvent<Setting>('themesetting', { detail: setting }));
+  };
+  q.addEventListener('change', device);
+  addEventListener('storage', tab);
+  return () => { q.removeEventListener('change', device); removeEventListener('storage', tab); };
 }

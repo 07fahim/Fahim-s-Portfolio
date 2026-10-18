@@ -25,6 +25,7 @@ test('All shows the first cards up to the cap until Show all, without the big ca
 });
 test('visible() keeps the order it is given (ProjectGrid puts big cards first)', () => {
   expect(visible(grid, featured, 'docs', false).map(p => p.title)).toEqual(['Big docs', 'One']);
+  expect(visible([grid[2], grid[0]], featured, 'docs', false).map(p => p.title)).toEqual(['One', 'Big docs']);   // it does not reorder
 });
 
 test('big cards lead every filter wherever they sit in Project order (user, 2026-10-18)', () => {
