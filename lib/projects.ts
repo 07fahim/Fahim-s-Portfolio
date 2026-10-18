@@ -4,6 +4,9 @@ type Catted = { title: string; cats: string[] };
 
 export const inFilter = <T extends Catted>(p: T, f: string, featured: Set<string>) => f === 'all' ? !featured.has(p.title) : p.cats.includes(f);
 
+// Big cards lead the grid, so every filter shows them first; All leaves them out anyway (user, 2026-10-18).
+export const bigFirst = <T extends Catted>(grid: T[], featured: Set<string>) => [...grid.filter(p => featured.has(p.title)), ...grid.filter(p => !featured.has(p.title))];
+
 export function counts<T extends Catted>(grid: T[], featured: Set<string>): Record<string, number> {
   const out: Record<string, number> = { all: 0 };
   for (const p of grid) { if (!featured.has(p.title)) out.all++; for (const c of p.cats) out[c] = (out[c] ?? 0) + 1; }

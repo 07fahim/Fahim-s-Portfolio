@@ -1,13 +1,13 @@
 import { CATEGORIES, type Project } from '@/content';
 import { FEATURED, PROJECTS } from '@/content/projects';
-import { counts, visible } from '@/lib/projects';
+import { bigFirst, counts, visible } from '@/lib/projects';
 import { Github, LUCIDE } from './icons';
 import ProjectFilters from './ProjectFilters';
 
 const CAP = 6;
 const Ext = LUCIDE['external-link'];
-const grid = PROJECTS;
 const featured = new Set(FEATURED.map(f => f.title));
+const grid = bigFirst(PROJECTS, featured);
 const NAME = Object.fromEntries(CATEGORIES);
 
 function Media({ p }: { p: Project }) {

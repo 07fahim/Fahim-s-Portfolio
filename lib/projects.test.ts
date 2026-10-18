@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { counts, visible } from './projects';
+import { bigFirst, counts, visible } from './projects';
 import { ordered } from '@/content/projects';
 
 test('project order: listed first, unknown or repeated slugs skipped, unlisted projects last by title', () => {
@@ -25,4 +25,9 @@ test('All shows the first cards up to the cap until Show all, without the big ca
 });
 test('a filter shows its cards in project order, big cards included', () => {
   expect(visible(grid, featured, 'docs', false).map(p => p.title)).toEqual(['Big docs', 'One']);
+});
+
+test('big cards lead every filter wherever they sit in Project order (user, 2026-10-18)', () => {
+  const order = [{ title: 'One', cats: ['docs'] }, { title: 'Big', cats: ['docs'] }, { title: 'Two', cats: ['cv'] }];
+  expect(bigFirst(order, new Set(['Big'])).map(p => p.title)).toEqual(['Big', 'One', 'Two']);
 });
