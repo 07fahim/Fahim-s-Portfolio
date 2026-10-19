@@ -1,17 +1,14 @@
 'use client';
 import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
-import { currentMode, currentSetting, syncTheme, NEXT, setSetting, type Mode, type Setting } from '@/lib/mode';
+import { currentMode, syncTheme, setSetting, type Mode } from '@/lib/mode';
 import { SITE } from '@/content/site';
 
 const LINKS = [['home', 'Home'], ['about', 'About'], ['services', 'Services'], ['work', 'Work'], ['contact', 'Contact']] as const;
 const ALIAS: Record<string, string> = { timeline: 'about', achievements: 'about', game: 'contact' };   // no section lights nothing
 // module-level so identity is stable across renders (useSyncExternalStore re-subscribes on identity change)
-const subscribe = (cb: () => void) => { addEventListener('themesetting', cb); return () => removeEventListener('themesetting', cb); };
 const subscribeMode = (cb: () => void) => { addEventListener('modechange', cb); return () => removeEventListener('modechange', cb); };
-const NAME: Record<Setting, string> = { light: 'Light', dark: 'Dark', system: 'System' };
 
 export default function Header() {
-  const theme = useSyncExternalStore(subscribe, currentSetting, () => 'light' as Setting);
   const shown = useSyncExternalStore(subscribeMode, currentMode, () => 'light' as Mode);
   useEffect(syncTheme, []);   // follow the device while System is chosen, and a theme picked in another tab
   const [open, setOpen] = useState(false);
@@ -58,8 +55,11 @@ export default function Header() {
     return () => { removeEventListener('keydown', key); removeEventListener('resize', wide); };
   }, [open]);
 
-  const flip = () => setSetting(NEXT[theme]);   // one word cycles Light → Dark → System (user, 2026-10-18)
-  const themeLabel = `Theme: ${NAME[theme]}${theme === 'system' ? ` (${shown})` : ''}. Switch to ${NAME[NEXT[theme]]}`;   // System says what it shows
+  // two states, and the button names what you get (user, 2026-10-19): DARK on a light page, LIGHT on a dark one.
+  // A saved System setting still follows the device until the first click.
+  const other: Mode = shown === 'light' ? 'dark' : 'light';
+  const flip = () => setSetting(other);
+  const themeLabel = `Switch to ${other} mode`;
   const link = (id: string) => ({ href: `#${id}`, className: cur === id ? 'on' : undefined, 'aria-current': cur === id ? ('location' as const) : undefined });
 
   return (
@@ -69,7 +69,7 @@ export default function Header() {
         <a className="logo" href="#home" inert>FAHIM FAIYAZ</a>
         <nav>
           {LINKS.map(([id, n]) => <a key={id} {...link(id)}>{n.toUpperCase()}</a>)}
-          <button className="mode" type="button" onClick={flip} aria-label={themeLabel}>{theme.toUpperCase()}</button>
+          <button className="mode" type="button" onClick={flip} aria-label={themeLabel}>{other.toUpperCase()}</button>
         </nav>
         <button ref={btn} className="menu-btn" type="button" aria-expanded={open} aria-controls="menu" onClick={() => setOpen(o => !o)}>{open ? 'CLOSE' : 'MENU'}</button>
         <div className="progress" ref={bar} />
@@ -81,7 +81,7 @@ export default function Header() {
         <div className="menu-foot">
           <a className="btn solid" href={SITE.whatsapp} target="_blank" rel="noopener" data-umami-event="whatsapp_click">Message on WhatsApp<span className="wa" aria-hidden="true" /></a>
           <a className="btn" href={SITE.cv} download="Fahim-Faiyaz-CV.pdf" target="_blank" rel="noopener" data-umami-event="resume_click">Download CV&nbsp;<span aria-hidden="true">↓</span></a>
-          <button className="btn" type="button" onClick={flip} aria-label={themeLabel}>Theme: {NAME[theme]}</button>
+          <button className="btn" type="button" onClick={flip} aria-label={themeLabel}>{other === 'dark' ? 'Dark' : 'Light'} mode</button>
         </div>
       </div>
     </>

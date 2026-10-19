@@ -1,5 +1,5 @@
 import { expect, test, afterEach, vi } from 'vitest';
-import { settingFrom, resolve, NEXT, setSetting, currentSetting, syncTheme, MODE_SCRIPT } from './mode';
+import { settingFrom, resolve, setSetting, currentSetting, syncTheme, MODE_SCRIPT } from './mode';
 
 test('a saved setting wins; nothing saved or a corrupt value opens light (user, 2026-10-18)', () => {
   expect(settingFrom('dark')).toBe('dark');
@@ -13,9 +13,6 @@ test('system follows the device; light and dark ignore it', () => {
   expect(resolve('system', false)).toBe('dark');
   expect(resolve('light', false)).toBe('light');
   expect(resolve('dark', true)).toBe('dark');
-});
-test('the switch cycles light → dark → system → light', () => {
-  expect([NEXT.light, NEXT.dark, NEXT.system]).toEqual(['dark', 'system', 'light']);
 });
 
 // MODE_SCRIPT is a duplicated string injected as a pre-paint <script>; production never calls

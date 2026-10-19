@@ -7,7 +7,6 @@ const LIGHT_QUERY = '(prefers-color-scheme: light)';
 // A first visit opens light; "system" follows the device (user, 2026-10-18).
 export const settingFrom = (saved: string | null): Setting => (saved === 'dark' || saved === 'system' ? saved : 'light');
 export const resolve = (s: Setting, prefersLight: boolean): Mode => (s === 'system' ? (prefersLight ? 'light' : 'dark') : s);
-export const NEXT: Record<Setting, Setting> = { light: 'dark', dark: 'system', system: 'light' };
 
 // runs before first paint so the page never flashes the other mode; storage can be blocked.
 // Also sets the theme-color meta tags, so the browser bar matches before paint.
