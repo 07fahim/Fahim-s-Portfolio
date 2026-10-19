@@ -16,7 +16,8 @@ export default function Bio() {
       const vh = innerHeight, n = Math.ceil(clamp((vh * 0.9 - (top - scrollY)) / Math.max(h, vh * 0.35)) * ws.length);
       if (n !== lit) { lit = n; ws.forEach((w, i) => w.classList.toggle('lit', i < n)); }
     };
-    const measure = () => { const r = el.current!.getBoundingClientRect(); top = r.top + scrollY; h = r.height; run(); };
+    // offsetTop, not getBoundingClientRect: the card may still carry the fade-up's 24px transform when this runs
+    const measure = () => { let t = 0; for (let e: HTMLElement | null = el.current!; e; e = e.offsetParent as HTMLElement | null) t += e.offsetTop; top = t; h = el.current!.offsetHeight; run(); };
     const ro = new ResizeObserver(measure); ro.observe(document.body);
     addEventListener('scroll', run, { passive: true }); addEventListener('resize', measure);
     measure();

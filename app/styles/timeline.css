@@ -10,7 +10,7 @@ section.tl { position:relative; z-index:2; padding:9vh 0; }   /* same spacing an
 .tl-date .now { display:inline-flex; align-items:center; gap:6px; margin-bottom:8px; padding:4px 10px; border-radius:999px; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); letter-spacing:.18em; font-size:.66rem; }
 .tl-date .now::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); }
 .tl-date .now { position:relative; } .tl-date .now::after { content:''; position:absolute; left:10px; top:50%; width:6px; height:6px; margin-top:-3px; border-radius:50%; background:var(--accent); animation:ring 2s infinite; }   /* build (user, 2026-10-19): the ping ring, grown with transform instead of a box-shadow, so it no longer repaints the whole page every frame */
-@keyframes ring { from { transform:scale(1); opacity:.9; } 70%, to { transform:scale(3.33); opacity:0; } }
+@keyframes ring { 0%, to { transform:scale(1); opacity:1; } 70% { transform:scale(3.33); opacity:0; } }   /* the old ping's timing: out to 70%, then back in */
 .tl h3 { font-weight:800; font-size:clamp(1.25rem, 2vw, 1.7rem); letter-spacing:-.02em; color:var(--fg-strong); }
 .tl h3 small { display:block; margin-top:6px; font-size:1.05rem; font-weight:500; letter-spacing:0; color:var(--fg-strong); opacity:.85; }   /* build (user, 2026-10-18): the organisation on its own line under the title; the dates sit close to the entry */
 .tl .where { font-size:.82rem; color:var(--muted); margin-top:2px; }

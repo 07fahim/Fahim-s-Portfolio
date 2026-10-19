@@ -17,7 +17,7 @@ export default function PinnedCardsEffects() {
       const was = document.documentElement.scrollHeight;
       cs.forEach(c => { c.style.minHeight = ''; });
       const p = computePins({ viewport: innerHeight, heights: cs.map(c => c.offsetHeight), wide: !matchMedia('(max-width:800px)').matches, header: document.querySelector('header')?.offsetHeight ?? 0, pad: cs[0] ? parseFloat(getComputedStyle(cs[0]).paddingTop) : 0 });
-      // unpinned (phones, and desktop windows too short for a card's text): normal scroll; phones also get the settle effect (work.css)
+      // unpinned (phones, and desktop windows too short for a card's text): normal scroll; .flat has no CSS of its own now (a hook for checks)
       root.classList.toggle('flat', p.unpin);
       // --lift: each card's gap grows by how far its stop sits above the last card's, so the deck leaves together once the last card lands;
       // --back: the next card takes the same space back, so the lift itself never grows the page
