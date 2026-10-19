@@ -18,17 +18,29 @@ export default function Header() {
   const [cur, setCur] = useState('home');
   const btn = useRef<HTMLButtonElement>(null), menu = useRef<HTMLDivElement>(null), bar = useRef<HTMLDivElement>(null), wasOpen = useRef(false);
 
-  // section highlight and progress line (prototype P979–994; the bio's lighting lives in Bio)
+  // section highlight and progress line (prototype P979–994; the bio's lighting lives in Bio). Build (user, 2026-10-19):
+  // the section tops are measured only when the page changes size, never on scroll, and the line grows with a transform,
+  // because a layout read or a width write on every scroll step forced a full layout each frame (laggy in Work).
   useEffect(() => {
+    let tops: [string, number][] = [], room = 1, last = '';
     const run = () => {
-      const vh = innerHeight, de = document.documentElement, y = scrollY, sh = de.scrollHeight;
+      const y = scrollY, mid = y + innerHeight * 0.5;
       let c = 'home';
-      for (const s of document.querySelectorAll('section[id]')) if (s.getBoundingClientRect().top < vh * 0.5) c = s.id;
-      if (bar.current) bar.current.style.width = (y / (sh - vh) * 100) + '%';
-      setCur(ALIAS[c] ?? c);
+      for (const [id, top] of tops) if (top < mid) c = id;
+      if (bar.current) bar.current.style.transform = `scaleX(${Math.min(1, y / room)})`;
+      const v = ALIAS[c] ?? c;
+      if (v !== last) { last = v; setCur(v); }
     };
-    addEventListener('scroll', run, { passive: true }); run();
-    return () => removeEventListener('scroll', run);
+    const measure = () => {
+      const y = scrollY;
+      tops = [...document.querySelectorAll('section[id]')].map(s => [s.id, s.getBoundingClientRect().top + y]);
+      room = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+      run();
+    };
+    const ro = new ResizeObserver(measure); ro.observe(document.body);
+    addEventListener('scroll', run, { passive: true }); addEventListener('resize', measure);
+    measure();
+    return () => { ro.disconnect(); removeEventListener('scroll', run); removeEventListener('resize', measure); };
   }, []);
 
   // phone menu (prototype P1178–1185): the page behind can't scroll or take focus; Escape, a link or a wider window closes it

@@ -1,6 +1,6 @@
 footer.ft { position:relative; z-index:2; padding:8vh 4vw 0; border-top:1px solid var(--line); overflow:hidden; }
 .ft .avail { display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
-.ft .avail::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--accent); animation:ping 2s infinite; }
+.ft .avail::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--accent); }   /* build: no invisible ping (see contact.css) */
 .ft .line { font-size:clamp(1rem, 1.3vw, 1.15rem); line-height:1.55; color:var(--bio); max-width:24em; margin-bottom:18px; text-wrap:pretty; }
 .ft .icons { display:flex; flex-wrap:wrap; gap:10px; }
 .ft .icons a { width:44px; height:44px; display:grid; place-items:center; border-radius:50%; border:1px solid var(--line); color:var(--fg-strong); transition:border-color .25s, color .25s, translate .25s; }
@@ -16,4 +16,4 @@ footer.ft { position:relative; z-index:2; padding:8vh 4vw 0; border-top:1px soli
 .ft.v3 .bar { justify-content:center; gap:10px 28px; margin-top:22px; padding:0 0 5vh; border-top:0; font-size:.78rem; }   /* the small print is the last line of the stack, no divider (user, 2026-10-17) */
 @media (max-width:800px) {
   footer.ft { padding:7vh 5vw 0; } }
-@media (prefers-reduced-motion:reduce) { .ft .avail::before { animation:none; } .ft .icons a { transition:none; } }
+@media (prefers-reduced-motion:reduce) { .ft .icons a { transition:none; } }

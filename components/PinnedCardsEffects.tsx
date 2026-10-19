@@ -27,7 +27,9 @@ export default function PinnedCardsEffects() {
       if (aim && !document.documentElement.hasAttribute('data-moved') && document.documentElement.scrollHeight !== was) aim.scrollIntoView();
     };
     // each card is cut at the top edge of the card sliding over it, so the glass never shows the card below
-    const cover = () => cs.forEach((c, k) => { const next = cs[k + 1]; const o = next ? c.getBoundingClientRect().bottom - next.getBoundingClientRect().top : 0; c.style.clipPath = o > 0 ? `inset(-90px -40px ${o.toFixed(0)}px -40px)` : ''; });
+    // all reads first, then only the clips that changed (a read after each write forced a layout per card, user 2026-10-19)
+    const clips: string[] = [];
+    const cover = () => { const r = cs.map(c => c.getBoundingClientRect()); cs.forEach((c, k) => { const o = r[k + 1] ? r[k].bottom - r[k + 1].top : 0, v = o > 0 ? `inset(-90px -40px ${o.toFixed(0)}px -40px)` : ''; if (v !== clips[k]) { clips[k] = v; c.style.clipPath = v; } }); };
     let raf = 0;
     const ro = new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); });   // rAF: resizing inside the callback raised a loop error
     cs.forEach(c => ro.observe(c));

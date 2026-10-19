@@ -21,7 +21,7 @@ header nav a.on { border-color:var(--accent); opacity:1; }
 @media (max-width:800px) { .menu-btn { display:inline-block; } }
 @media (min-width:801px) { .menu { display:none; } }
 @media (prefers-reduced-motion:reduce) { .menu, .menu-links a { transition:none; translate:none; } }
-.progress { position:absolute; left:0; bottom:0; height:1px; width:0; background:var(--accent); opacity:.5; }
+.progress { position:absolute; left:0; bottom:0; height:1px; width:100%; transform:scaleX(0); transform-origin:left; background:var(--accent); opacity:.5; }   /* build: grows by transform (Header.tsx), no layout on scroll */
 
 .mode { all:unset; display:inline-block; cursor:pointer; margin-left:2.2vw; font-size:.78rem; letter-spacing:.06em; padding:4px 0; opacity:.85; } .mode:focus-visible { outline:2px solid var(--fg-strong); outline-offset:4px; }
 body.scrolled header { background:color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter:blur(14px) saturate(140%); border-bottom:1px solid var(--line); }   /* frosted bar once scrolled, so text never runs under the links */
