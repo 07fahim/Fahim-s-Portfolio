@@ -36,7 +36,7 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
 @media (max-width:800px) { .pcard { --pad:18px; } .pcard h4 { margin:10px 0 calc(6px - .2em); } .pcard .lede { font-size:.92rem; } .pcard .eyebrow { margin-top:18px; } .pcard .links { padding-top:14px; } }   /* as the phone service card */
 
 /* stacked service cards */
-.pins { display:flow-root; margin:0 4vw -6vh; }   /* flow-root keeps the last card's 6vh gap inside, so every card lets go at once; -6vh keeps the space before More projects */
+.pins { display:flow-root; margin:0 4vw -6vh; }   /* flow-root keeps the last card's 6vh inside, and with each card's --lift (PinnedCardsEffects) every card lets go together; -6vh keeps the space before More projects */
 .pinc { position:sticky; top:calc(12vh + var(--i) * 26px); min-height:74vh; margin-bottom:calc(6vh + var(--lift, 0px)); display:grid; grid-template-columns:1fr 1.25fr; gap:4vw; align-items:center;
   border-radius:28px; padding:clamp(24px, 3.5vw, 56px); background:var(--card-bg); -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur); border:1px solid var(--card-border); box-shadow:0 -20px 60px -30px rgba(0,0,0,.5); }
 [data-mode=light] .pinc { box-shadow:0 -20px 60px -30px rgba(6,30,41,.22); }
