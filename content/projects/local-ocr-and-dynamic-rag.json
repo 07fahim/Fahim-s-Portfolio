@@ -16,7 +16,6 @@
   "image": "/pimg/local-ocr-and-dynamic-rag/image.jpg",
   "stock": true,
   "kpi": "0 calls",
-  "icon": "scan-line",
   "featured": false,
   "card": {
     "tags": [],

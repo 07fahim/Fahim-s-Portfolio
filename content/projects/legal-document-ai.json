@@ -17,7 +17,6 @@
   "image": "/pimg/legal-document-ai/image.jpg",
   "stock": false,
   "kpi": "RAG",
-  "icon": "scale",
   "featured": true,
   "card": {
     "tags": [

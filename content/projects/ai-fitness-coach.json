@@ -15,7 +15,6 @@
   "live": "https://advanced-multi-agent-ai-fitness-coach-s7t2teyodwzbwhgpgqs4xw.streamlit.app/",
   "image": "/pimg/ai-fitness-coach/image.jpg",
   "stock": false,
-  "icon": "message-square",
   "featured": false,
   "card": {
     "tags": [],

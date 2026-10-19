@@ -5,7 +5,7 @@ import timeline from './timeline.json';
 import achievements from './achievements.json';
 
 export type Service = { title: string; items: string[]; desc: string; filter: string };
-export type Project = { slug: string; title: string; type: string; cats: string[]; desc: string; stack: string[]; repo: string; live: string; image: string; stock: boolean; kpi: string; icon: string };
+export type Project = { slug: string; title: string; type: string; cats: string[]; desc: string; stack: string[]; repo: string; live: string; image: string; stock: boolean; kpi: string };
 export type Media = { kind: 'img'; src: string; alt: string } | { kind: 'flow' };
 export type Featured = { title: string; tags: string[]; lede: string; number: { value: string; label: string } | null; points: string[]; media: Media; live: string; repo: string; stack: string[] };
 export type Flow = { label: string; steps: { text: string; gate: boolean }[] };

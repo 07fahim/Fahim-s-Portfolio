@@ -22,10 +22,10 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
 .pgrid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.5rem; margin:0 4vw; }
 @media (min-width:801px) { .pgrid, .filters, #all-projects { max-width:min(1100px, 92vw); margin-inline:auto; } .filters, #all-projects { padding-inline:0; } }   /* two medium cards in a centred column, the label and the filters in the same column (user, 2026-10-19) */
 .pcard { --pad:clamp(20px, 2vw, 28px); position:relative; display:flex; flex-direction:column; padding:0 var(--pad) var(--pad); border-radius:24px; overflow:hidden; background:var(--card-bg); -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur); border:1px solid var(--card-border); box-shadow:var(--card-shadow); transition:translate .3s, border-color .3s; }   /* every card is the Intro card's glass (user, 2026-10-19) */
-.pcard:hover, .pcard:focus-within { translate:0 -6px; border-color:color-mix(in srgb, var(--accent) 40%, transparent); }
+.pcard:hover, .pcard:has(:focus-visible) { translate:0 -6px; border-color:color-mix(in srgb, var(--accent) 40%, transparent); }
 .pcard .eyebrow { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
 .pcard h4 { font-weight:800; font-size:clamp(1.5rem, 2.1vw, 2rem); letter-spacing:-.04em; line-height:1; margin:14px 0 calc(10px - .2em); }
-.pcard .lede { color:var(--bio); line-height:1.6; font-size:.95rem; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.pcard .lede { color:var(--bio); line-height:1.6; font-size:.95rem; }   /* shown in full: the buttons line up along the row bottom anyway (user, 2026-10-19) */
 .pcard .links { margin-top:auto; padding-top:20px; }   /* the buttons line up along the bottom of a row */
 .pcard .smedia { margin:0 calc(-1 * var(--pad)); border-radius:0; }   /* the picture runs edge to edge along the top and takes the card's own corners (overflow:hidden), so there is one outline, not a frame inside the card (user, 2026-10-19: picture on top) */
 .pcard .smedia > img, .pcard .smedia > .duo, .pcard .smedia > .type { width:100%; height:auto; aspect-ratio:16 / 10; display:block; }
@@ -50,11 +50,11 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
 .smedia { position:relative; border-radius:14px; overflow:hidden; } .smedia > img { border:0 !important; border-radius:0 !important; transition:scale .5s; } .smedia:hover > img { scale:1.03; }
 .sov { position:absolute; inset:0; pointer-events:none; display:flex; flex-direction:column; justify-content:flex-end; gap:12px; padding:24px; opacity:0; transition:opacity .3s;
   background:linear-gradient(to bottom, rgba(6,10,12,.35), rgba(6,10,12,.94)); }
-.smedia:hover .sov, .pinc:focus-within .sov, .pcard:focus-within .sov { opacity:1; }
+.smedia:hover .sov, :is(.pinc, .pcard):has(:focus-visible) .sov { opacity:1; }   /* keyboard focus only: a mouse click on Live or GitHub leaves focus in the card, which kept it raised */
 .sov small { font-size:.68rem; letter-spacing:.24em; text-transform:uppercase; color:#C9D1CE; }
 .sov div { display:flex; flex-wrap:wrap; gap:8px; }
 .sov span { padding:7px 12px; border-radius:999px; font-size:.82rem; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); translate:0 8px; transition:translate .35s calc(var(--k) * 35ms); }
-.smedia:hover .sov span, .pinc:focus-within .sov span, .pcard:focus-within .sov span { translate:0 0; }
+.smedia:hover .sov span, :is(.pinc, .pcard):has(:focus-visible) .sov span { translate:0 0; }
 @media (hover:none) { .smedia { overflow:visible; } .smedia > img { border-radius:14px !important; } .sov { position:static; opacity:1; padding:14px 0 0; background:none; } .sov small { display:none; }
   .sov span { translate:none; font-size:.74rem; padding:5px 10px; color:var(--pill-fg); background:var(--pill-bg); border-color:var(--line); } }   /* touch has no hover, so the stack sits under the image instead of over it */
 @media (prefers-reduced-motion:reduce) { .sov span, .smedia > img { transition:none; translate:none; } }
@@ -82,4 +82,4 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
    readable. Browsers without scroll-driven animations scroll plainly. */
 @media (max-width:800px) { @supports (animation-timeline: view()) { .flat .pinc { animation:settle linear both; animation-timeline:view(); animation-range:exit 55% exit 100%; transform-origin:50% 100%; } } }   /* phones only: a very short desktop window's centred text column would dim while still on screen */
 @keyframes settle { to { scale:.9; opacity:.35; } }
-@media (prefers-reduced-motion:reduce) { .pinc { position:static; } .flat .pinc { animation:none; } .pcard { transition:none; } }
+@media (prefers-reduced-motion:reduce) { .pinc { position:static; } .flat .pinc { animation:none; } .pcard, .pcard .duo img { transition:none; } }

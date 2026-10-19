@@ -16,7 +16,6 @@
   "live": "https://emailcraft-ai.onrender.com",
   "image": "/pimg/emailcraft-ai/image.jpg",
   "stock": false,
-  "icon": "message-square",
   "featured": false,
   "card": {
     "tags": [],

@@ -13,7 +13,6 @@
   "image": "/pimg/task-manager/image.jpg",
   "stock": true,
   "kpi": "Flutter",
-  "icon": "smartphone",
   "featured": false,
   "card": {
     "tags": [],

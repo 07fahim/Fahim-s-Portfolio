@@ -16,7 +16,6 @@
   "image": "/pimg/telemetry-anomaly-detector/image.jpg",
   "stock": true,
   "kpi": "2 of 3",
-  "icon": "activity",
   "featured": false,
   "card": {
     "tags": [],

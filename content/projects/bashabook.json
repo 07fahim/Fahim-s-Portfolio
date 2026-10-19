@@ -14,7 +14,6 @@
   "live": "https://bashabook.fahimfaiyaz.dev/en",
   "image": "/pimg/bashabook/image.jpg",
   "stock": false,
-  "icon": "users",
   "featured": true,
   "card": {
     "tags": [

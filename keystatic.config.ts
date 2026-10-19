@@ -115,14 +115,13 @@ export default config({
         title: fields.slug({ name: { label: 'Title', validation: { isRequired: true } }, slug: { label: 'Address', description: 'Used in links to this project. Changing it breaks old links and moves the project to the end of Project order until you add it there again.' } }),
         type: text('Type line', 'Shown only in this list of projects, not on the site.'),
         cats: fields.multiselect({ label: 'Filters', options: FILTERS }),
-        desc: long('Description', 'Shown on the card under the title. Keep it to about three lines.'),
+        desc: long('Description', 'Shown in full on the card under the title.'),
         stack: list('Stack (shown over the picture when it is hovered)', 'Tool'),
         repo: fields.url({ label: 'GitHub link', validation: { isRequired: true } }),
         live: fields.url({ label: 'Live demo link' }),
         image: fields.image({ label: 'Picture', description: 'JPG or WebP in a 16:10 shape (for example 1600x1000 px) and under 500 KB. Other shapes lose their edges.', directory: 'public/pimg', publicPath: '/pimg/' }),
         stock: fields.checkbox({ label: 'Stock photo', description: 'Screen readers skip it because it only decorates the card.' }),
         kpi: fields.text({ label: 'Big word', description: 'Shown instead of a picture when there is none.' }),
-        icon: fields.select({ label: 'Icon (no longer shown on the site)', options: ICONS, defaultValue: 'globe' }),
         // A plain tick box, not a conditional: unticking moves the project to More projects but keeps its big-card text for later (user, 2026-10-18).
         featured: fields.checkbox({ label: 'Big card at the top of Work', description: 'Untick to move it down to More projects. The big-card text below is kept.' }),
         card: fields.object({

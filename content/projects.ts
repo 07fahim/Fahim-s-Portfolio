@@ -17,7 +17,7 @@ const files = ordered(entries<File>('projects'), (work as { order: string[] }).o
 
 export const PROJECTS: Project[] = files.map(p => ({
   slug: p.slug, title: p.title, type: p.type, cats: p.cats, desc: p.desc, stack: p.stack, repo: p.repo,
-  live: p.live ?? '', image: p.image ?? '', stock: p.stock, kpi: p.kpi ?? '', icon: p.icon,
+  live: p.live ?? '', image: p.image ?? '', stock: p.stock, kpi: p.kpi ?? '',
 }));
 export const FEATURED: Featured[] = files.filter(p => p.featured).map(({ card: c, ...p }) => ({
   title: p.title, tags: c.tags, lede: c.lede ?? '', points: c.points, stack: c.stack,

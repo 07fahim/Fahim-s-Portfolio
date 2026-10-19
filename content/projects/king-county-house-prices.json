@@ -14,7 +14,6 @@
   "live": "https://king-county-house-price-predictor.onrender.com",
   "image": "/pimg/king-county-house-prices/image.jpg",
   "stock": false,
-  "icon": "home",
   "featured": false,
   "card": {
     "tags": [],

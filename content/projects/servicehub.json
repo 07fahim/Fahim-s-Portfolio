@@ -15,7 +15,6 @@
   "image": "/pimg/servicehub/image.jpg",
   "stock": true,
   "kpi": "Hub",
-  "icon": "store",
   "featured": false,
   "card": {
     "tags": [],

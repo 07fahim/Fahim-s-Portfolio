@@ -16,7 +16,6 @@
   "image": "/pimg/research-article-classifier/image.jpg",
   "stock": false,
   "kpi": "SciBERT",
-  "icon": "message-square",
   "featured": false,
   "card": {
     "tags": [],
