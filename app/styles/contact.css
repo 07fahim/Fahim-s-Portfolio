@@ -23,7 +23,6 @@ section.ct { position:relative; z-index:2; padding:9vh 0 5vh; }   /* the game be
 .ct .sent .ok { width:64px; height:64px; display:grid; place-items:center; margin-bottom:6px; border-radius:50%; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); background:color-mix(in srgb, var(--accent) 8%, transparent); } .ct .sent .ok svg { width:28px; height:28px; }
 .ct .sent p { max-width:36ch; font-size:.98rem; line-height:1.6; color:var(--bio); overflow-wrap:anywhere; }
 .ct .sent .btn { margin-top:8px; padding:13px 22px; font:inherit; font-size:.9rem; cursor:pointer; } .ct .sent .btn:not(:hover) { background:transparent; color:var(--fg-strong); }   /* a <button>, so drop the browser's button fill; hover keeps .btn's */
-.ct .sent .btn:focus-visible { outline:2px solid var(--fg-strong); outline-offset:3px; }
 .ct .c4 h3 { font-weight:800; font-size:clamp(1.3rem, 1.8vw, 1.6rem); letter-spacing:-.02em; color:var(--fg-strong); }
 .ct .c4 .sub { margin-top:6px; font-size:.92rem; color:var(--bio); }
 .ct .info { list-style:none; display:grid; gap:6px; }
