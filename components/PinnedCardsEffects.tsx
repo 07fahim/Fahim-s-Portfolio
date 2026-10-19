@@ -12,8 +12,9 @@ export default function PinnedCardsEffects() {
       const p = computePins({ viewport: innerHeight, heights: cs.map(c => c.offsetHeight), wide: !matchMedia('(max-width:800px)').matches, header: document.querySelector('header')?.offsetHeight ?? 0, pad: cs[0] ? parseFloat(getComputedStyle(cs[0]).paddingTop) : 0 });
       // unpinned (phones, and desktop windows too short for a card's text): normal scroll; phones also get the settle effect (work.css)
       root.classList.toggle('flat', p.unpin);
-      // --lift: each card's gap grows by how far its stop sits above the last card's, so the deck leaves together once the last card lands
-      cs.forEach((c, k) => { c.style.minHeight = p.unpin ? '' : p.minHeight + 'px'; c.style.top = p.tops[k].toFixed(1) + 'px'; c.style.position = p.unpin ? 'static' : ''; c.style.setProperty('--lift', p.unpin ? '' : (p.tops[cs.length - 1] - p.tops[k]).toFixed(1) + 'px'); });
+      // --lift: each card's gap grows by how far its stop sits above the last card's, so the deck leaves together once the last card lands;
+      // --back: the next card takes the same space back, so the page keeps its height (a #game link computed before this still lands right)
+      cs.forEach((c, k) => { c.style.minHeight = p.unpin ? '' : p.minHeight + 'px'; c.style.top = p.tops[k].toFixed(1) + 'px'; c.style.position = p.unpin ? 'static' : ''; const lift = (j: number) => (p.tops[cs.length - 1] - p.tops[j]).toFixed(1) + 'px'; c.style.setProperty('--lift', p.unpin ? '' : lift(k)); c.style.setProperty('--back', p.unpin || !k ? '' : lift(k - 1)); });
       cover();
     };
     // each card is cut at the top edge of the card sliding over it, so the glass never shows the card below
