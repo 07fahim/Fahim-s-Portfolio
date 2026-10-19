@@ -50,11 +50,11 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
 .smedia { position:relative; border-radius:14px; overflow:hidden; } .smedia > img { border:0 !important; border-radius:0 !important; transition:scale .5s; } .smedia:hover > img { scale:1.03; }
 .sov { position:absolute; inset:0; pointer-events:none; display:flex; flex-direction:column; justify-content:flex-end; gap:12px; padding:24px; opacity:0; transition:opacity .3s;
   background:linear-gradient(to bottom, rgba(6,10,12,.35), rgba(6,10,12,.94)); }
-.smedia:hover .sov, :is(.pinc, .pcard):is(:has(:focus-visible)) .sov { opacity:1; }   /* :is() so a browser without :has keeps the hover; keyboard focus only: a mouse click on Live or GitHub leaves focus in the card, which kept it raised */
+.smedia:hover .sov { opacity:1; } :is(.pinc, .pcard):has(:focus-visible) .sov { opacity:1; }   /* separate rules, not one list: a browser without :has drops only the keyboard rule (a list would lose the hover too, and the minifier unwraps :is(:has()) back into a list); keyboard focus only, as a mouse click on Live or GitHub leaves focus in the card */
 .sov small { font-size:.68rem; letter-spacing:.24em; text-transform:uppercase; color:#C9D1CE; }
 .sov div { display:flex; flex-wrap:wrap; gap:8px; }
 .sov span { padding:7px 12px; border-radius:999px; font-size:.82rem; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); translate:0 8px; transition:translate .35s calc(var(--k) * 35ms); }
-.smedia:hover .sov span, :is(.pinc, .pcard):is(:has(:focus-visible)) .sov span { translate:0 0; }
+.smedia:hover .sov span { translate:0 0; } :is(.pinc, .pcard):has(:focus-visible) .sov span { translate:0 0; }
 @media (hover:none) { .smedia { overflow:visible; } .smedia > img { border-radius:14px !important; } .sov { position:static; opacity:1; padding:14px 0 0; background:none; } .sov small { display:none; }
   .sov span { translate:none; font-size:.74rem; padding:5px 10px; color:var(--pill-fg); background:var(--pill-bg); border-color:var(--line); } }   /* touch has no hover, so the stack sits under the image instead of over it */
 @media (prefers-reduced-motion:reduce) { .sov span, .smedia > img { transition:none; translate:none; } }
