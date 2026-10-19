@@ -57,7 +57,7 @@ export function mountGame(sec: HTMLElement): () => void {
     pad = { w: Math.max(W * .135, 110), h: Math.max(8, P * .55), x: W / 2, y: H * .92 }; tx = pad.x;
     ceil = document.querySelector('header')!.offsetHeight;   // the ball bounces off the nav bar, not under it
     sec.style.setProperty('--ceil', ceil + 'px');   // the lives and clock sit just under it
-    speed = H * .8; playing = false; btn.hidden = !card.hidden;
+    speed = H * .8; playing = false; btn.hidden = !card.hidden || bs.every(k => k.dead);   // cleared, card on its way: no Play
     const bb = y0 + 17 * P, waitY = H * .92 - H * .08;   // bottom of WORLD, and where the ball waits
     sec.style.setProperty('--pt', ((bb + waitY) / 2) + 'px');   // the caption and Play follow the bricks at every size
     ball = { r: Math.max(5, P * .5), x: pad.x, y: 0, vx: 0, vy: 0 }; rest();
@@ -94,8 +94,9 @@ export function mountGame(sec: HTMLElement): () => void {
 
   function draw(now: number) {
     g.clearRect(0, 0, W, H);
+    const dim = card.hidden ? 1 : .12;
     for (const k of bricks!) {
-      const a = (k.dead ? 1 - (now - k.dead) / 450 : 1) * (card.hidden ? 1 : .12);   // hit bricks fade out; the rest go faint behind an open card
+      const a = (k.dead ? 1 - (now - k.dead) / 450 : 1) * dim;   // hit bricks fade out; the rest go faint behind an open card
       if (a <= 0) continue;
       g.globalAlpha = a; g.fillStyle = fills[k.line]; g.fillRect(k.x, k.y, k.s, k.s);
     }
@@ -132,7 +133,7 @@ export function mountGame(sec: HTMLElement): () => void {
   function miss() {                                                      // the ball goes back on the paddle; Play launches the next one
     playing = false; lives--; sync();
     livesEl.classList.remove('ping'); void livesEl.offsetWidth; livesEl.classList.add('ping');
-    if (lives > 0) { btn.hidden = false; say(livesText(lives)); } else over();
+    if (lives > 0) { btn.hidden = false; btn.focus({ preventScroll: true }); say(livesText(lives)); } else over();
   }
   function count(to: number, f: (v: number) => string) {                // as the service cards' big numbers: 1.2 s, ease-out
     cancelAnimationFrame(craf);
@@ -152,7 +153,7 @@ export function mountGame(sec: HTMLElement): () => void {
     result = r; if (nbest) { best = r; saveBest(r); }
     if (!reduce()) { boom = performance.now(); bits = bricks!.map(k => ({ x: k.x, y: k.y, s: k.s, line: k.line, vx: (Math.random() - .5) * W * .6, vy: -(.3 + Math.random() * .6) * H })); }
     later = window.setTimeout(() => {
-      sub.hidden = true; left.textContent = livesText(r.lives); nb.textContent = nbest ? 'New best' : 'Best ' + fmtTime(best!.time); nb.classList.toggle('live', nbest);   // not a new best: the time to beat share.textContent = 'Share my time';
+      sub.hidden = true; left.textContent = livesText(r.lives); nb.textContent = nbest ? 'New best' : 'Best ' + fmtTime(best!.time); nb.classList.toggle('live', nbest); share.textContent = 'Share my time';   // not a new best: the time to beat
       open('YOU BROKE IT', true); count(r.time, fmtTime); sync();
     }, reduce() ? 0 : 700);
     say(`You broke it in ${fmtTime(r.time)} with ${livesText(r.lives)}.` + (nbest ? ' New best.' : ''));
@@ -180,7 +181,8 @@ export function mountGame(sec: HTMLElement): () => void {
   const held = new Set<string>(), steer = () => keys = Number(held.has('ArrowRight')) - Number(held.has('ArrowLeft'));   // both keys tracked: letting go of one keeps the other working
   addEventListener('keydown', e => { if ((e.target as HTMLElement).closest?.('input, textarea, select')) return; if (raf && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { held.add(e.key); steer(); if (playing) e.preventDefault(); } }, on);
   addEventListener('keyup', e => { if (held.delete(e.key)) steer(); }, on);
-  const io = new IntersectionObserver(([e]) => {                                       // only runs while the section is on screen
+  const io = new IntersectionObserver(es => {                                          // only runs while the section is on screen
+    const e = es[es.length - 1];                                                         // a #game load can batch [leaving, entering]: the newest one counts
     if (e.isIntersecting && !raf) { last = performance.now(); raf = requestAnimationFrame(tick); }
     if (!e.isIntersecting) { cancelAnimationFrame(raf); raf = 0; }
   });
