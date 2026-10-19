@@ -16,7 +16,7 @@ export function mountReveal(): () => void {
 
   const settle = (e: Event) => {
     const el = e.currentTarget as HTMLElement;
-    if (e.target !== el) return;   // either property ending (or cancelling: hidden by a filter mid-fade) settles it
+    if (e.target !== el || (e as TransitionEvent).pseudoElement) return;   // either property ending (or cancelling: hidden by a filter mid-fade) settles it; a ::before transition (the timeline dot on hover) is not the fade
     el.classList.remove('reveal', 'in'); el.style.transitionDelay = '';
     el.removeEventListener('transitionend', settle); el.removeEventListener('transitioncancel', settle);
   };
