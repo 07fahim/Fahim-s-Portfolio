@@ -19,6 +19,9 @@
 .hud .lives.ping { animation:ping .8s; }   /* the Timeline "Now" ring, once per life lost */
 .hud .lives i { width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:inset 0 0 0 1.5px var(--accent); transition:background-color .45s, scale .45s cubic-bezier(.2,.7,.2,1); }
 .hud .lives i.lost { background-color:transparent; scale:.85; }   /* a lost life empties to a ring: ● ● ○ */
+/* build (user, 2026-10-19): how to play, under the paddle (no room between Play and the waiting ball on short screens); shown with Play */
+.hint { position:absolute; left:50%; top:96.5%; translate:-50% -50%; z-index:1; width:max-content; max-width:90vw; text-align:center; font-size:.74rem; letter-spacing:.04em; color:var(--muted); pointer-events:none; }
+.play[hidden] ~ .hint { display:none; }
 /* the win / out-of-lives card: the Intro card's glass, rising in with the site's reveal timing */
 .gcard { position:absolute; left:50%; top:50%; translate:-50% -50%; z-index:2; width:min(460px, 90vw); display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center; padding:clamp(24px, 3vw, 36px); border-radius:24px; background:var(--card-bg); -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur); border:1px solid var(--card-border); box-shadow:var(--card-shadow); animation:rise .6s ease both; }
 .gcard > * { animation:rise .6s ease both; animation-delay:calc(120ms + var(--k, 0) * 60ms); }

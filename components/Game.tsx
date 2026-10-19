@@ -14,6 +14,7 @@ export default function Game() {
       <p className="cap">Break it if you can. I’ll retrain it.</p>
       <canvas id="bricks" role="img" aria-label="HELLO WORLD written in bricks. Press Play for a brick-breaker game with 3 lives; move the paddle with the mouse, a finger or the arrow keys." />
       <button className="play" id="play">PLAY</button>
+      <p className="hint">Move with your mouse, finger or arrow keys · 3 lives</p>
       <div className="gcard" hidden>
         <h3 className="silver" style={k(0)} />
         <div className="num" style={k(1)}><span aria-hidden="true" /><small /></div>
