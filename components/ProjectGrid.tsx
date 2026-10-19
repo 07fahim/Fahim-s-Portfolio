@@ -33,7 +33,7 @@ export default function ProjectGrid() {
                 <div className="smedia"><Media p={p} />
                   <div className="sov"><small>Built with</small><div>{p.stack.map((x, j) => <span key={x} style={{ '--k': j } as CSSProperties}>{x}</span>)}</div></div>
                 </div>
-                <div className="eyebrow">{p.live && <span className="tag live">Live</span>}<span className="tag">{NAME[p.cats[0]]}</span></div>
+                <div className="eyebrow">{p.live && <span className="tag live">Live</span>}{p.cats[0] && <span className="tag">{NAME[p.cats[0]]}</span>}</div>
                 <h4 className="silver">{p.title}</h4>
                 <p className="lede">{p.desc}</p>
                 <div className="links">

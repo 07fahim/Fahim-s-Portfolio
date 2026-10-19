@@ -24,16 +24,16 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
 .pcard { --pad:clamp(20px, 2vw, 28px); position:relative; display:flex; flex-direction:column; padding:0 var(--pad) var(--pad); border-radius:24px; overflow:hidden; background:var(--card-bg); -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur); border:1px solid var(--card-border); box-shadow:var(--card-shadow); transition:translate .3s, border-color .3s; }   /* every card is the Intro card's glass (user, 2026-10-19) */
 .pcard:hover, .pcard:focus-within { translate:0 -6px; border-color:color-mix(in srgb, var(--accent) 40%, transparent); }
 .pcard .eyebrow { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
-.pcard h4 { font-weight:800; font-size:clamp(1.5rem, 2.1vw, 2rem); letter-spacing:-.04em; line-height:1; margin:14px 0 calc(10px - .2em); padding-bottom:.2em; background-image:linear-gradient(transparent calc(100% - .2em), var(--silver-end) 0), var(--silver); background-size:100% 100%, 100% 1lh; background-repeat:no-repeat, repeat; }   /* as .pinc h3: room for the tails of g, j, p, q and y */
+.pcard h4 { font-weight:800; font-size:clamp(1.5rem, 2.1vw, 2rem); letter-spacing:-.04em; line-height:1; margin:14px 0 calc(10px - .2em); }
 .pcard .lede { color:var(--bio); line-height:1.6; font-size:.95rem; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
 .pcard .links { margin-top:auto; padding-top:20px; }   /* the buttons line up along the bottom of a row */
 .pcard .smedia { margin:0 calc(-1 * var(--pad)); border-radius:0; }   /* the picture runs edge to edge along the top and takes the card's own corners (overflow:hidden), so there is one outline, not a frame inside the card (user, 2026-10-19: picture on top) */
-.pcard .smedia > img, .pcard .smedia > .duo, .pcard .smedia > .type { width:100%; height:auto; aspect-ratio:16 / 10; object-fit:cover; display:block; }
-.pcard .duo img { width:100%; height:100%; object-fit:cover; display:block; }
+.pcard .smedia > img, .pcard .smedia > .duo, .pcard .smedia > .type { width:100%; height:auto; aspect-ratio:16 / 10; display:block; }
+.pcard .duo img { width:100%; height:100%; object-fit:cover; display:block; transition:scale .5s; } .smedia:hover .duo img { scale:1.03; }   /* stock pictures zoom on hover like the screenshots */
 .type { display:flex; flex-direction:column; justify-content:space-between; padding:22px; background:radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%), color-mix(in srgb, var(--text) 3%, transparent); }
 .type b { font-weight:800; font-size:clamp(2rem, 3.4vw, 3rem); letter-spacing:-.04em; line-height:1; color:var(--fg-strong); }
 .type small { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
-@media (max-width:800px) { .pcard { --pad:18px; } .pcard .tag { font-size:.58rem; padding:5px 9px; letter-spacing:.12em; } .pcard h4 { margin:10px 0 calc(6px - .2em); } .pcard .lede { font-size:.92rem; } .pcard .eyebrow { margin-top:18px; } .pcard .links { padding-top:14px; } }   /* as the phone service card */
+@media (max-width:800px) { .pcard { --pad:18px; } .pcard h4 { margin:10px 0 calc(6px - .2em); } .pcard .lede { font-size:.92rem; } .pcard .eyebrow { margin-top:18px; } .pcard .links { padding-top:14px; } }   /* as the phone service card */
 
 /* stacked service cards */
 .pins { margin:0 4vw; }
@@ -41,7 +41,8 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
   border-radius:28px; padding:clamp(24px, 3.5vw, 56px); background:var(--card-bg); -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur); border:1px solid var(--card-border); box-shadow:0 -20px 60px -30px rgba(0,0,0,.5); }
 [data-mode=light] .pinc { box-shadow:0 -20px 60px -30px rgba(6,30,41,.22); }
 .pinc > * { min-width:0; }   /* grid columns never grow to fit content: the one-row n8n flow widened the whole page to 846 px on touch phones */
-.pinc h3 { font-weight:800; font-size:clamp(2rem, 4vw, 3.6rem); letter-spacing:-.045em; line-height:.95; margin:16px 0 calc(14px - .2em); padding-bottom:.2em; background-image:linear-gradient(transparent calc(100% - .2em), var(--silver-end) 0), var(--silver); background-size:100% 100%, 100% 1lh; background-repeat:no-repeat, repeat; }   /* build-only (user, 2026-10-19): the silver text is painted only inside the box, and at line-height .95 a g, j, p, q or y lost its tail; the padding gives it room (the margin gives the space back) and the strip continues the gradient's end colour instead of restarting it */
+.pinc h3 { font-weight:800; font-size:clamp(2rem, 4vw, 3.6rem); letter-spacing:-.045em; line-height:.95; margin:16px 0 calc(14px - .2em); }
+.pinc h3, .pcard h4 { padding-bottom:.2em; background-image:linear-gradient(transparent calc(100% - .2em), var(--silver-end) 0), var(--silver); background-size:100% 100%, 100% 1lh; background-repeat:no-repeat, repeat; }   /* build-only (user, 2026-10-19): the silver text is painted only inside the box, and at line-height .95 a g, j, p, q or y lost its tail; the padding gives it room (the margin gives the space back) and the strip continues the gradient's end colour instead of restarting it */
 .pinc .big-n { font-weight:800; font-size:clamp(2.4rem, 4.4vw, 4rem); letter-spacing:-.04em; color:var(--fg-strong); margin-top:24px; } .pinc .big-n small { display:block; font-size:.8rem; font-weight:400; letter-spacing:0; color:var(--muted); }
 .pinc .big-n .cnt.counting { font-variant-numeric:tabular-nums; } /* build-only: fixed-width digits while counting, so the number doesn't jitter */
 .pinc img { width:100%; border-radius:14px; border:1px solid var(--line); display:block; }
@@ -58,13 +59,13 @@ section.work { position:relative; z-index:2; padding:9vh 0; }
   .sov span { translate:none; font-size:.74rem; padding:5px 10px; color:var(--pill-fg); background:var(--pill-bg); border-color:var(--line); } }   /* touch has no hover, so the stack sits under the image instead of over it */
 @media (prefers-reduced-motion:reduce) { .sov span, .smedia > img { transition:none; translate:none; } }
 @media (max-width:800px) {   /* phones: a compact card, same content, so it fits the screen and the stack still shows its edges */
-  .pinc { padding:18px; gap:12px; align-content:space-between; } .pinc .tag { font-size:.58rem; padding:5px 9px; letter-spacing:.12em; } .pinc h3 { margin:10px 0 calc(6px - .2em); } .pinc .lede { font-size:.92rem; }   /* space-between: text at the top, the image at the bottom of every card */
+  .pinc { padding:18px; gap:12px; align-content:space-between; } :is(.pinc, .pcard) .tag { font-size:.58rem; padding:5px 9px; letter-spacing:.12em; } .pinc h3 { margin:10px 0 calc(6px - .2em); } .pinc .lede { font-size:.92rem; }   /* space-between: text at the top, the image at the bottom of every card */
   .pinc .big-n { font-size:1.75rem; margin-top:10px; } .pinc ul { margin-top:10px; font-size:.84rem; gap:.3em; } .pinc .links { margin-top:14px !important; }
   .smedia > img, .smedia > .flow { aspect-ratio:16/9; } }
 @media (hover:none) and (max-width:800px) { .sov div { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; } .sov span { flex:none; } }   /* the stack pills: one row you can swipe */
 @media (hover:none) { .pcard .smedia { display:contents; } .pcard .smedia > :first-child { width:calc(100% + 2 * var(--pad)); margin:0 calc(-1 * var(--pad)); border-radius:0 !important; } .pcard .sov { order:1; } .pcard .links { order:2; } }   /* touch: the stack moves under the description, above the buttons (display:contents lets it leave the picture box) */
 /* stock pictures: a dark backing behind the image while it loads */
-.duo { position:relative; height:100%; background:#0d1012; }   /* stock pictures in their original colours in both modes (user, 2026-10-17) */
+.duo { position:relative; background:#0d1012; }   /* stock pictures in their original colours in both modes (user, 2026-10-17) */
 .pinc ul { list-style:none; display:grid; gap:.55em; margin-top:22px; font-size:.95rem; color:var(--bio); } .pinc ul li { display:flex; gap:10px; } .pinc ul li::before { content:''; width:6px; height:6px; margin-top:.55em; flex:none; background:var(--accent); }
 .flow { display:flex; flex-wrap:wrap; align-items:center; gap:10px 8px; padding:28px; border-radius:14px; border:1px solid var(--line); background:color-mix(in srgb, var(--text) 3%, transparent); }
 .flow span { padding:10px 14px; border-radius:10px; font-size:.82rem; background:var(--pill-bg); border:1px solid var(--line); color:var(--pill-fg); } .flow span.gate { border-color:var(--accent); color:var(--fg-strong); } .flow i { font-style:normal; color:var(--muted); line-height:1.3125; }   /* the '→' draws from a fallback font (prototype: system fonts; build: next/font's "Inter Fallback", adjusted Arial), so line-height:normal differs; this pins the prototype's approved height, same cause as .tag.live */
