@@ -13,3 +13,7 @@ export function computePins({ viewport, heights, wide, header = 0, pad = 0 }: { 
   const tops = heights.map((_, k) => tall ? room : base + k * step);
   return { tops, minHeight: H, tall, unpin: !wide || (tall && tops[0] + pad < header) };
 }
+
+// Pre-paint (layout.tsx, user 2026-10-19): marks <html data-moved> on the visitor's first wheel, touch, key or pointer press,
+// from before the page's scripts load, so the stacked cards' #hash re-aim (PinnedCardsEffects) never pulls back a visitor who scrolled.
+export const MOVED_SCRIPT = `['wheel','touchstart','keydown','pointerdown'].forEach(function(t){addEventListener(t,function(){document.documentElement.setAttribute('data-moved','')},{once:true,passive:true,capture:true})})`;

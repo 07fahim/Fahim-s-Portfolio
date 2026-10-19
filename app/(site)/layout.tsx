@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import { MODE_SCRIPT } from '@/lib/mode';
+import { MOVED_SCRIPT } from '@/lib/pins';
 import { SITE } from '@/content/site';
 import '../styles/tokens.css';
 import '../styles/base.css';
@@ -36,7 +37,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: MODE_SCRIPT }} /></head>
+      <head><script dangerouslySetInnerHTML={{ __html: MODE_SCRIPT }} /><script dangerouslySetInnerHTML={{ __html: MOVED_SCRIPT }} /></head>
       <body>
         {children}
         {SITE.umami && <Script src="https://cloud.umami.is/script.js" data-website-id={SITE.umami} data-domains="fahimfaiyaz.dev" strategy="afterInteractive" />}
