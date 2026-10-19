@@ -16,7 +16,7 @@ export function currentMode(): Mode {
   return document.documentElement.dataset.mode === 'light' ? 'light' : 'dark';
 }
 
-// The chosen setting lives here as well as in storage, so the switch still cycles when storage is blocked.
+// The chosen setting lives here as well as in storage, so a chosen theme holds for this page even when storage is blocked.
 let setting: Setting | null = null;
 export function currentSetting(): Setting {
   if (!setting) { let saved = null; try { saved = localStorage.getItem(KEY); } catch { /* blocked */ } setting = settingFrom(saved); }
@@ -36,7 +36,6 @@ export function setSetting(s: Setting): void {
   setting = s;
   try { localStorage.setItem(KEY, s); } catch { /* storage blocked: the switch still works for this visit */ }
   apply();
-  window.dispatchEvent(new CustomEvent<Setting>('themesetting', { detail: s }));
 }
 
 // Keeps the theme in step with the outside world. Returns the cleanup.
@@ -50,7 +49,6 @@ export function syncTheme(): () => void {
     if (e.key !== KEY && e.key !== null) return;   // null: storage was cleared, which means light
     setting = settingFrom(e.newValue);
     apply();
-    window.dispatchEvent(new CustomEvent<Setting>('themesetting', { detail: setting }));
   };
   q.addEventListener('change', device);
   addEventListener('storage', tab);

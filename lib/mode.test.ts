@@ -87,7 +87,6 @@ test('setSetting applies the mode, saves the setting and only announces a real m
   expect(currentSetting()).toBe('system');
   expect(saved).toEqual(['dark', 'system']);
   expect(events.filter(e => e === 'modechange')).toHaveLength(1);
-  expect(events.filter(e => e === 'themesetting')).toHaveLength(2);
   setSetting('light');
   expect(dataset.mode).toBe('light');
   expect(metas[0].content).toBe('#F3F4F4');
@@ -124,7 +123,6 @@ test('a theme picked in another tab is applied here too; a cleared storage means
   expect(currentSetting()).toBe('dark');
   expect(dataset.mode).toBeUndefined();
   expect(events.filter(e => e === 'modechange')).toHaveLength(before + 1);   // the engines regrade
-  expect(events.at(-1)).toBe('themesetting');
   on.storage({ key: 'other', newValue: 'light' });   // other keys are ignored
   expect(currentSetting()).toBe('dark');
   on.storage({ key: null, newValue: null });   // localStorage.clear() in another tab

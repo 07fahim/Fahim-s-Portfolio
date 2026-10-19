@@ -9,7 +9,7 @@ const ALIAS: Record<string, string> = { timeline: 'about', achievements: 'about'
 const subscribeMode = (cb: () => void) => { addEventListener('modechange', cb); return () => removeEventListener('modechange', cb); };
 
 export default function Header() {
-  const shown = useSyncExternalStore(subscribeMode, currentMode, () => 'light' as Mode);
+  const shown = useSyncExternalStore(subscribeMode, currentMode, () => 'light' as Mode);   // the server's 'light' guess is never seen: the header stays hidden until the hero sets body.ready, after hydration
   useEffect(syncTheme, []);   // follow the device while System is chosen, and a theme picked in another tab
   const [open, setOpen] = useState(false);
   const [cur, setCur] = useState('home');
